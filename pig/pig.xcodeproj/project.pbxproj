@@ -1,0 +1,749 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5201335E17D864DB009679F0 /* dice-red-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335C17D864DB009679F0 /* dice-red-1.png */; };
+		5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335D17D864DB009679F0 /* dice-red-1@2x.png */; };
+		5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162817D3BEF200F495E6 /* PIGMotionEffect.m */; };
+		5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */; };
+		52274D0D17CF1243004B9230 /* PIGBallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52274D0B17CF1243004B9230 /* PIGBallViewController.m */; };
+		525FD63717CC726000BE7E07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63617CC726000BE7E07 /* Foundation.framework */; };
+		525FD63917CC726000BE7E07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63817CC726000BE7E07 /* CoreGraphics.framework */; };
+		525FD63B17CC726000BE7E07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63A17CC726000BE7E07 /* UIKit.framework */; };
+		525FD64117CC726000BE7E07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 525FD63F17CC726000BE7E07 /* InfoPlist.strings */; };
+		525FD64317CC726000BE7E07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD64217CC726000BE7E07 /* main.m */; };
+		525FD64717CC726000BE7E07 /* PIGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD64617CC726000BE7E07 /* PIGAppDelegate.m */; };
+		525FD64A17CC726000BE7E07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525FD64817CC726000BE7E07 /* Main.storyboard */; };
+		525FD64D17CC726000BE7E07 /* PIGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD64C17CC726000BE7E07 /* PIGViewController.m */; };
+		525FD64F17CC726000BE7E07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525FD64E17CC726000BE7E07 /* Images.xcassets */; };
+		525FD65617CC726000BE7E07 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD65517CC726000BE7E07 /* XCTest.framework */; };
+		525FD65717CC726000BE7E07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63617CC726000BE7E07 /* Foundation.framework */; };
+		525FD65817CC726000BE7E07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63A17CC726000BE7E07 /* UIKit.framework */; };
+		525FD66017CC726000BE7E07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 525FD65E17CC726000BE7E07 /* InfoPlist.strings */; };
+		525FD66217CC726000BE7E07 /* pigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD66117CC726000BE7E07 /* pigTests.m */; };
+		525FD68A17CC887B00BE7E07 /* PIGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */; };
+		525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */; };
+		52E1FDC617D7B98E009AD64E /* button-bg-large-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA417D7B98E009AD64E /* button-bg-large-blue.png */; };
+		52E1FDC717D7B98E009AD64E /* button-bg-large-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA517D7B98E009AD64E /* button-bg-large-blue@2x.png */; };
+		52E1FDC817D7B98E009AD64E /* button-bg-large-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA617D7B98E009AD64E /* button-bg-large-pink.png */; };
+		52E1FDC917D7B98E009AD64E /* button-bg-large-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA717D7B98E009AD64E /* button-bg-large-pink@2x.png */; };
+		52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA817D7B98E009AD64E /* dice-white-1.png */; };
+		52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */; };
+		52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAA17D7B98E009AD64E /* dice-white-2.png */; };
+		52E1FDCD17D7B98E009AD64E /* dice-white-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAB17D7B98E009AD64E /* dice-white-2@2x.png */; };
+		52E1FDCE17D7B98E009AD64E /* dice-white-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAC17D7B98E009AD64E /* dice-white-3.png */; };
+		52E1FDCF17D7B98E009AD64E /* dice-white-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAD17D7B98E009AD64E /* dice-white-3@2x.png */; };
+		52E1FDD017D7B98E009AD64E /* dice-white-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAE17D7B98E009AD64E /* dice-white-4.png */; };
+		52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAF17D7B98E009AD64E /* dice-white-4@2x.png */; };
+		52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB017D7B98E009AD64E /* dice-white-5.png */; };
+		52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB117D7B98E009AD64E /* dice-white-5@2x.png */; };
+		52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB217D7B98E009AD64E /* dice-white-6.png */; };
+		52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */; };
+		52E1FDD617D7B98E009AD64E /* name-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB417D7B98E009AD64E /* name-bg-blue.png */; };
+		52E1FDD717D7B98E009AD64E /* name-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */; };
+		52E1FDD817D7B98E009AD64E /* name-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB617D7B98E009AD64E /* name-bg-pink.png */; };
+		52E1FDD917D7B98E009AD64E /* name-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */; };
+		52E1FDDA17D7B98E009AD64E /* PIG-logo-large-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB817D7B98E009AD64E /* PIG-logo-large-transparent.png */; };
+		52E1FDDB17D7B98E009AD64E /* PIG-logo-large-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB917D7B98E009AD64E /* PIG-logo-large-transparent@2x.png */; };
+		52E1FDDC17D7B98E009AD64E /* PIG-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBA17D7B98E009AD64E /* PIG-logo.png */; };
+		52E1FDDD17D7B98E009AD64E /* PIG-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBB17D7B98E009AD64E /* PIG-logo@2x.png */; };
+		52E1FDDE17D7B98E009AD64E /* points-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */; };
+		52E1FDDF17D7B98E009AD64E /* points-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */; };
+		52E1FDE017D7B98E009AD64E /* points-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */; };
+		52E1FDE117D7B98E009AD64E /* points-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBF17D7B98E009AD64E /* points-bg-pink@2x.png */; };
+		52E1FDE217D7B98E009AD64E /* points-bg-solid-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC017D7B98E009AD64E /* points-bg-solid-blue.png */; };
+		52E1FDE317D7B98E009AD64E /* points-bg-solid-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */; };
+		52E1FDE417D7B98E009AD64E /* points-bg-solid-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */; };
+		52E1FDE517D7B98E009AD64E /* points-bg-solid-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */; };
+		52E1FDE617D7B98E009AD64E /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC417D7B98E009AD64E /* snake.png */; };
+		52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC517D7B98E009AD64E /* snake@2x.png */; };
+		52E1FDEA17D80D57009AD64E /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDE817D80D57009AD64E /* pig.png */; };
+		52E1FDEB17D80D57009AD64E /* pig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDE917D80D57009AD64E /* pig@2x.png */; };
+		52E1FDEE17D81AF4009AD64E /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDEC17D81AF4009AD64E /* rabbit.png */; };
+		52E1FDEF17D81AF4009AD64E /* rabbit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDED17D81AF4009AD64E /* rabbit@2x.png */; };
+		52E1FDF217D81BB7009AD64E /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF017D81BB7009AD64E /* turtle.png */; };
+		52E1FDF317D81BB7009AD64E /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF117D81BB7009AD64E /* turtle@2x.png */; };
+		52E1FDF617D84273009AD64E /* buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF417D84273009AD64E /* buyTwoPlayer.png */; };
+		52E1FDF717D84273009AD64E /* buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF517D84273009AD64E /* buyTwoPlayer@2x.png */; };
+		52E4126217D00CF400F75335 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126117D00CF400F75335 /* IAPHelper.m */; };
+		52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126417D00D8700F75335 /* PIGIAPHelper.m */; };
+		52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E4126617D00DC200F75335 /* StoreKit.framework */; };
+		52E4126C17D0125E00F75335 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126B17D0125E00F75335 /* Reachability.m */; };
+		52E4126F17D0132E00F75335 /* PIGRulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126E17D0132E00F75335 /* PIGRulesViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		525FD65917CC726000BE7E07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 525FD62B17CC726000BE7E07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 525FD63217CC726000BE7E07;
+			remoteInfo = pig;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5201335C17D864DB009679F0 /* dice-red-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1.png"; sourceTree = "<group>"; };
+		5201335D17D864DB009679F0 /* dice-red-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1@2x.png"; sourceTree = "<group>"; };
+		5223162717D3BEF200F495E6 /* PIGMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMotionEffect.h; sourceTree = "<group>"; };
+		5223162817D3BEF200F495E6 /* PIGMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMotionEffect.m; sourceTree = "<group>"; };
+		5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PIGCustomColors.h"; sourceTree = "<group>"; };
+		5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PIGCustomColors.m"; sourceTree = "<group>"; };
+		52274D0A17CF1243004B9230 /* PIGBallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGBallViewController.h; sourceTree = "<group>"; };
+		52274D0B17CF1243004B9230 /* PIGBallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGBallViewController.m; sourceTree = "<group>"; };
+		525FD63317CC726000BE7E07 /* pig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pig.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		525FD63617CC726000BE7E07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		525FD63817CC726000BE7E07 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		525FD63A17CC726000BE7E07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		525FD63E17CC726000BE7E07 /* pig-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pig-Info.plist"; sourceTree = "<group>"; };
+		525FD64017CC726000BE7E07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		525FD64217CC726000BE7E07 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		525FD64417CC726000BE7E07 /* pig-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pig-Prefix.pch"; sourceTree = "<group>"; };
+		525FD64517CC726000BE7E07 /* PIGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PIGAppDelegate.h; sourceTree = "<group>"; };
+		525FD64617CC726000BE7E07 /* PIGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PIGAppDelegate.m; sourceTree = "<group>"; };
+		525FD64917CC726000BE7E07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		525FD64B17CC726000BE7E07 /* PIGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PIGViewController.h; sourceTree = "<group>"; };
+		525FD64C17CC726000BE7E07 /* PIGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PIGViewController.m; sourceTree = "<group>"; };
+		525FD64E17CC726000BE7E07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		525FD65417CC726000BE7E07 /* pigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		525FD65517CC726000BE7E07 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		525FD65D17CC726000BE7E07 /* pigTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pigTests-Info.plist"; sourceTree = "<group>"; };
+		525FD65F17CC726000BE7E07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		525FD66117CC726000BE7E07 /* pigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pigTests.m; sourceTree = "<group>"; };
+		525FD68817CC887B00BE7E07 /* PIGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGHomeViewController.h; sourceTree = "<group>"; };
+		525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGHomeViewController.m; sourceTree = "<group>"; };
+		525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		52E1FDA417D7B98E009AD64E /* button-bg-large-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-blue.png"; sourceTree = "<group>"; };
+		52E1FDA517D7B98E009AD64E /* button-bg-large-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-blue@2x.png"; sourceTree = "<group>"; };
+		52E1FDA617D7B98E009AD64E /* button-bg-large-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-pink.png"; sourceTree = "<group>"; };
+		52E1FDA717D7B98E009AD64E /* button-bg-large-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-pink@2x.png"; sourceTree = "<group>"; };
+		52E1FDA817D7B98E009AD64E /* dice-white-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1.png"; sourceTree = "<group>"; };
+		52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1@2x.png"; sourceTree = "<group>"; };
+		52E1FDAA17D7B98E009AD64E /* dice-white-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-2.png"; sourceTree = "<group>"; };
+		52E1FDAB17D7B98E009AD64E /* dice-white-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-2@2x.png"; sourceTree = "<group>"; };
+		52E1FDAC17D7B98E009AD64E /* dice-white-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-3.png"; sourceTree = "<group>"; };
+		52E1FDAD17D7B98E009AD64E /* dice-white-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-3@2x.png"; sourceTree = "<group>"; };
+		52E1FDAE17D7B98E009AD64E /* dice-white-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-4.png"; sourceTree = "<group>"; };
+		52E1FDAF17D7B98E009AD64E /* dice-white-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-4@2x.png"; sourceTree = "<group>"; };
+		52E1FDB017D7B98E009AD64E /* dice-white-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-5.png"; sourceTree = "<group>"; };
+		52E1FDB117D7B98E009AD64E /* dice-white-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-5@2x.png"; sourceTree = "<group>"; };
+		52E1FDB217D7B98E009AD64E /* dice-white-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-6.png"; sourceTree = "<group>"; };
+		52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-6@2x.png"; sourceTree = "<group>"; };
+		52E1FDB417D7B98E009AD64E /* name-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-blue.png"; sourceTree = "<group>"; };
+		52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-blue@2x.png"; sourceTree = "<group>"; };
+		52E1FDB617D7B98E009AD64E /* name-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-pink.png"; sourceTree = "<group>"; };
+		52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-pink@2x.png"; sourceTree = "<group>"; };
+		52E1FDB817D7B98E009AD64E /* PIG-logo-large-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo-large-transparent.png"; sourceTree = "<group>"; };
+		52E1FDB917D7B98E009AD64E /* PIG-logo-large-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo-large-transparent@2x.png"; sourceTree = "<group>"; };
+		52E1FDBA17D7B98E009AD64E /* PIG-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo.png"; sourceTree = "<group>"; };
+		52E1FDBB17D7B98E009AD64E /* PIG-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo@2x.png"; sourceTree = "<group>"; };
+		52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-blue.png"; sourceTree = "<group>"; };
+		52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-blue@2x.png"; sourceTree = "<group>"; };
+		52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-pink.png"; sourceTree = "<group>"; };
+		52E1FDBF17D7B98E009AD64E /* points-bg-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-pink@2x.png"; sourceTree = "<group>"; };
+		52E1FDC017D7B98E009AD64E /* points-bg-solid-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-blue.png"; sourceTree = "<group>"; };
+		52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-blue@2x.png"; sourceTree = "<group>"; };
+		52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-pink.png"; sourceTree = "<group>"; };
+		52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-pink@2x.png"; sourceTree = "<group>"; };
+		52E1FDC417D7B98E009AD64E /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
+		52E1FDC517D7B98E009AD64E /* snake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snake@2x.png"; sourceTree = "<group>"; };
+		52E1FDE817D80D57009AD64E /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		52E1FDE917D80D57009AD64E /* pig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig@2x.png"; sourceTree = "<group>"; };
+		52E1FDEC17D81AF4009AD64E /* rabbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit.png; sourceTree = "<group>"; };
+		52E1FDED17D81AF4009AD64E /* rabbit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rabbit@2x.png"; sourceTree = "<group>"; };
+		52E1FDF017D81BB7009AD64E /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
+		52E1FDF117D81BB7009AD64E /* turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@2x.png"; sourceTree = "<group>"; };
+		52E1FDF417D84273009AD64E /* buyTwoPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyTwoPlayer.png; sourceTree = "<group>"; };
+		52E1FDF517D84273009AD64E /* buyTwoPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buyTwoPlayer@2x.png"; sourceTree = "<group>"; };
+		52E4126017D00CF400F75335 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		52E4126117D00CF400F75335 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		52E4126317D00D8700F75335 /* PIGIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGIAPHelper.h; sourceTree = "<group>"; };
+		52E4126417D00D8700F75335 /* PIGIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGIAPHelper.m; sourceTree = "<group>"; };
+		52E4126617D00DC200F75335 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		52E4126A17D0125E00F75335 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		52E4126B17D0125E00F75335 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		52E4126D17D0132E00F75335 /* PIGRulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGRulesViewController.h; sourceTree = "<group>"; };
+		52E4126E17D0132E00F75335 /* PIGRulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGRulesViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		525FD63017CC726000BE7E07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */,
+				525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */,
+				525FD63917CC726000BE7E07 /* CoreGraphics.framework in Frameworks */,
+				525FD63B17CC726000BE7E07 /* UIKit.framework in Frameworks */,
+				525FD63717CC726000BE7E07 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		525FD65117CC726000BE7E07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				525FD65617CC726000BE7E07 /* XCTest.framework in Frameworks */,
+				525FD65817CC726000BE7E07 /* UIKit.framework in Frameworks */,
+				525FD65717CC726000BE7E07 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5223162A17D56E5A00F495E6 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */,
+				5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		525FD62A17CC726000BE7E07 = {
+			isa = PBXGroup;
+			children = (
+				525FD66B17CC778500BE7E07 /* Resources */,
+				525FD63C17CC726000BE7E07 /* pig */,
+				525FD65B17CC726000BE7E07 /* pigTests */,
+				525FD63517CC726000BE7E07 /* Frameworks */,
+				525FD63417CC726000BE7E07 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		525FD63417CC726000BE7E07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				525FD63317CC726000BE7E07 /* pig.app */,
+				525FD65417CC726000BE7E07 /* pigTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		525FD63517CC726000BE7E07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52E4126617D00DC200F75335 /* StoreKit.framework */,
+				525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */,
+				525FD63617CC726000BE7E07 /* Foundation.framework */,
+				525FD63817CC726000BE7E07 /* CoreGraphics.framework */,
+				525FD63A17CC726000BE7E07 /* UIKit.framework */,
+				525FD65517CC726000BE7E07 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		525FD63C17CC726000BE7E07 /* pig */ = {
+			isa = PBXGroup;
+			children = (
+				5223162A17D56E5A00F495E6 /* Categories */,
+				52E4126817D0122300F75335 /* Externals */,
+				52E4125F17D00CCF00F75335 /* Singletons */,
+				525FD64517CC726000BE7E07 /* PIGAppDelegate.h */,
+				525FD64617CC726000BE7E07 /* PIGAppDelegate.m */,
+				525FD64817CC726000BE7E07 /* Main.storyboard */,
+				525FD64B17CC726000BE7E07 /* PIGViewController.h */,
+				525FD64C17CC726000BE7E07 /* PIGViewController.m */,
+				525FD68817CC887B00BE7E07 /* PIGHomeViewController.h */,
+				525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */,
+				52E4126D17D0132E00F75335 /* PIGRulesViewController.h */,
+				52E4126E17D0132E00F75335 /* PIGRulesViewController.m */,
+				525FD64E17CC726000BE7E07 /* Images.xcassets */,
+				525FD63D17CC726000BE7E07 /* Supporting Files */,
+				52274D0A17CF1243004B9230 /* PIGBallViewController.h */,
+				52274D0B17CF1243004B9230 /* PIGBallViewController.m */,
+				5223162717D3BEF200F495E6 /* PIGMotionEffect.h */,
+				5223162817D3BEF200F495E6 /* PIGMotionEffect.m */,
+			);
+			path = pig;
+			sourceTree = "<group>";
+		};
+		525FD63D17CC726000BE7E07 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				525FD63E17CC726000BE7E07 /* pig-Info.plist */,
+				525FD63F17CC726000BE7E07 /* InfoPlist.strings */,
+				525FD64217CC726000BE7E07 /* main.m */,
+				525FD64417CC726000BE7E07 /* pig-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		525FD65B17CC726000BE7E07 /* pigTests */ = {
+			isa = PBXGroup;
+			children = (
+				525FD66117CC726000BE7E07 /* pigTests.m */,
+				525FD65C17CC726000BE7E07 /* Supporting Files */,
+			);
+			path = pigTests;
+			sourceTree = "<group>";
+		};
+		525FD65C17CC726000BE7E07 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				525FD65D17CC726000BE7E07 /* pigTests-Info.plist */,
+				525FD65E17CC726000BE7E07 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		525FD66B17CC778500BE7E07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				52E1FDA417D7B98E009AD64E /* button-bg-large-blue.png */,
+				52E1FDA517D7B98E009AD64E /* button-bg-large-blue@2x.png */,
+				52E1FDA617D7B98E009AD64E /* button-bg-large-pink.png */,
+				52E1FDA717D7B98E009AD64E /* button-bg-large-pink@2x.png */,
+				52E1FDA817D7B98E009AD64E /* dice-white-1.png */,
+				52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */,
+				52E1FDAA17D7B98E009AD64E /* dice-white-2.png */,
+				52E1FDAB17D7B98E009AD64E /* dice-white-2@2x.png */,
+				52E1FDAC17D7B98E009AD64E /* dice-white-3.png */,
+				52E1FDAD17D7B98E009AD64E /* dice-white-3@2x.png */,
+				52E1FDAE17D7B98E009AD64E /* dice-white-4.png */,
+				52E1FDAF17D7B98E009AD64E /* dice-white-4@2x.png */,
+				52E1FDB017D7B98E009AD64E /* dice-white-5.png */,
+				52E1FDB117D7B98E009AD64E /* dice-white-5@2x.png */,
+				52E1FDB217D7B98E009AD64E /* dice-white-6.png */,
+				52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */,
+				5201335C17D864DB009679F0 /* dice-red-1.png */,
+				5201335D17D864DB009679F0 /* dice-red-1@2x.png */,
+				52E1FDB417D7B98E009AD64E /* name-bg-blue.png */,
+				52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */,
+				52E1FDB617D7B98E009AD64E /* name-bg-pink.png */,
+				52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */,
+				52E1FDB817D7B98E009AD64E /* PIG-logo-large-transparent.png */,
+				52E1FDB917D7B98E009AD64E /* PIG-logo-large-transparent@2x.png */,
+				52E1FDBA17D7B98E009AD64E /* PIG-logo.png */,
+				52E1FDBB17D7B98E009AD64E /* PIG-logo@2x.png */,
+				52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */,
+				52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */,
+				52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */,
+				52E1FDBF17D7B98E009AD64E /* points-bg-pink@2x.png */,
+				52E1FDC017D7B98E009AD64E /* points-bg-solid-blue.png */,
+				52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */,
+				52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */,
+				52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */,
+				52E1FDC417D7B98E009AD64E /* snake.png */,
+				52E1FDC517D7B98E009AD64E /* snake@2x.png */,
+				52E1FDE817D80D57009AD64E /* pig.png */,
+				52E1FDE917D80D57009AD64E /* pig@2x.png */,
+				52E1FDEC17D81AF4009AD64E /* rabbit.png */,
+				52E1FDED17D81AF4009AD64E /* rabbit@2x.png */,
+				52E1FDF017D81BB7009AD64E /* turtle.png */,
+				52E1FDF117D81BB7009AD64E /* turtle@2x.png */,
+				52E1FDF417D84273009AD64E /* buyTwoPlayer.png */,
+				52E1FDF517D84273009AD64E /* buyTwoPlayer@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		52E4125F17D00CCF00F75335 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				52E4126017D00CF400F75335 /* IAPHelper.h */,
+				52E4126117D00CF400F75335 /* IAPHelper.m */,
+				52E4126317D00D8700F75335 /* PIGIAPHelper.h */,
+				52E4126417D00D8700F75335 /* PIGIAPHelper.m */,
+			);
+			name = Singletons;
+			sourceTree = "<group>";
+		};
+		52E4126817D0122300F75335 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				52E4126917D0124000F75335 /* Reachability */,
+			);
+			name = Externals;
+			sourceTree = "<group>";
+		};
+		52E4126917D0124000F75335 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				52E4126A17D0125E00F75335 /* Reachability.h */,
+				52E4126B17D0125E00F75335 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		525FD63217CC726000BE7E07 /* pig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 525FD66517CC726000BE7E07 /* Build configuration list for PBXNativeTarget "pig" */;
+			buildPhases = (
+				525FD62F17CC726000BE7E07 /* Sources */,
+				525FD63017CC726000BE7E07 /* Frameworks */,
+				525FD63117CC726000BE7E07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pig;
+			productName = pig;
+			productReference = 525FD63317CC726000BE7E07 /* pig.app */;
+			productType = "com.apple.product-type.application";
+		};
+		525FD65317CC726000BE7E07 /* pigTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 525FD66817CC726000BE7E07 /* Build configuration list for PBXNativeTarget "pigTests" */;
+			buildPhases = (
+				525FD65017CC726000BE7E07 /* Sources */,
+				525FD65117CC726000BE7E07 /* Frameworks */,
+				525FD65217CC726000BE7E07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				525FD65A17CC726000BE7E07 /* PBXTargetDependency */,
+			);
+			name = pigTests;
+			productName = pigTests;
+			productReference = 525FD65417CC726000BE7E07 /* pigTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		525FD62B17CC726000BE7E07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PIG;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = bluelabellabs;
+				TargetAttributes = {
+					525FD65317CC726000BE7E07 = {
+						TestTargetID = 525FD63217CC726000BE7E07;
+					};
+				};
+			};
+			buildConfigurationList = 525FD62E17CC726000BE7E07 /* Build configuration list for PBXProject "pig" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 525FD62A17CC726000BE7E07;
+			productRefGroup = 525FD63417CC726000BE7E07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				525FD63217CC726000BE7E07 /* pig */,
+				525FD65317CC726000BE7E07 /* pigTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		525FD63117CC726000BE7E07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				525FD64F17CC726000BE7E07 /* Images.xcassets in Resources */,
+				52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */,
+				52E1FDD017D7B98E009AD64E /* dice-white-4.png in Resources */,
+				52E1FDE417D7B98E009AD64E /* points-bg-solid-pink.png in Resources */,
+				52E1FDDD17D7B98E009AD64E /* PIG-logo@2x.png in Resources */,
+				52E1FDDF17D7B98E009AD64E /* points-bg-blue@2x.png in Resources */,
+				52E1FDDB17D7B98E009AD64E /* PIG-logo-large-transparent@2x.png in Resources */,
+				52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */,
+				525FD64117CC726000BE7E07 /* InfoPlist.strings in Resources */,
+				52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */,
+				52E1FDE617D7B98E009AD64E /* snake.png in Resources */,
+				52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */,
+				52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */,
+				52E1FDCF17D7B98E009AD64E /* dice-white-3@2x.png in Resources */,
+				52E1FDF617D84273009AD64E /* buyTwoPlayer.png in Resources */,
+				52E1FDD817D7B98E009AD64E /* name-bg-pink.png in Resources */,
+				52E1FDCD17D7B98E009AD64E /* dice-white-2@2x.png in Resources */,
+				52E1FDEA17D80D57009AD64E /* pig.png in Resources */,
+				52E1FDDE17D7B98E009AD64E /* points-bg-blue.png in Resources */,
+				52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */,
+				52E1FDE117D7B98E009AD64E /* points-bg-pink@2x.png in Resources */,
+				52E1FDC617D7B98E009AD64E /* button-bg-large-blue.png in Resources */,
+				5201335E17D864DB009679F0 /* dice-red-1.png in Resources */,
+				52E1FDF717D84273009AD64E /* buyTwoPlayer@2x.png in Resources */,
+				52E1FDEB17D80D57009AD64E /* pig@2x.png in Resources */,
+				52E1FDC917D7B98E009AD64E /* button-bg-large-pink@2x.png in Resources */,
+				52E1FDF217D81BB7009AD64E /* turtle.png in Resources */,
+				52E1FDDA17D7B98E009AD64E /* PIG-logo-large-transparent.png in Resources */,
+				52E1FDF317D81BB7009AD64E /* turtle@2x.png in Resources */,
+				52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */,
+				52E1FDEE17D81AF4009AD64E /* rabbit.png in Resources */,
+				52E1FDE317D7B98E009AD64E /* points-bg-solid-blue@2x.png in Resources */,
+				5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */,
+				52E1FDD717D7B98E009AD64E /* name-bg-blue@2x.png in Resources */,
+				52E1FDE017D7B98E009AD64E /* points-bg-pink.png in Resources */,
+				52E1FDC717D7B98E009AD64E /* button-bg-large-blue@2x.png in Resources */,
+				52E1FDC817D7B98E009AD64E /* button-bg-large-pink.png in Resources */,
+				52E1FDCE17D7B98E009AD64E /* dice-white-3.png in Resources */,
+				52E1FDEF17D81AF4009AD64E /* rabbit@2x.png in Resources */,
+				52E1FDDC17D7B98E009AD64E /* PIG-logo.png in Resources */,
+				52E1FDE217D7B98E009AD64E /* points-bg-solid-blue.png in Resources */,
+				52E1FDD917D7B98E009AD64E /* name-bg-pink@2x.png in Resources */,
+				52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */,
+				525FD64A17CC726000BE7E07 /* Main.storyboard in Resources */,
+				52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */,
+				52E1FDE517D7B98E009AD64E /* points-bg-solid-pink@2x.png in Resources */,
+				52E1FDD617D7B98E009AD64E /* name-bg-blue.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		525FD65217CC726000BE7E07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				525FD66017CC726000BE7E07 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		525FD62F17CC726000BE7E07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */,
+				525FD64317CC726000BE7E07 /* main.m in Sources */,
+				52E4126F17D0132E00F75335 /* PIGRulesViewController.m in Sources */,
+				525FD64717CC726000BE7E07 /* PIGAppDelegate.m in Sources */,
+				52E4126C17D0125E00F75335 /* Reachability.m in Sources */,
+				525FD68A17CC887B00BE7E07 /* PIGHomeViewController.m in Sources */,
+				52274D0D17CF1243004B9230 /* PIGBallViewController.m in Sources */,
+				52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */,
+				5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */,
+				52E4126217D00CF400F75335 /* IAPHelper.m in Sources */,
+				525FD64D17CC726000BE7E07 /* PIGViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		525FD65017CC726000BE7E07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				525FD66217CC726000BE7E07 /* pigTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		525FD65A17CC726000BE7E07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 525FD63217CC726000BE7E07 /* pig */;
+			targetProxy = 525FD65917CC726000BE7E07 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		525FD63F17CC726000BE7E07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				525FD64017CC726000BE7E07 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		525FD64817CC726000BE7E07 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				525FD64917CC726000BE7E07 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		525FD65E17CC726000BE7E07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				525FD65F17CC726000BE7E07 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		525FD66317CC726000BE7E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		525FD66417CC726000BE7E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		525FD66617CC726000BE7E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jordan Gurrieri (3U758YF3ZS)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
+				INFOPLIST_FILE = "pig/pig-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "76745BA7-9F90-4657-B5E8-0E0E5402067A";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		525FD66717CC726000BE7E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Blue Label Solutions LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Blue Label Solutions LLC";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
+				INFOPLIST_FILE = "pig/pig-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F89EFD27-8003-4C15-AA0E-740B18C7112A";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		525FD66917CC726000BE7E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/pig.app/pig";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "pigTests/pigTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		525FD66A17CC726000BE7E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/pig.app/pig";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
+				INFOPLIST_FILE = "pigTests/pigTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		525FD62E17CC726000BE7E07 /* Build configuration list for PBXProject "pig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				525FD66317CC726000BE7E07 /* Debug */,
+				525FD66417CC726000BE7E07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		525FD66517CC726000BE7E07 /* Build configuration list for PBXNativeTarget "pig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				525FD66617CC726000BE7E07 /* Debug */,
+				525FD66717CC726000BE7E07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		525FD66817CC726000BE7E07 /* Build configuration list for PBXNativeTarget "pigTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				525FD66917CC726000BE7E07 /* Debug */,
+				525FD66A17CC726000BE7E07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 525FD62B17CC726000BE7E07 /* Project object */;
+}
