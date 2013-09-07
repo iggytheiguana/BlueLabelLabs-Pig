@@ -143,7 +143,7 @@
     
     [self reset];
     
-    _score1 = 99;
+//    _score1 = 99;
 }
 
 //- (void)viewWillDisappear:(BOOL)animated {
