@@ -145,7 +145,7 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     {
         gameCenterController.gameCenterDelegate = self;
         gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
-//        gameCenterController.leaderboardIdentifier = leaderboardID;
+        gameCenterController.leaderboardIdentifier = leaderboardID;
 
         [self presentViewController:gameCenterController animated:YES completion:nil];
     }

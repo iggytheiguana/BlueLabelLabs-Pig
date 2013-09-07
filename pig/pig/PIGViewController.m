@@ -143,7 +143,7 @@
     
     [self reset];
     
-//    _score1 = 99;
+    _score1 = 99;
 }
 
 //- (void)viewWillDisappear:(BOOL)animated {
@@ -680,6 +680,30 @@
     }
 }
 
+#pragma mark - Game Center Methods
+- (void)showLeaderboard:(NSString*)leaderboardID {
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gameCenterController.leaderboardIdentifier = leaderboardID;
+        
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIAlert Delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex > 0 && buttonIndex < alertView.numberOfButtons) {
+        [self showLeaderboard:kHighestGameScoreLeaderboardIdentifier];
+    }
+}
+
 #pragma mark - UIAction Methods
 - (IBAction)onHomeButtonPressed:(id)sender {
     // Move the player 2 label into the center
@@ -745,24 +769,24 @@
             [self.btn_playerReady setEnabled:NO];
             [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\nPlayer 1"] forState:UIControlStateNormal];
             
-            
+            // Report the scores to Gamce Center and save in User Deafults
             int64_t totalScore = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
             totalScore = totalScore + _score1;
             
             int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
             
+            [PIGGCHelper sharedInstance].delegate = self;
             if ((int64_t)_score1 > highestGameScore) {
                 [[PIGGCHelper sharedInstance] reportScore:(int64_t)_score1 forLeaderboardID:kHighestGameScoreLeaderboardIdentifier];
                 
-//                // Save the new highest game score to the user defaults
-//                [[NSUserDefaults standardUserDefaults] setInteger:(int64_t)_score1 forKey:kHighestGameScorePlayer];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New High Score!"
+                                                                message:@"You beat your highest single game score. View your rank in the Leaderboard?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"Leaderboard", nil];
+                [alert show];
             }
-            
             [[PIGGCHelper sharedInstance] reportScore:totalScore forLeaderboardID:kTotalScoreLeaderboardIdentifier];
-            
-//            // Save the new total score to the user defaults
-//            [[NSUserDefaults standardUserDefaults] setInteger:totalScore forKey:kTotalScorePlayer];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         else if (_score2 >= 101 && _score2 > _score1) {
             _winner2 = YES;

@@ -12,7 +12,7 @@
 //   Protocol to notify external
 //   objects when Game Center events occur or
 //   when Game Center async tasks are completed
-@protocol GCHelperProtocol < NSObject >
+@protocol GCHelperDelegate < NSObject >
 
 -(void) onScoresSubmitted:(bool)success;
 
@@ -23,7 +23,7 @@
     BOOL _playerAuthenticated;
 }
 
-@property (nonatomic, assign) id<GCHelperProtocol> delegate;
+@property (nonatomic, assign) id<GCHelperDelegate> delegate;
 @property (assign, readonly) BOOL gameCenterAvailable;
 @property (assign, readonly) BOOL playerAuthenticated;
 

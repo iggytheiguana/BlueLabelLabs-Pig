@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PIGGCHelper.h"
 
-@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate >
+@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, GCHelperDelegate >
 
 @property (nonatomic, assign) BOOL onePlayerGame;
 
