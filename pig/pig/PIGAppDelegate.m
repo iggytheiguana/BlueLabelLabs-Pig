@@ -8,6 +8,7 @@
 
 #import "PIGAppDelegate.h"
 #import "PIGIAPHelper.h"
+#import "PIGGCHelper.h"
 
 @implementation PIGAppDelegate
 
@@ -17,6 +18,9 @@
     
     // Check for IAP transactions
     [PIGIAPHelper sharedInstance];
+    
+    // Check Game Center availability and authentication
+    [[PIGGCHelper sharedInstance] authenticateLocalPlayer];
     
     return YES;
 }

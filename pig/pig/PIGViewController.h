@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_dice2;
 @property (weak, nonatomic) IBOutlet UIButton *btn_pass;
 @property (weak, nonatomic) IBOutlet UIButton *btn_playerReady;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_namePlayer1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_namePlayer2;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_player1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_player2;

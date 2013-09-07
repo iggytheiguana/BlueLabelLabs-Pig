@@ -11,6 +11,8 @@
 #import <AudioToolbox/AudioServices.h>
 #import "PIGMotionEffect.h"
 #import "UIColor+PIGCustomColors.h"
+#import "PIGGCHelper.h"
+#import "PIGGameConstants.h"
 
 #define kGAMESPEEDSETTING @"GameSpeedSetting"
 #define kFASTGAME 1
@@ -30,6 +32,7 @@
     BOOL _winner1;
     BOOL _winner2;
     BOOL _gameOver;
+    NSString *_namePlayer1;
     NSString *_namePlayer2;
     NSArray *_whiteDiceImages;
 }
@@ -59,6 +62,15 @@
                           [UIImage imageNamed:@"dice-white-6"],
                           nil];
     _whiteDiceImages = whiteDiceArray;
+    
+    if ([[PIGGCHelper sharedInstance] playerAuthenticated]) {
+        GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+        _namePlayer1 = localPlayer.alias;
+    }
+    else {
+        _namePlayer1 = @"Player 1";
+    }
+    [self.lbl_namePlayer1 setText:_namePlayer1];
     
     if (self.onePlayerGame == YES) {
         _namePlayer2 = @"Computer";
@@ -130,16 +142,18 @@
     }
     
     [self reset];
+    
+    _score1 = 99;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    // Move the player 2 label into the center
-    CGRect frame = self.v_containerPlayer2.frame;
-    frame.origin.x = 0.0f;
-    self.v_containerPlayer2.frame = frame;
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    
+//    // Move the player 2 label into the center
+//    CGRect frame = self.v_containerPlayer2.frame;
+//    frame.origin.x = 0.0f;
+//    self.v_containerPlayer2.frame = frame;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -668,6 +682,11 @@
 
 #pragma mark - UIAction Methods
 - (IBAction)onHomeButtonPressed:(id)sender {
+    // Move the player 2 label into the center
+    CGRect frame = self.v_containerPlayer2.frame;
+    frame.origin.x = 0.0f;
+    self.v_containerPlayer2.frame = frame;
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -725,6 +744,25 @@
             
             [self.btn_playerReady setEnabled:NO];
             [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\nPlayer 1"] forState:UIControlStateNormal];
+            
+            
+            int64_t totalScore = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
+            totalScore = totalScore + _score1;
+            
+            int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
+            
+            if ((int64_t)_score1 > highestGameScore) {
+                [[PIGGCHelper sharedInstance] reportScore:(int64_t)_score1 forLeaderboardID:kHighestGameScoreLeaderboardIdentifier];
+                
+//                // Save the new highest game score to the user defaults
+//                [[NSUserDefaults standardUserDefaults] setInteger:(int64_t)_score1 forKey:kHighestGameScorePlayer];
+            }
+            
+            [[PIGGCHelper sharedInstance] reportScore:totalScore forLeaderboardID:kTotalScoreLeaderboardIdentifier];
+            
+//            // Save the new total score to the user defaults
+//            [[NSUserDefaults standardUserDefaults] setInteger:totalScore forKey:kTotalScorePlayer];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         else if (_score2 >= 101 && _score2 > _score1) {
             _winner2 = YES;
@@ -787,10 +825,10 @@
     [self.btn_dice1 setHidden:NO];
     [self.btn_dice2 setHidden:NO];
     
-    [self.btn_pass setHidden:NO];
-    [self.btn_pass setEnabled:YES];
     [self.btn_pass setTitleColor:[UIColor pigBlueColor] forState:UIControlStateNormal];
     [self.btn_pass setTitle:[NSString stringWithFormat:@"Pass"] forState:UIControlStateNormal];
+    [self.btn_pass setEnabled:YES];
+    [self.btn_pass setHidden:NO];
     
     _canRollDice = YES;
 }

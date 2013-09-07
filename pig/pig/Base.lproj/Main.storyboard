@@ -53,6 +53,19 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXq-GP-FLU" userLabel="Button - 1 Player Game">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="96"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="13" maxX="5" maxY="0.0"/>
+                                        <state key="normal" title="Player Game">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onOnePlayerButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="1Zw-k4-HUo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -82,35 +95,29 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDZ-il-Rzt" userLabel="Button - 2 Player Game">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="96"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="13" maxX="5" maxY="0.0"/>
+                                        <state key="normal" title="Player Game">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTwoPlayerButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="VXH-Vb-liu"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXq-GP-FLU" userLabel="Button - 1 Player Game">
-                                <rect key="frame" x="113" y="162" width="207" height="96"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You will feel good knowing that .69 cents of your purchase will go to supporting the lives of indy app developers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" translatesAutoresizingMaskIntoConstraints="NO" id="gX7-Ia-0OE">
+                                <rect key="frame" x="210" y="323" width="106" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="13" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Player Game">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onOnePlayerButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="1Zw-k4-HUo"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDZ-il-Rzt" userLabel="Button - 2 Player Game">
-                                <rect key="frame" x="113" y="280" width="207" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="13" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Player Game">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onTwoPlayerButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="VXH-Vb-liu"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZ6-Dz-xhG" userLabel="Button - Buy 2 Player Game">
                                 <rect key="frame" x="52" y="266" width="268" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -146,22 +153,28 @@
                                     <segue destination="eBs-ni-GP4" kind="modal" modalTransitionStyle="flipHorizontal" id="2Xc-hP-D0Z"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You will feel good knowing that .69 cents of your purchase will go to supporting the lives of indy app developers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" translatesAutoresizingMaskIntoConstraints="NO" id="gX7-Ia-0OE">
-                                <rect key="frame" x="210" y="323" width="106" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-D2-YvM">
+                                <rect key="frame" x="17" y="195" width="88" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="7"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Leaderboard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLeaderboardButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="EF5-8H-Ggr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="6j2-3R-WOg"/>
                     <connections>
                         <outlet property="btn_buyTwoPlayer" destination="rZ6-Dz-xhG" id="eRs-6i-gju"/>
+                        <outlet property="btn_leaderboard" destination="Hag-D2-YvM" id="HqD-MK-D89"/>
                         <outlet property="btn_onePlayer" destination="LXq-GP-FLU" id="0My-sb-OEq"/>
                         <outlet property="btn_twoPlayer" destination="mDZ-il-Rzt" id="zzc-45-FT6"/>
                         <outlet property="lbl_buyText" destination="gX7-Ia-0OE" id="VUa-dJ-YAw"/>
+                        <outlet property="v_containerPlayerOne" destination="irj-DT-kUE" id="9nd-XW-lfi"/>
+                        <outlet property="v_containerPlayerTwo" destination="6JD-48-KUM" id="ypk-Gd-xZi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25I-Q0-JgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -199,7 +212,7 @@
                                         <color key="textColor" red="0.0" green="0.59607845544815063" blue="0.88627457618713379" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfL-cv-K99">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HfL-cv-K99">
                                         <rect key="frame" x="89" y="13" width="120" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -228,7 +241,7 @@
                                         <color key="textColor" red="0.18823531270027161" green="0.56862747669219971" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKX-4r-aMb">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nKX-4r-aMb">
                                         <rect key="frame" x="46" y="62" width="120" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -359,6 +372,7 @@
                         <outlet property="iv_circlePlayer1" destination="dUJ-1X-ifq" id="7V3-if-UQU"/>
                         <outlet property="iv_circlePlayer2" destination="JRz-fU-icg" id="ECr-xV-Z5e"/>
                         <outlet property="iv_rollImage" destination="gLP-ri-975" id="MaH-68-3um"/>
+                        <outlet property="lbl_namePlayer1" destination="HfL-cv-K99" id="bzt-Q9-3Lh"/>
                         <outlet property="lbl_namePlayer2" destination="nKX-4r-aMb" id="km8-KS-wlO"/>
                         <outlet property="lbl_player1" destination="gfn-IG-Usn" id="zwN-eu-oE3"/>
                         <outlet property="lbl_player2" destination="OzN-2c-GvZ" id="7G1-sn-18W"/>
@@ -372,35 +386,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-bc-S0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1245" y="-83"/>
-        </scene>
-        <!--Ball View Controller-->
-        <scene sceneID="LZh-zx-40q">
-            <objects>
-                <viewController id="p4y-9m-xdZ" customClass="PIGBallViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pFu-VS-tKd"/>
-                        <viewControllerLayoutGuide type="bottom" id="5ly-g2-Ue4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RCm-UW-Sd7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ylc-ik-oRs">
-                                <rect key="frame" x="110" y="171" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="0.14901961389999999" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="E9T-CK-okX"/>
-                    <connections>
-                        <outlet property="postView" destination="Ylc-ik-oRs" id="rOW-Pb-ES6"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TyX-eD-rBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1618" y="-36"/>
         </scene>
         <!--Rules View Controller-->
         <scene sceneID="jbw-T8-3Rh">
@@ -540,6 +525,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2Xc-hP-D0Z"/>
+        <segue reference="Lwz-v5-p5X"/>
     </inferredMetricsTieBreakers>
 </document>
