@@ -9,21 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
-//   Protocol to notify external
-//   objects when Game Center events occur or
-//   when Game Center async tasks are completed
-@protocol GCHelperDelegate < NSObject >
-
--(void) onScoresSubmitted:(bool)success;
-
-@end
+////   Protocol to notify external
+////   objects when Game Center events occur or
+////   when Game Center async tasks are completed
+//@protocol GCHelperDelegate < NSObject >
+//
+//-(void) onScoresSubmitted:(bool)success;
+//
+//@end
 
 @interface GCHelper : NSObject {
     BOOL _gameCenterAvailable;
+    BOOL _gameCenterFeaturesEnabled;
     BOOL _playerAuthenticated;
 }
 
-@property (nonatomic, assign) id<GCHelperDelegate> delegate;
+//@property (nonatomic, assign) id<GCHelperDelegate> delegate;
 @property (assign, readonly) BOOL gameCenterAvailable;
 @property (assign, readonly) BOOL playerAuthenticated;
 

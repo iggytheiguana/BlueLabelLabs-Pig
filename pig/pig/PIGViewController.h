@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PIGGCHelper.h"
 
-@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, GCHelperDelegate >
+@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate >
 
 @property (nonatomic, assign) BOOL onePlayerGame;
 
@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *v_containerRollValue;
 @property (weak, nonatomic) IBOutlet UIButton *btn_newGame;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sgmt_gameSpeed;
+@property (weak, nonatomic) IBOutlet UIImageView *iv_winImage;
 
 - (IBAction)onHomeButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;

@@ -8,11 +8,11 @@
 
 #import "GCHelper.h"
 
-@interface GCHelper () < GKGameCenterControllerDelegate >
-{
-    BOOL _gameCenterFeaturesEnabled;
-}
-@end
+//@interface GCHelper () < GKGameCenterControllerDelegate >
+//{
+//    BOOL _gameCenterFeaturesEnabled;
+//}
+//@end
 
 @implementation GCHelper
 
@@ -153,59 +153,7 @@ static GCHelper *sharedHelper = nil;
     NSArray *scores = @[scoreReporter];
     [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
         [self setLastError:error];
-        
-        BOOL success = (error == nil);
-        
-        if ([_delegate respondsToSelector:@selector(onScoresSubmitted:)]) {
-            [_delegate onScoresSubmitted:success];
-        }
     }];
-}
-
-//-(void) submitScore:(int64_t)score category:(NSString*)category {
-//    //1: Check if Game Center features are enabled
-//    if (!_gameCenterFeaturesEnabled) {
-//        NSLog(@"Player not authenticated");
-//        return;
-//    }
-//    
-//    //2: Create a GKScore object
-//    GKScore* gkScore = [[GKScore alloc] initWithLeaderboardIdentifier:category];
-//    
-//    //3: Set the default leaderboard
-//    gkScore.shouldSetDefaultLeaderboard = YES;
-//    
-//    //3: Send the score to Game Center
-//    [GKScore reportScores:[NSArray arrayWithObject:[NSNumber numberWithInt:score]] withCompletionHandler:^(NSError* error) {
-//        [self setLastError:error];
-//        
-//        BOOL success = (error == nil);
-//        
-//        if ([_delegate
-//             respondsToSelector:
-//             @selector(onScoresSubmitted:)]) {
-//            
-//            [_delegate onScoresSubmitted:success];
-//        }
-//    }];
-//    
-////    [gkScore reportScoreWithCompletionHandler:^(NSError* error) {
-////        [self setLastError:error];
-////        
-////        BOOL success = (error == nil);
-////        
-////        if ([_delegate
-////             respondsToSelector:
-////             @selector(onScoresSubmitted:)]) {
-////            
-////            [_delegate onScoresSubmitted:success];
-////        }
-////    }];
-//}
-
-#pragma mark - GKGameCenterControllerDelegate Methods
-- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
-    
 }
 
 @end

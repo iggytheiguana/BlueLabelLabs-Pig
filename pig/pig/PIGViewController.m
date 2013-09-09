@@ -143,17 +143,9 @@
     
     [self reset];
     
-//    _score1 = 99;
+    _score1 = 99;
+    _score2 = 99;
 }
-
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    
-//    // Move the player 2 label into the center
-//    CGRect frame = self.v_containerPlayer2.frame;
-//    frame.origin.x = 0.0f;
-//    self.v_containerPlayer2.frame = frame;
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -218,6 +210,7 @@
     // Setup Player 1 to start the game
     [self playerOneActive];
     
+    [self.btn_playerReady setBackgroundImage:[UIImage imageNamed:@"button-bg-large-pink.png"] forState:UIControlStateNormal];
     [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Player 1 Ready"] forState:UIControlStateNormal];
     
     [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
@@ -226,6 +219,7 @@
     // Setup Button and Label states
     [self.lbl_rollValue setHidden:YES];
     [self.iv_rollImage setHidden:YES];
+    [self.iv_winImage setHidden:YES];
     [self.btn_dice1 setHidden:YES];
     [self.btn_dice2 setHidden:YES];
     [self.btn_playerReady setEnabled:YES];
@@ -393,48 +387,6 @@
         _score2 = currentPlayerScore;
     }
     
-//    // Now we display the roll value label and update the player's score label
-//    [self.lbl_rollValue setAlpha:0.0];
-//    [self.lbl_rollValue setHidden:NO];
-//    
-//    [UIView animateWithDuration:0.75
-//                          delay:0.25
-//                        options: UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         [self.lbl_rollValue setAlpha:1.0];
-//                     }
-//                     completion:^(BOOL finished){
-//                         [self.lbl_rollValue setAlpha:0.0];
-//                         [self.lbl_rollValue setHidden:YES];
-//                         
-//                         [m_lbl_activePlayer setText:[NSString stringWithFormat:@"%d", currentPlayerScore]];
-//                         
-//                         [self.btn_dice1 setEnabled:YES];
-//                         [self.btn_dice2 setEnabled:YES];
-//                         
-//                         // Determine if the current player can roll again or not
-//                         if (turnEnded == YES) {
-//                             // Turn is over, toggle the active player
-//                             [self onPassButtonPressed:nil];
-//                         }
-//                         else if (self.onePlayerGame == YES && m_lbl_activePlayer == self.lbl_player2) {
-//                             // Computer's turn
-//                             if (currentPlayerScore >= _turnThreshold) {
-//                                 // Computer has passed turn threshold, toggle the active player
-//                                 [self onPassButtonPressed:nil];
-//                             }
-//                             else {
-//                                 [self computerTurn];
-//                             }
-//                         }
-//                         else if (_doubleCount == 0) {
-//                             // Player can roll again or Pass
-//                             [self.btn_pass setEnabled:YES];
-//                             [self.btn_pass setTitleColor:[UIColor pigBlueColor] forState:UIControlStateNormal];
-//                             [self.btn_pass setTitle:[NSString stringWithFormat:@"Pass"] forState:UIControlStateNormal];
-//                         }
-//                     }];
-    
     // Animate the showing of the make word container views
     UIView *rollView;
     if (turnEnded == YES && rollValue == 2) {
@@ -450,9 +402,6 @@
         rollView = self.lbl_rollValue;
     }
     
-//    CGPoint originalCenter = rollView.center;
-//    CGPoint newCenter = [self.view convertPoint:m_lbl_activePlayer.center fromView:m_lbl_activePlayer];
-////    CGPoint newCenter = CGPointMake(160.0f, 122.0f);
     [rollView setAlpha:0.0];
     [rollView setHidden:NO];
     rollView.transform = CGAffineTransformMakeScale(0.3, 0.3);
@@ -631,8 +580,8 @@
         [self.animator addBehavior:self.player2SnapBehavior];
     }
     
-    [self.iv_circlePlayer1 setImage:[UIImage imageNamed:@"points-bg-pink.png"]];
-    [self.iv_circlePlayer2 setImage:[UIImage imageNamed:@"points-bg-solid-blue.png"]];
+    [self.iv_circlePlayer1 setHidden:NO];
+    [self.iv_circlePlayer2 setHidden:YES];
     [self.lbl_player1 setTextColor:[UIColor pigBlueColor]];
     [self.lbl_player2 setTextColor:[UIColor whiteColor]];
     
@@ -653,8 +602,8 @@
         [self.animator addBehavior:self.player2SnapBehavior];
     }
     
-    [self.iv_circlePlayer1 setImage:[UIImage imageNamed:@"points-bg-solid-pink.png"]];
-    [self.iv_circlePlayer2 setImage:[UIImage imageNamed:@"points-bg-blue.png"]];
+    [self.iv_circlePlayer1 setHidden:YES];
+    [self.iv_circlePlayer2 setHidden:NO];
     [self.lbl_player1 setTextColor:[UIColor whiteColor]];
     [self.lbl_player2 setTextColor:[UIColor pigBlueColor]];
     
@@ -735,6 +684,9 @@
     }
     
     if (m_lbl_activePlayer == self.lbl_player1) {
+        // Player 2's turn coming up
+        [self.btn_playerReady setBackgroundImage:[UIImage imageNamed:@"button-bg-large-blue.png"] forState:UIControlStateNormal];
+        
         if (_winner2 == YES) {
             _gameOver = YES;
             
@@ -759,6 +711,9 @@
         }
     }
     else {
+        // Player 1's turn coming up
+        [self.btn_playerReady setBackgroundImage:[UIImage imageNamed:@"button-bg-large-pink.png"] forState:UIControlStateNormal];
+        
         if (_winner1 == YES) {
             _gameOver = YES;
             
@@ -775,7 +730,6 @@
             
             int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
             
-            [PIGGCHelper sharedInstance].delegate = self;
             if ((int64_t)_score1 > highestGameScore) {
                 [[PIGGCHelper sharedInstance] reportScore:(int64_t)_score1 forLeaderboardID:kHighestGameScoreLeaderboardIdentifier];
                 
@@ -814,17 +768,56 @@
         [self computerTurn];
     }
     else {
-        [self.btn_playerReady setHidden:NO];
         [self.btn_dice1 setHidden:YES];
         [self.btn_dice2 setHidden:YES];
         [self.btn_pass setEnabled:YES];
         [self.btn_pass setHidden:YES];
         
         if (_gameOver == YES) {
+            [self.btn_playerReady setHidden:YES];
             _canRollDice = NO;
+            
+            [self.iv_winImage setAlpha:0.0];
+            [self.iv_winImage setHidden:NO];
+            self.iv_winImage.transform = CGAffineTransformMakeScale(0.3, 0.3);
+            
+            [UIView animateWithDuration:0.75*_gameSpeedMultiplier
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 self.iv_winImage.transform = CGAffineTransformRotate(self.iv_winImage.transform, -M_PI / 2.0);
+                                 self.iv_winImage.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                                 self.iv_winImage.alpha = 0.8;
+                             }
+                             completion:^(BOOL finished){
+                                 [UIView animateWithDuration:0.25*_gameSpeedMultiplier
+                                                       delay:0.0
+                                                     options:UIViewAnimationOptionCurveEaseInOut
+                                                  animations:^{
+                                                      self.iv_winImage.transform = CGAffineTransformMakeScale(0.9, 0.9);
+                                                      self.iv_winImage.alpha = 0.9;
+                                                  }
+                                                  completion:^(BOOL finished){
+                                                      [UIView animateWithDuration:0.25*_gameSpeedMultiplier
+                                                                            delay:0.0
+                                                                          options:UIViewAnimationOptionCurveEaseInOut
+                                                                       animations:^{
+                                                                           self.iv_winImage.transform = CGAffineTransformIdentity;
+                                                                           self.iv_winImage.alpha = 1.0;
+                                                                       }
+                                                                       completion:^(BOOL finished){
+                                                                           
+                                                                       }
+                                                       ];
+                                                  }
+                                  ];
+                             }
+             ];
+            
             [self.btn_newGame setHidden:NO];
         }
         else {
+            [self.btn_playerReady setHidden:NO];
             _canRollDice = YES;
         }
     }

@@ -12,6 +12,7 @@
 #import "PIGIAPHelper.h"
 #import "Reachability.h"
 #import "PIGGameConstants.h"
+#import "PIGGCHelper.h"
 
 NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGameProductPurchased";
 
@@ -45,10 +46,8 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     if (twoPlayerProductPurchased == YES) {
         [self.btn_buyTwoPlayer setHidden:YES];
         [self.lbl_buyText setHidden:YES];
-        [self.btn_twoPlayer setHidden:NO];
     }
     else {
-        [self.btn_twoPlayer setHidden:YES];
         [self.lbl_buyText setHidden:NO];
         [self.btn_buyTwoPlayer setHidden:NO];
     }
@@ -104,13 +103,11 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
             if ([[PIGIAPHelper sharedInstance] productPurchased:product.productIdentifier]) {
                 [self.btn_buyTwoPlayer setHidden:YES];
                 [self.lbl_buyText setHidden:YES];
-                [self.btn_twoPlayer setHidden:NO];
             }
             else {
 //                [_priceFormatter setLocale:product.priceLocale];
 //                [self.btn_buyTwoPlayer setTitle:[NSString stringWithFormat:@"2 Player Game (LOCKED - %@)", [_priceFormatter stringFromNumber:product.price]] forState:UIControlStateNormal];
                 
-                [self.btn_twoPlayer setHidden:YES];
                 [self.lbl_buyText setHidden:NO];
                 [self.btn_buyTwoPlayer setHidden:NO];
             }
@@ -122,7 +119,7 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     NSString * productIdentifier = notification.object;
     [_products enumerateObjectsUsingBlock:^(SKProduct *product, NSUInteger idx, BOOL *stop) {
         if ([product.productIdentifier isEqualToString:productIdentifier]) {
-            [self.btn_twoPlayer setHidden:NO];
+            [self.lbl_buyText setHidden:YES];
             [self.btn_buyTwoPlayer setHidden:YES];
             *stop = YES;
         }
@@ -144,9 +141,10 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     if (gameCenterController != nil)
     {
         gameCenterController.gameCenterDelegate = self;
-        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
-        gameCenterController.leaderboardIdentifier = leaderboardID;
-
+//        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gameCenterController.viewState = GKGameCenterViewControllerStateDefault;
+//        gameCenterController.leaderboardIdentifier = leaderboardID;
+        
         [self presentViewController:gameCenterController animated:YES completion:nil];
     }
 }

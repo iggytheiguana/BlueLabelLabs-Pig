@@ -30,10 +30,6 @@
 		5280427A17DA66070093C4AB /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280427917DA66070093C4AB /* GCHelper.m */; };
 		5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5280427B17DA67B00093C4AB /* GameKit.framework */; };
 		5280428117DA976E0093C4AB /* PIGGCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280428017DA976E0093C4AB /* PIGGCHelper.m */; };
-		52E1FDC617D7B98E009AD64E /* button-bg-large-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA417D7B98E009AD64E /* button-bg-large-blue.png */; };
-		52E1FDC717D7B98E009AD64E /* button-bg-large-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA517D7B98E009AD64E /* button-bg-large-blue@2x.png */; };
-		52E1FDC817D7B98E009AD64E /* button-bg-large-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA617D7B98E009AD64E /* button-bg-large-pink.png */; };
-		52E1FDC917D7B98E009AD64E /* button-bg-large-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA717D7B98E009AD64E /* button-bg-large-pink@2x.png */; };
 		52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA817D7B98E009AD64E /* dice-white-1.png */; };
 		52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */; };
 		52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAA17D7B98E009AD64E /* dice-white-2.png */; };
@@ -50,10 +46,6 @@
 		52E1FDD717D7B98E009AD64E /* name-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */; };
 		52E1FDD817D7B98E009AD64E /* name-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB617D7B98E009AD64E /* name-bg-pink.png */; };
 		52E1FDD917D7B98E009AD64E /* name-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */; };
-		52E1FDDA17D7B98E009AD64E /* PIG-logo-large-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB817D7B98E009AD64E /* PIG-logo-large-transparent.png */; };
-		52E1FDDB17D7B98E009AD64E /* PIG-logo-large-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB917D7B98E009AD64E /* PIG-logo-large-transparent@2x.png */; };
-		52E1FDDC17D7B98E009AD64E /* PIG-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBA17D7B98E009AD64E /* PIG-logo.png */; };
-		52E1FDDD17D7B98E009AD64E /* PIG-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBB17D7B98E009AD64E /* PIG-logo@2x.png */; };
 		52E1FDDE17D7B98E009AD64E /* points-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */; };
 		52E1FDDF17D7B98E009AD64E /* points-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */; };
 		52E1FDE017D7B98E009AD64E /* points-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */; };
@@ -64,19 +56,37 @@
 		52E1FDE517D7B98E009AD64E /* points-bg-solid-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */; };
 		52E1FDE617D7B98E009AD64E /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC417D7B98E009AD64E /* snake.png */; };
 		52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC517D7B98E009AD64E /* snake@2x.png */; };
-		52E1FDEA17D80D57009AD64E /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDE817D80D57009AD64E /* pig.png */; };
-		52E1FDEB17D80D57009AD64E /* pig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDE917D80D57009AD64E /* pig@2x.png */; };
 		52E1FDEE17D81AF4009AD64E /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDEC17D81AF4009AD64E /* rabbit.png */; };
 		52E1FDEF17D81AF4009AD64E /* rabbit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDED17D81AF4009AD64E /* rabbit@2x.png */; };
 		52E1FDF217D81BB7009AD64E /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF017D81BB7009AD64E /* turtle.png */; };
 		52E1FDF317D81BB7009AD64E /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF117D81BB7009AD64E /* turtle@2x.png */; };
-		52E1FDF617D84273009AD64E /* buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF417D84273009AD64E /* buyTwoPlayer.png */; };
-		52E1FDF717D84273009AD64E /* buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDF517D84273009AD64E /* buyTwoPlayer@2x.png */; };
 		52E4126217D00CF400F75335 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126117D00CF400F75335 /* IAPHelper.m */; };
 		52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126417D00D8700F75335 /* PIGIAPHelper.m */; };
 		52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E4126617D00DC200F75335 /* StoreKit.framework */; };
 		52E4126C17D0125E00F75335 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126B17D0125E00F75335 /* Reachability.m */; };
 		52E4126F17D0132E00F75335 /* PIGRulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126E17D0132E00F75335 /* PIGRulesViewController.m */; };
+		52FFF70D17DE4B3E00F259E7 /* PIG-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF70B17DE4B3E00F259E7 /* PIG-logo.png */; };
+		52FFF70E17DE4B3E00F259E7 /* PIG-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF70C17DE4B3E00F259E7 /* PIG-logo@2x.png */; };
+		52FFF71917DE4E2B00F259E7 /* pig-large-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71717DE4E2B00F259E7 /* pig-large-transparent.png */; };
+		52FFF71A17DE4E2B00F259E7 /* pig-large-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71817DE4E2B00F259E7 /* pig-large-transparent@2x.png */; };
+		52FFF71F17DE509400F259E7 /* player-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71B17DE509300F259E7 /* player-bg-blue.png */; };
+		52FFF72017DE509400F259E7 /* player-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71C17DE509300F259E7 /* player-bg-blue@2x.png */; };
+		52FFF72117DE509400F259E7 /* player-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71D17DE509300F259E7 /* player-bg-pink.png */; };
+		52FFF72217DE509400F259E7 /* player-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71E17DE509300F259E7 /* player-bg-pink@2x.png */; };
+		52FFF72517DE519800F259E7 /* points-bg-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72317DE519800F259E7 /* points-bg-white.png */; };
+		52FFF72617DE519800F259E7 /* points-bg-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72417DE519800F259E7 /* points-bg-white@2x.png */; };
+		52FFF72917DE57E700F259E7 /* player-bg-blue-reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72717DE57E700F259E7 /* player-bg-blue-reverse.png */; };
+		52FFF72A17DE57E700F259E7 /* player-bg-blue-reverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72817DE57E700F259E7 /* player-bg-blue-reverse@2x.png */; };
+		52FFF72F17DE61A600F259E7 /* button-bg-large-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72B17DE61A600F259E7 /* button-bg-large-blue.png */; };
+		52FFF73017DE61A600F259E7 /* button-bg-large-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72C17DE61A600F259E7 /* button-bg-large-blue@2x.png */; };
+		52FFF73117DE61A600F259E7 /* button-bg-large-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72D17DE61A600F259E7 /* button-bg-large-pink.png */; };
+		52FFF73217DE61A600F259E7 /* button-bg-large-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72E17DE61A600F259E7 /* button-bg-large-pink@2x.png */; };
+		52FFF73917DE7A9A00F259E7 /* pig-smiling.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73717DE7A9A00F259E7 /* pig-smiling.png */; };
+		52FFF73A17DE7A9A00F259E7 /* pig-smiling@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73817DE7A9A00F259E7 /* pig-smiling@2x.png */; };
+		52FFF73D17DE7B1300F259E7 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73B17DE7B1300F259E7 /* pig.png */; };
+		52FFF73E17DE7B1300F259E7 /* pig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73C17DE7B1300F259E7 /* pig@2x.png */; };
+		52FFF74117DE7DD700F259E7 /* buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73F17DE7DD700F259E7 /* buyTwoPlayer.png */; };
+		52FFF74217DE7DD700F259E7 /* buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF74017DE7DD700F259E7 /* buyTwoPlayer@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,10 +134,6 @@
 		5280427E17DA94D10093C4AB /* PIGGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGGameConstants.h; sourceTree = "<group>"; };
 		5280427F17DA976E0093C4AB /* PIGGCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGGCHelper.h; sourceTree = "<group>"; };
 		5280428017DA976E0093C4AB /* PIGGCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGGCHelper.m; sourceTree = "<group>"; };
-		52E1FDA417D7B98E009AD64E /* button-bg-large-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-blue.png"; sourceTree = "<group>"; };
-		52E1FDA517D7B98E009AD64E /* button-bg-large-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-blue@2x.png"; sourceTree = "<group>"; };
-		52E1FDA617D7B98E009AD64E /* button-bg-large-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-pink.png"; sourceTree = "<group>"; };
-		52E1FDA717D7B98E009AD64E /* button-bg-large-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-pink@2x.png"; sourceTree = "<group>"; };
 		52E1FDA817D7B98E009AD64E /* dice-white-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1.png"; sourceTree = "<group>"; };
 		52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1@2x.png"; sourceTree = "<group>"; };
 		52E1FDAA17D7B98E009AD64E /* dice-white-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-2.png"; sourceTree = "<group>"; };
@@ -144,10 +150,6 @@
 		52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-blue@2x.png"; sourceTree = "<group>"; };
 		52E1FDB617D7B98E009AD64E /* name-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-pink.png"; sourceTree = "<group>"; };
 		52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-pink@2x.png"; sourceTree = "<group>"; };
-		52E1FDB817D7B98E009AD64E /* PIG-logo-large-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo-large-transparent.png"; sourceTree = "<group>"; };
-		52E1FDB917D7B98E009AD64E /* PIG-logo-large-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo-large-transparent@2x.png"; sourceTree = "<group>"; };
-		52E1FDBA17D7B98E009AD64E /* PIG-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo.png"; sourceTree = "<group>"; };
-		52E1FDBB17D7B98E009AD64E /* PIG-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo@2x.png"; sourceTree = "<group>"; };
 		52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-blue.png"; sourceTree = "<group>"; };
 		52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-blue@2x.png"; sourceTree = "<group>"; };
 		52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-pink.png"; sourceTree = "<group>"; };
@@ -158,14 +160,10 @@
 		52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-pink@2x.png"; sourceTree = "<group>"; };
 		52E1FDC417D7B98E009AD64E /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
 		52E1FDC517D7B98E009AD64E /* snake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snake@2x.png"; sourceTree = "<group>"; };
-		52E1FDE817D80D57009AD64E /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
-		52E1FDE917D80D57009AD64E /* pig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig@2x.png"; sourceTree = "<group>"; };
 		52E1FDEC17D81AF4009AD64E /* rabbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit.png; sourceTree = "<group>"; };
 		52E1FDED17D81AF4009AD64E /* rabbit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rabbit@2x.png"; sourceTree = "<group>"; };
 		52E1FDF017D81BB7009AD64E /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
 		52E1FDF117D81BB7009AD64E /* turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@2x.png"; sourceTree = "<group>"; };
-		52E1FDF417D84273009AD64E /* buyTwoPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyTwoPlayer.png; sourceTree = "<group>"; };
-		52E1FDF517D84273009AD64E /* buyTwoPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buyTwoPlayer@2x.png"; sourceTree = "<group>"; };
 		52E4126017D00CF400F75335 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		52E4126117D00CF400F75335 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		52E4126317D00D8700F75335 /* PIGIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGIAPHelper.h; sourceTree = "<group>"; };
@@ -175,6 +173,28 @@
 		52E4126B17D0125E00F75335 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		52E4126D17D0132E00F75335 /* PIGRulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGRulesViewController.h; sourceTree = "<group>"; };
 		52E4126E17D0132E00F75335 /* PIGRulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGRulesViewController.m; sourceTree = "<group>"; };
+		52FFF70B17DE4B3E00F259E7 /* PIG-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo.png"; sourceTree = "<group>"; };
+		52FFF70C17DE4B3E00F259E7 /* PIG-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PIG-logo@2x.png"; sourceTree = "<group>"; };
+		52FFF71717DE4E2B00F259E7 /* pig-large-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig-large-transparent.png"; sourceTree = "<group>"; };
+		52FFF71817DE4E2B00F259E7 /* pig-large-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig-large-transparent@2x.png"; sourceTree = "<group>"; };
+		52FFF71B17DE509300F259E7 /* player-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg-blue.png"; sourceTree = "<group>"; };
+		52FFF71C17DE509300F259E7 /* player-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg-blue@2x.png"; sourceTree = "<group>"; };
+		52FFF71D17DE509300F259E7 /* player-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg-pink.png"; sourceTree = "<group>"; };
+		52FFF71E17DE509300F259E7 /* player-bg-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg-pink@2x.png"; sourceTree = "<group>"; };
+		52FFF72317DE519800F259E7 /* points-bg-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-white.png"; sourceTree = "<group>"; };
+		52FFF72417DE519800F259E7 /* points-bg-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-white@2x.png"; sourceTree = "<group>"; };
+		52FFF72717DE57E700F259E7 /* player-bg-blue-reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg-blue-reverse.png"; sourceTree = "<group>"; };
+		52FFF72817DE57E700F259E7 /* player-bg-blue-reverse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg-blue-reverse@2x.png"; sourceTree = "<group>"; };
+		52FFF72B17DE61A600F259E7 /* button-bg-large-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-blue.png"; sourceTree = "<group>"; };
+		52FFF72C17DE61A600F259E7 /* button-bg-large-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-blue@2x.png"; sourceTree = "<group>"; };
+		52FFF72D17DE61A600F259E7 /* button-bg-large-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-pink.png"; sourceTree = "<group>"; };
+		52FFF72E17DE61A600F259E7 /* button-bg-large-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-pink@2x.png"; sourceTree = "<group>"; };
+		52FFF73717DE7A9A00F259E7 /* pig-smiling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig-smiling.png"; sourceTree = "<group>"; };
+		52FFF73817DE7A9A00F259E7 /* pig-smiling@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig-smiling@2x.png"; sourceTree = "<group>"; };
+		52FFF73B17DE7B1300F259E7 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		52FFF73C17DE7B1300F259E7 /* pig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig@2x.png"; sourceTree = "<group>"; };
+		52FFF73F17DE7DD700F259E7 /* buyTwoPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyTwoPlayer.png; sourceTree = "<group>"; };
+		52FFF74017DE7DD700F259E7 /* buyTwoPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buyTwoPlayer@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,10 +322,10 @@
 		525FD66B17CC778500BE7E07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				52E1FDA417D7B98E009AD64E /* button-bg-large-blue.png */,
-				52E1FDA517D7B98E009AD64E /* button-bg-large-blue@2x.png */,
-				52E1FDA617D7B98E009AD64E /* button-bg-large-pink.png */,
-				52E1FDA717D7B98E009AD64E /* button-bg-large-pink@2x.png */,
+				52FFF72B17DE61A600F259E7 /* button-bg-large-blue.png */,
+				52FFF72C17DE61A600F259E7 /* button-bg-large-blue@2x.png */,
+				52FFF72D17DE61A600F259E7 /* button-bg-large-pink.png */,
+				52FFF72E17DE61A600F259E7 /* button-bg-large-pink@2x.png */,
 				52E1FDA817D7B98E009AD64E /* dice-white-1.png */,
 				52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */,
 				52E1FDAA17D7B98E009AD64E /* dice-white-2.png */,
@@ -324,10 +344,6 @@
 				52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */,
 				52E1FDB617D7B98E009AD64E /* name-bg-pink.png */,
 				52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */,
-				52E1FDB817D7B98E009AD64E /* PIG-logo-large-transparent.png */,
-				52E1FDB917D7B98E009AD64E /* PIG-logo-large-transparent@2x.png */,
-				52E1FDBA17D7B98E009AD64E /* PIG-logo.png */,
-				52E1FDBB17D7B98E009AD64E /* PIG-logo@2x.png */,
 				52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */,
 				52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */,
 				52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */,
@@ -336,16 +352,30 @@
 				52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */,
 				52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */,
 				52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */,
+				52FFF71B17DE509300F259E7 /* player-bg-blue.png */,
+				52FFF71C17DE509300F259E7 /* player-bg-blue@2x.png */,
+				52FFF72717DE57E700F259E7 /* player-bg-blue-reverse.png */,
+				52FFF72817DE57E700F259E7 /* player-bg-blue-reverse@2x.png */,
+				52FFF71D17DE509300F259E7 /* player-bg-pink.png */,
+				52FFF71E17DE509300F259E7 /* player-bg-pink@2x.png */,
+				52FFF72317DE519800F259E7 /* points-bg-white.png */,
+				52FFF72417DE519800F259E7 /* points-bg-white@2x.png */,
+				52FFF70B17DE4B3E00F259E7 /* PIG-logo.png */,
+				52FFF70C17DE4B3E00F259E7 /* PIG-logo@2x.png */,
+				52FFF73B17DE7B1300F259E7 /* pig.png */,
+				52FFF73C17DE7B1300F259E7 /* pig@2x.png */,
+				52FFF73717DE7A9A00F259E7 /* pig-smiling.png */,
+				52FFF73817DE7A9A00F259E7 /* pig-smiling@2x.png */,
+				52FFF71717DE4E2B00F259E7 /* pig-large-transparent.png */,
+				52FFF71817DE4E2B00F259E7 /* pig-large-transparent@2x.png */,
 				52E1FDC417D7B98E009AD64E /* snake.png */,
 				52E1FDC517D7B98E009AD64E /* snake@2x.png */,
-				52E1FDE817D80D57009AD64E /* pig.png */,
-				52E1FDE917D80D57009AD64E /* pig@2x.png */,
 				52E1FDEC17D81AF4009AD64E /* rabbit.png */,
 				52E1FDED17D81AF4009AD64E /* rabbit@2x.png */,
 				52E1FDF017D81BB7009AD64E /* turtle.png */,
 				52E1FDF117D81BB7009AD64E /* turtle@2x.png */,
-				52E1FDF417D84273009AD64E /* buyTwoPlayer.png */,
-				52E1FDF517D84273009AD64E /* buyTwoPlayer@2x.png */,
+				52FFF73F17DE7DD700F259E7 /* buyTwoPlayer.png */,
+				52FFF74017DE7DD700F259E7 /* buyTwoPlayer@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -484,50 +514,60 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FFF73E17DE7B1300F259E7 /* pig@2x.png in Resources */,
 				525FD64F17CC726000BE7E07 /* Images.xcassets in Resources */,
+				52FFF71F17DE509400F259E7 /* player-bg-blue.png in Resources */,
+				52FFF70D17DE4B3E00F259E7 /* PIG-logo.png in Resources */,
+				52FFF73017DE61A600F259E7 /* button-bg-large-blue@2x.png in Resources */,
+				52FFF72517DE519800F259E7 /* points-bg-white.png in Resources */,
+				52FFF72617DE519800F259E7 /* points-bg-white@2x.png in Resources */,
 				52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */,
 				52E1FDD017D7B98E009AD64E /* dice-white-4.png in Resources */,
 				52E1FDE417D7B98E009AD64E /* points-bg-solid-pink.png in Resources */,
-				52E1FDDD17D7B98E009AD64E /* PIG-logo@2x.png in Resources */,
 				52E1FDDF17D7B98E009AD64E /* points-bg-blue@2x.png in Resources */,
-				52E1FDDB17D7B98E009AD64E /* PIG-logo-large-transparent@2x.png in Resources */,
+				52FFF73D17DE7B1300F259E7 /* pig.png in Resources */,
 				52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */,
 				525FD64117CC726000BE7E07 /* InfoPlist.strings in Resources */,
 				52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */,
+				52FFF72217DE509400F259E7 /* player-bg-pink@2x.png in Resources */,
+				52FFF73217DE61A600F259E7 /* button-bg-large-pink@2x.png in Resources */,
 				52E1FDE617D7B98E009AD64E /* snake.png in Resources */,
 				52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */,
 				52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */,
 				52E1FDCF17D7B98E009AD64E /* dice-white-3@2x.png in Resources */,
-				52E1FDF617D84273009AD64E /* buyTwoPlayer.png in Resources */,
 				52E1FDD817D7B98E009AD64E /* name-bg-pink.png in Resources */,
 				52E1FDCD17D7B98E009AD64E /* dice-white-2@2x.png in Resources */,
-				52E1FDEA17D80D57009AD64E /* pig.png in Resources */,
+				52FFF72017DE509400F259E7 /* player-bg-blue@2x.png in Resources */,
 				52E1FDDE17D7B98E009AD64E /* points-bg-blue.png in Resources */,
+				52FFF73917DE7A9A00F259E7 /* pig-smiling.png in Resources */,
+				52FFF74117DE7DD700F259E7 /* buyTwoPlayer.png in Resources */,
 				52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */,
+				52FFF71A17DE4E2B00F259E7 /* pig-large-transparent@2x.png in Resources */,
 				52E1FDE117D7B98E009AD64E /* points-bg-pink@2x.png in Resources */,
-				52E1FDC617D7B98E009AD64E /* button-bg-large-blue.png in Resources */,
 				5201335E17D864DB009679F0 /* dice-red-1.png in Resources */,
-				52E1FDF717D84273009AD64E /* buyTwoPlayer@2x.png in Resources */,
-				52E1FDEB17D80D57009AD64E /* pig@2x.png in Resources */,
-				52E1FDC917D7B98E009AD64E /* button-bg-large-pink@2x.png in Resources */,
+				52FFF74217DE7DD700F259E7 /* buyTwoPlayer@2x.png in Resources */,
+				52FFF72A17DE57E700F259E7 /* player-bg-blue-reverse@2x.png in Resources */,
 				52E1FDF217D81BB7009AD64E /* turtle.png in Resources */,
-				52E1FDDA17D7B98E009AD64E /* PIG-logo-large-transparent.png in Resources */,
+				52FFF73A17DE7A9A00F259E7 /* pig-smiling@2x.png in Resources */,
 				52E1FDF317D81BB7009AD64E /* turtle@2x.png in Resources */,
+				52FFF71917DE4E2B00F259E7 /* pig-large-transparent.png in Resources */,
 				52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */,
 				52E1FDEE17D81AF4009AD64E /* rabbit.png in Resources */,
 				52E1FDE317D7B98E009AD64E /* points-bg-solid-blue@2x.png in Resources */,
+				52FFF72F17DE61A600F259E7 /* button-bg-large-blue.png in Resources */,
 				5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */,
+				52FFF70E17DE4B3E00F259E7 /* PIG-logo@2x.png in Resources */,
 				52E1FDD717D7B98E009AD64E /* name-bg-blue@2x.png in Resources */,
 				52E1FDE017D7B98E009AD64E /* points-bg-pink.png in Resources */,
-				52E1FDC717D7B98E009AD64E /* button-bg-large-blue@2x.png in Resources */,
-				52E1FDC817D7B98E009AD64E /* button-bg-large-pink.png in Resources */,
 				52E1FDCE17D7B98E009AD64E /* dice-white-3.png in Resources */,
+				52FFF72917DE57E700F259E7 /* player-bg-blue-reverse.png in Resources */,
 				52E1FDEF17D81AF4009AD64E /* rabbit@2x.png in Resources */,
-				52E1FDDC17D7B98E009AD64E /* PIG-logo.png in Resources */,
 				52E1FDE217D7B98E009AD64E /* points-bg-solid-blue.png in Resources */,
 				52E1FDD917D7B98E009AD64E /* name-bg-pink@2x.png in Resources */,
 				52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */,
+				52FFF72117DE509400F259E7 /* player-bg-pink.png in Resources */,
 				525FD64A17CC726000BE7E07 /* Main.storyboard in Resources */,
+				52FFF73117DE61A600F259E7 /* button-bg-large-pink.png in Resources */,
 				52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */,
 				52E1FDE517D7B98E009AD64E /* points-bg-solid-pink@2x.png in Resources */,
 				52E1FDD617D7B98E009AD64E /* name-bg-blue.png in Resources */,

@@ -19,7 +19,8 @@
 }
 
 + (UIColor *)pigLightPinkColor {
-    return [UIColor colorWithRed:226.0f/255.0f green:28.0f/255.0f blue:119.0f/255.0f alpha:1.0f];
+//    return [UIColor colorWithRed:226.0f/255.0f green:28.0f/255.0f blue:119.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:250.0f/255.0f green:90.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
 }
 
 + (UIColor *)pigRedColor {
