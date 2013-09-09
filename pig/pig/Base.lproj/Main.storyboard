@@ -356,6 +356,20 @@
                                     <constraint firstAttribute="centerY" secondItem="YUE-NX-ZbV" secondAttribute="centerY" id="ubU-GQ-wQ4"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winner!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w93-iF-EXb">
+                                <rect key="frame" x="19" y="98" width="84" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.98823535442352295" green="0.44705885648727417" blue="0.69019609689712524" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winner!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGJ-KV-U3f">
+                                <rect key="frame" x="217" y="353" width="84" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.18823531270027161" green="0.56862747669219971" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -379,6 +393,8 @@
                         <outlet property="lbl_player1" destination="gfn-IG-Usn" id="zwN-eu-oE3"/>
                         <outlet property="lbl_player2" destination="OzN-2c-GvZ" id="7G1-sn-18W"/>
                         <outlet property="lbl_rollValue" destination="woh-WU-ccR" id="00X-K9-T4G"/>
+                        <outlet property="lbl_winnerPlayer1" destination="w93-iF-EXb" id="XzB-3u-zgg"/>
+                        <outlet property="lbl_winnerPlayer2" destination="YGJ-KV-U3f" id="iD7-fO-Jfh"/>
                         <outlet property="sgmt_gameSpeed" destination="AGF-DN-Ll4" id="Sja-a7-UHd"/>
                         <outlet property="v_containerPlayer1" destination="b4z-iF-i0j" id="ooi-Eb-uW1"/>
                         <outlet property="v_containerPlayer2" destination="kDG-Il-nnX" id="YEC-1F-kmB"/>
@@ -535,6 +551,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2Xc-hP-D0Z"/>
+        <segue reference="Lwz-v5-p5X"/>
     </inferredMetricsTieBreakers>
 </document>

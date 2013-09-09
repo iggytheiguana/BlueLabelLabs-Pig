@@ -143,8 +143,8 @@
     
     [self reset];
     
-    _score1 = 99;
-    _score2 = 99;
+//    _score1 = 99;
+//    _score2 = 99;
 }
 
 - (void)didReceiveMemoryWarning
@@ -225,6 +225,8 @@
     [self.btn_playerReady setEnabled:YES];
     [self.btn_pass setHidden:YES];
     [self.btn_newGame setHidden:YES];
+    [self.lbl_winnerPlayer1 setHidden:YES];
+    [self.lbl_winnerPlayer2 setHidden:YES];
     
     [self.btn_playerReady setHidden:NO];
     
@@ -722,7 +724,7 @@
             [self playerOneActive];
             
             [self.btn_playerReady setEnabled:NO];
-            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\nPlayer 1"] forState:UIControlStateNormal];
+            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\n%@", _namePlayer1] forState:UIControlStateNormal];
             
             // Report the scores to Gamce Center and save in User Deafults
             int64_t totalScore = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
@@ -747,12 +749,12 @@
             
             [self playerOneActive];
             
-            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Player 1\nLast Chance"] forState:UIControlStateNormal];
+            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"%@\nLast Chance", _namePlayer1] forState:UIControlStateNormal];
         }
         else {
             [self playerOneActive];
             
-            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Player 1 Ready"] forState:UIControlStateNormal];
+            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"%@ Ready", _namePlayer1] forState:UIControlStateNormal];
         }
     }
     
@@ -777,6 +779,16 @@
             [self.btn_playerReady setHidden:YES];
             _canRollDice = NO;
             
+            UILabel *winnerLabel;
+            if (_winner1 == YES) {
+                winnerLabel = self.lbl_winnerPlayer1;
+            }
+            else {
+                winnerLabel = self.lbl_winnerPlayer2;
+            }
+            
+            [winnerLabel setAlpha:0.0];
+            [winnerLabel setHidden:NO];
             [self.iv_winImage setAlpha:0.0];
             [self.iv_winImage setHidden:NO];
             self.iv_winImage.transform = CGAffineTransformMakeScale(0.3, 0.3);
@@ -788,6 +800,7 @@
                                  self.iv_winImage.transform = CGAffineTransformRotate(self.iv_winImage.transform, -M_PI / 2.0);
                                  self.iv_winImage.transform = CGAffineTransformMakeScale(1.05, 1.05);
                                  self.iv_winImage.alpha = 0.8;
+                                 winnerLabel.alpha = 1.0;
                              }
                              completion:^(BOOL finished){
                                  [UIView animateWithDuration:0.25*_gameSpeedMultiplier

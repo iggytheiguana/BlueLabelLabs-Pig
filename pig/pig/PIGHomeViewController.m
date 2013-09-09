@@ -172,26 +172,26 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 }
 
 - (IBAction)onBuyTwoPlayerButtonPressed:(id)sender {
-//    [self onTwoPlayerButtonPressed:sender];
+    [self onTwoPlayerButtonPressed:sender];
     
-    Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
-    
-    if (internetReachable.isReachable && [_products count] != 0) {
-        SKProduct *product = _products[0];
-        
-        NSLog(@"Buying %@...", product.productIdentifier);
-        [[PIGIAPHelper sharedInstance] buyProduct:product];
-    }
-    else {
-        [self loadIAPs];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot connect to iTunes Store"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
+//    Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
+//    
+//    if (internetReachable.isReachable && [_products count] != 0) {
+//        SKProduct *product = _products[0];
+//        
+//        NSLog(@"Buying %@...", product.productIdentifier);
+//        [[PIGIAPHelper sharedInstance] buyProduct:product];
+//    }
+//    else {
+//        [self loadIAPs];
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot connect to iTunes Store"
+//                                                        message:nil
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//    }
 }
 
 - (IBAction)onRestoreIAPButtonPressed:(id)sender {

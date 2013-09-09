@@ -31,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_newGame;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sgmt_gameSpeed;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_winImage;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer1;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer2;
 
 - (IBAction)onHomeButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;
