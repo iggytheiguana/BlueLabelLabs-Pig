@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
+#import "PIGViewController.h"
+#import "PIGMoreViewController.h"
 
-@interface PIGHomeViewController : UIViewController < GKGameCenterControllerDelegate >
+@interface PIGHomeViewController : UIViewController < GKGameCenterControllerDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate >
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_onePlayer;
 @property (weak, nonatomic) IBOutlet UIButton *btn_twoPlayer;
@@ -17,12 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_buyText;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerOne;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerTwo;
-@property (weak, nonatomic) IBOutlet UIButton *btn_leaderboard;
 
-- (IBAction)onOnePlayerButtonPressed:(id)sender;
-- (IBAction)onTwoPlayerButtonPressed:(id)sender;
 - (IBAction)onBuyTwoPlayerButtonPressed:(id)sender;
-- (IBAction)onRestoreIAPButtonPressed:(id)sender;
-- (IBAction)onLeaderboardButtonPressed:(id)sender;
+
 
 @end

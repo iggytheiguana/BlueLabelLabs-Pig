@@ -8,12 +8,6 @@
 
 #import "GCHelper.h"
 
-//@interface GCHelper () < GKGameCenterControllerDelegate >
-//{
-//    BOOL _gameCenterFeaturesEnabled;
-//}
-//@end
-
 @implementation GCHelper
 
 static GCHelper *sharedHelper = nil;
@@ -154,6 +148,37 @@ static GCHelper *sharedHelper = nil;
     [GKScore reportScores:scores withCompletionHandler:^(NSError *error) {
         [self setLastError:error];
     }];
+}
+
+#pragma mark - Game Center Achievement Methods
+// Report a single achievement
+- (void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float)percent
+{
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:identifier];
+    if (achievement)
+    {
+        achievement.percentComplete = percent;
+        achievement.showsCompletionBanner = YES;
+        [GKAchievement reportAchievements:[NSArray arrayWithObject:achievement] withCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"Error in reporting achievement: %@", error);
+             }
+         }];
+    }
+}
+
+// Report multiple achievements
+- (void)reportAchievements:(NSArray*)achievements
+{
+    [GKAchievement reportAchievements:achievements withCompletionHandler:^(NSError *error)
+     {
+         if (error != nil)
+         {
+             NSLog(@"Error in reporting achievements: %@", error);
+         }
+     }];
 }
 
 @end

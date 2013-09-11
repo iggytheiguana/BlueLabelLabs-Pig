@@ -48,12 +48,14 @@ static PIGGCHelper *sharedHelper = nil;
     }
 }
 
+
+#pragma mark - Game Center Score Methods
 - (void)getHighestGameScore {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     
     GKLeaderboard *leaderboardRequest = [[GKLeaderboard alloc] initWithPlayerIDs:[NSArray arrayWithObject:localPlayer.playerID]];
     leaderboardRequest.timeScope = GKLeaderboardTimeScopeAllTime;
-    leaderboardRequest.identifier = kHighestGameScoreLeaderboardIdentifier;
+    leaderboardRequest.identifier = kLeaderboardIdentifierHighestGameScore;
     leaderboardRequest.range = NSMakeRange(1,1);
     if (leaderboardRequest != nil)
     {
@@ -78,7 +80,7 @@ static PIGGCHelper *sharedHelper = nil;
     
     GKLeaderboard *leaderboardRequest = [[GKLeaderboard alloc] initWithPlayerIDs:[NSArray arrayWithObject:localPlayer.playerID]];
     leaderboardRequest.timeScope = GKLeaderboardTimeScopeAllTime;
-    leaderboardRequest.identifier = kTotalScoreLeaderboardIdentifier;
+    leaderboardRequest.identifier = kLeaderboardIdentifierTotalScore;
     leaderboardRequest.range = NSMakeRange(1,1);
     if (leaderboardRequest != nil)
     {
@@ -101,16 +103,37 @@ static PIGGCHelper *sharedHelper = nil;
 - (void)reportScore:(int64_t)score forLeaderboardID:(NSString*)identifier {
     [super reportScore:score forLeaderboardID:identifier];
     
-    if ([identifier isEqualToString:kHighestGameScoreLeaderboardIdentifier]) {
+    // Do anything else
+    
+    if ([identifier isEqualToString:kLeaderboardIdentifierHighestGameScore]) {
         // Save the new highest game score to the user defaults
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:kHighestGameScorePlayer];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    else if ([identifier isEqualToString:kTotalScoreLeaderboardIdentifier]) {
+    else if ([identifier isEqualToString:kLeaderboardIdentifierTotalScore]) {
         // Save the new total score to the user defaults
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:kTotalScorePlayer];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+
+#pragma mark - Game Center Achievement Methods
+// Report a single achievement
+- (void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float)percent
+{
+    [super reportAchievementIdentifier:identifier percentComplete:percent];
+    
+    // Do anything else
+    
+}
+
+// Report multiple achievements
+- (void)reportAchievements:(NSArray*)achievements
+{
+    [super reportAchievements:achievements];
+    
+    // Do anything else
+    
 }
 
 

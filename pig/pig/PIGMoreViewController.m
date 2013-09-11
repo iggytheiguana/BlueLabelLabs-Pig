@@ -1,18 +1,18 @@
 //
-//  PIGRulesViewController.m
+//  PIGMoreViewController.m
 //  pig
 //
-//  Created by Jordan Gurrieri on 8/29/13.
+//  Created by Jordan Gurrieri on 9/10/13.
 //  Copyright (c) 2013 bluelabellabs. All rights reserved.
 //
 
-#import "PIGRulesViewController.h"
+#import "PIGMoreViewController.h"
 
-@interface PIGRulesViewController ()
+@interface PIGMoreViewController ()
 
 @end
 
-@implementation PIGRulesViewController
+@implementation PIGMoreViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,9 +35,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UIAction Methods
-- (IBAction)onCloseButtonPressed:(id)sender {
-    [self.delegate pigRulesViewControllerDidClose];
+#pragma mark - IB Actions
+- (IBAction)onHomeButtonPressed:(id)sender {
+    [self.delegate pigMoreViewControllerDidClose];
 }
 
 @end

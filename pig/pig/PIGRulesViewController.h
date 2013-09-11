@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PIGRulesViewControllerDelegate <NSObject>
+- (void)pigRulesViewControllerDidClose;
+@end
+
 @interface PIGRulesViewController : UIViewController
+
+@property (weak, nonatomic) id <PIGRulesViewControllerDelegate> delegate;
 
 - (IBAction)onCloseButtonPressed:(id)sender;
 

@@ -28,10 +28,13 @@
     int _turnScore;
     int _doubleCount;
     int _turnThreshold;
+    int _turnCountPlayer1;
     BOOL _canRollDice;
     BOOL _winner1;
     BOOL _winner2;
     BOOL _gameOver;
+    BOOL _landedOn100;
+    BOOL _perfectGamePlayer1;
     NSString *_namePlayer1;
     NSString *_namePlayer2;
     NSArray *_whiteDiceImages;
@@ -143,6 +146,7 @@
     
     [self reset];
     
+    // Used for testing
 //    _score1 = 99;
 //    _score2 = 99;
 }
@@ -151,6 +155,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Storyboard Methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"GamePlay_to_Rules"])
+	{
+		PIGRulesViewController *rulesViewController = segue.destinationViewController;
+        rulesViewController.delegate = self;
+	}
+}
+
+#pragma mark - PIGRulesViewController Delegate
+- (void)pigRulesViewControllerDidClose {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Instance Methods
@@ -203,9 +222,12 @@
     _score2 = 0;
     _turnScore = 0;
     _doubleCount = 0;
+    _turnCountPlayer1 = 0;
     _winner1 = NO;
     _winner2 = NO;
     _gameOver = NO;
+    _landedOn100 = NO;
+    _perfectGamePlayer1 = YES;
     
     // Setup Player 1 to start the game
     [self playerOneActive];
@@ -340,6 +362,7 @@
         if (currentPlayerScore == 100) {
             // Player landed on exactly 100!
             // Player score goes back to 0 and turn is over
+            _landedOn100 = YES;
             turnEnded = YES;
             currentPlayerScore = 0;
             
@@ -379,11 +402,19 @@
     // If the roll was turn ending, we vibrate the phone.
     if (turnEnded == YES) {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        
+        // If the turn ended and this was player 1's turn, they cannot earn the perfect game achievement
+        if (m_lbl_activePlayer == self.lbl_player1) {
+            _perfectGamePlayer1 = NO;
+        }
     }
     
     // Now, update the active player's global score variable
     if (m_lbl_activePlayer == self.lbl_player1) {
         _score1 = currentPlayerScore;
+        
+        // Check if any achievements were earned on this roll
+        [self checkAchievements];
     }
     else {
         _score2 = currentPlayerScore;
@@ -473,6 +504,7 @@
                                                                                             [self.btn_pass setTitle:[NSString stringWithFormat:@"Pass"] forState:UIControlStateNormal];
                                                                                         }
                                                                                         
+                                                                                        // Reset state properties
                                                                                         _canRollDice = YES;
                                                                                     }
                                                                     ];
@@ -632,6 +664,77 @@
 }
 
 #pragma mark - Game Center Methods
+- (void)checkAchievements {
+    NSMutableArray* achievements = [[NSMutableArray alloc] init];
+    
+    // Land on 100 - Land on a score of exactly 100
+    if (_landedOn100 == YES) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierLandOn100];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    // High Score - Earn 150 or more points in a single game
+    if (_gameOver == YES && _score1 >= 150 && _winner1 == YES) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierHighScore];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    // Massive Score - Earn 250 or more points in a single game
+    if (_gameOver == YES && _score1 >= 250 && _winner1 == YES) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierMassiveScore];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    // Streak 50 - Earn 50 or more points in one turn
+    if (_turnScore >= 50) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierStreak50];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    // Streak 75 - Earn 75 or more points in one turn
+    if (_turnScore >= 75) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierStreak75];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    // Perfect Roll - Win a game in just one turn
+    if (_gameOver == YES && _turnCountPlayer1 == 1 && _perfectGamePlayer1 == YES) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierPerfectRoll];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    // Perfect Game - Win a game without losing any points
+    if (_gameOver == YES && _perfectGamePlayer1 == YES) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierPerfectGame];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
+    if([achievements count] > 0) {
+        [[PIGGCHelper sharedInstance] reportAchievements:achievements];
+    }
+}
+
 - (void)showLeaderboard:(NSString*)leaderboardID {
     GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
     if (gameCenterController != nil)
@@ -651,7 +754,7 @@
 #pragma mark - UIAlert Delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex > 0 && buttonIndex < alertView.numberOfButtons) {
-        [self showLeaderboard:kHighestGameScoreLeaderboardIdentifier];
+        [self showLeaderboard:kLeaderboardIdentifierHighestGameScore];
     }
 }
 
@@ -662,7 +765,7 @@
     frame.origin.x = 0.0f;
     self.v_containerPlayer2.frame = frame;
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate pigViewControllerDidClose];
 }
 
 - (IBAction)onPassButtonPressed:(id)sender {
@@ -670,6 +773,7 @@
     
     // Reset the turn score
     _turnScore = 0;
+    _landedOn100 = NO;
     
     // Reset the dice
     [self.btn_dice1 setAdjustsImageWhenDisabled:YES];
@@ -677,7 +781,7 @@
     [self.btn_dice1 setImage:[_whiteDiceImages objectAtIndex:_dice1-1] forState:UIControlStateNormal];
     [self.btn_dice2 setImage:[_whiteDiceImages objectAtIndex:_dice2-1] forState:UIControlStateNormal];
     
-    // Determin if there is a winner
+    // Determine if there is a winner
     if (_score1 >= 101 && _score1 > _score2) {
         _winner2 = NO;
     }
@@ -709,7 +813,7 @@
         else {
             [self playerTwoActive];
             
-            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"%@ Ready", _namePlayer2] forState:UIControlStateNormal];
+            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"%@\nReady", _namePlayer2] forState:UIControlStateNormal];
         }
     }
     else {
@@ -733,7 +837,7 @@
             int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
             
             if ((int64_t)_score1 > highestGameScore) {
-                [[PIGGCHelper sharedInstance] reportScore:(int64_t)_score1 forLeaderboardID:kHighestGameScoreLeaderboardIdentifier];
+                [[PIGGCHelper sharedInstance] reportScore:(int64_t)_score1 forLeaderboardID:kLeaderboardIdentifierHighestGameScore];
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New High Score!"
                                                                 message:@"You beat your highest single game score. View your rank in the Leaderboard?"
@@ -742,7 +846,7 @@
                                                       otherButtonTitles:@"Leaderboard", nil];
                 [alert show];
             }
-            [[PIGGCHelper sharedInstance] reportScore:totalScore forLeaderboardID:kTotalScoreLeaderboardIdentifier];
+            [[PIGGCHelper sharedInstance] reportScore:totalScore forLeaderboardID:kLeaderboardIdentifierTotalScore];
         }
         else if (_score2 >= 101 && _score2 > _score1) {
             _winner2 = YES;
@@ -754,7 +858,7 @@
         else {
             [self playerOneActive];
             
-            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"%@ Ready", _namePlayer1] forState:UIControlStateNormal];
+            [self.btn_playerReady setTitle:[NSString stringWithFormat:@"%@\nReady", _namePlayer1] forState:UIControlStateNormal];
         }
     }
     
@@ -834,6 +938,9 @@
             _canRollDice = YES;
         }
     }
+    
+    // Check if any achievements were earned on this turn
+    [self checkAchievements];
 }
 
 - (IBAction)onDiceButtonPressed:(id)sender {
@@ -849,6 +956,11 @@
 }
 
 - (IBAction)onPlayerReadyButtonPressed:(id)sender {
+    if (m_lbl_activePlayer == self.lbl_player1) {
+        // Increment Player 1's turn counter
+        _turnCountPlayer1 = _turnCountPlayer1 + 1;
+    }
+    
     [self.btn_playerReady setHidden:YES];
     [self.btn_dice1 setEnabled:YES];
     [self.btn_dice2 setEnabled:YES];

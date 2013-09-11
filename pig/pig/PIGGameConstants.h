@@ -14,11 +14,16 @@
 #define kHighestGameScorePlayer @"highestgamescoreplayer"
 
 //Leaderboard Category IDs
-#define kTotalScoreLeaderboardIdentifier @"com.bluelabellabs.pig.totalscore"
-#define kHighestGameScoreLeaderboardIdentifier @"com.bluelabellabs.pig.highestgamescore"
+#define kLeaderboardIdentifierTotalScore @"com.bluelabellabs.pig.totalscore"
+#define kLeaderboardIdentifierHighestGameScore @"com.bluelabellabs.pig.highestgamescore"
 
 //Achievement IDs
-#define kAchievementOneTap @"1_Tap"
-#define kAchievement20Taps @"20_Taps"
+#define kAchievementIdentifierLandOn100 @"com.bluelabellabs.pig.achievement_landon100"
+#define kAchievementIdentifierHighScore @"com.bluelabellabs.pig.achievement_highscore"
+#define kAchievementIdentifierMassiveScore @"com.bluelabellabs.pig.achievement_massivescore"
+#define kAchievementIdentifierStreak50 @"com.bluelabellabs.pig.achievement_streak50"
+#define kAchievementIdentifierStreak75 @"com.bluelabellabs.pig.achievement_streak75"
+#define kAchievementIdentifierPerfectRoll @"com.bluelabellabs.pig.achievement_perfectroll"
+#define kAchievementIdentifierPerfectGame @"com.bluelabellabs.pig.achievement_perfectgame"
 
 #endif

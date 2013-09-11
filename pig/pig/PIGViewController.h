@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "PIGGCHelper.h"
+#import "PIGRulesViewController.h"
 
-@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate >
+@protocol PIGViewControllerDelegate <NSObject>
+- (void)pigViewControllerDidClose;
+@end
+
+@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate >
+
+@property (weak, nonatomic) id <PIGViewControllerDelegate> delegate;
 
 @property (nonatomic, assign) BOOL onePlayerGame;
 

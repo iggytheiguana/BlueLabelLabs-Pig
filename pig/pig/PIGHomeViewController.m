@@ -8,17 +8,13 @@
 
 #import "PIGHomeViewController.h"
 #import <StoreKit/StoreKit.h>
-#import "PIGViewController.h"
 #import "PIGIAPHelper.h"
 #import "Reachability.h"
-#import "PIGGameConstants.h"
-#import "PIGGCHelper.h"
 
 NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGameProductPurchased";
 
 @interface PIGHomeViewController () {
     NSArray *_products;
-//    NSNumberFormatter *_priceFormatter;
 }
 
 //@property (nonatomic) UIDynamicAnimator *animator;
@@ -41,23 +37,7 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    // Check if two-palyer game has been unlocked already
-    BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
-    if (twoPlayerProductPurchased == YES) {
-        [self.btn_buyTwoPlayer setHidden:YES];
-        [self.lbl_buyText setHidden:YES];
-    }
-    else {
-        [self.lbl_buyText setHidden:NO];
-        [self.btn_buyTwoPlayer setHidden:NO];
-    }
-    
     [self loadIAPs];
-    
-//    // Set the currency format on the two-player IAP button
-//    _priceFormatter = [[NSNumberFormatter alloc] init];
-//    [_priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-//    [_priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     
 //    // Add dynamic animations to the one player and two player buttons
 //    UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -75,6 +55,17 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // Check if two-palyer game has been unlocked already
+    BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
+    if (twoPlayerProductPurchased == YES) {
+        [self.btn_buyTwoPlayer setHidden:YES];
+        [self.lbl_buyText setHidden:YES];
+    }
+    else {
+        [self.lbl_buyText setHidden:NO];
+        [self.btn_buyTwoPlayer setHidden:NO];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedTransaction:) name:IAPHelperFailedTransactionNotification object:nil];
 }
@@ -91,6 +82,38 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Storyboard Methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"Home_to_OnePlayerGame"])
+	{
+		PIGViewController *gameplayViewController = segue.destinationViewController;
+        gameplayViewController.delegate = self;
+        gameplayViewController.onePlayerGame = YES;
+	}
+    else if ([segue.identifier isEqualToString:@"Home_to_TwoPlayerGame"])
+	{
+		PIGViewController *gameplayViewController = segue.destinationViewController;
+        gameplayViewController.delegate = self;
+        gameplayViewController.onePlayerGame = NO;
+	}
+    else if ([segue.identifier isEqualToString:@"Home_to_More"])
+	{
+        PIGMoreViewController *moreViewController = segue.destinationViewController;
+        moreViewController.delegate = self;
+	}
+}
+
+#pragma mark - PIGViewController Delegate
+- (void)pigViewControllerDidClose {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - PIGMoreViewController Delegate
+- (void)pigMoreViewControllerDidClose {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - In App Purchase Methods
 - (void)loadIAPs {
     _products = nil;
@@ -105,9 +128,6 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
                 [self.lbl_buyText setHidden:YES];
             }
             else {
-//                [_priceFormatter setLocale:product.priceLocale];
-//                [self.btn_buyTwoPlayer setTitle:[NSString stringWithFormat:@"2 Player Game (LOCKED - %@)", [_priceFormatter stringFromNumber:product.price]] forState:UIControlStateNormal];
-                
                 [self.lbl_buyText setHidden:NO];
                 [self.btn_buyTwoPlayer setHidden:NO];
             }
@@ -136,14 +156,23 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 }
 
 #pragma mark - Game Center Methods
-- (void)showLeaderboard:(NSString*)leaderboardID {
+- (void)showLeaderboard {
     GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
     if (gameCenterController != nil)
     {
         gameCenterController.gameCenterDelegate = self;
-//        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
         gameCenterController.viewState = GKGameCenterViewControllerStateDefault;
-//        gameCenterController.leaderboardIdentifier = leaderboardID;
+        
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
+}
+
+- (void)showAchievements {
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateAchievements;
         
         [self presentViewController:gameCenterController animated:YES completion:nil];
     }
@@ -159,20 +188,10 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 }
 
 #pragma mark - UI Actions
-- (IBAction)onOnePlayerButtonPressed:(id)sender {
-    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
-    gameplayViewController.onePlayerGame = YES;
-    [self.navigationController pushViewController:gameplayViewController animated:YES];
-}
-
-- (IBAction)onTwoPlayerButtonPressed:(id)sender {
+- (IBAction)onBuyTwoPlayerButtonPressed:(id)sender {
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
     gameplayViewController.onePlayerGame = NO;
     [self.navigationController pushViewController:gameplayViewController animated:YES];
-}
-
-- (IBAction)onBuyTwoPlayerButtonPressed:(id)sender {
-    [self onTwoPlayerButtonPressed:sender];
     
 //    Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
 //    
@@ -192,14 +211,6 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 //                                              otherButtonTitles:nil];
 //        [alert show];
 //    }
-}
-
-- (IBAction)onRestoreIAPButtonPressed:(id)sender {
-    [[PIGIAPHelper sharedInstance] restoreCompletedTransactions];
-}
-
-- (IBAction)onLeaderboardButtonPressed:(id)sender {
-    [self showLeaderboard:kTotalScoreLeaderboardIdentifier];
 }
 
 @end
