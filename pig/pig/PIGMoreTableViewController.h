@@ -12,4 +12,8 @@
 
 @interface PIGMoreTableViewController : UITableViewController < GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate >
 
+@property (weak, nonatomic) IBOutlet UISwitch *sw_vibrate;
+
+- (IBAction)onVibrateSwitchValueChanged:(id)sender;
+
 @end

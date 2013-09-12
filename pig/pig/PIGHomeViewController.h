@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_buyText;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerOne;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerTwo;
+@property (weak, nonatomic) IBOutlet UIImageView *iv_pigLogo;
 
 - (IBAction)onBuyTwoPlayerButtonPressed:(id)sender;
 

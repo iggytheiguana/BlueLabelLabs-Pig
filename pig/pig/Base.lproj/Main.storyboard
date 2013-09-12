@@ -16,10 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PIG-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="52O-qH-7zb">
-                                <rect key="frame" x="66" y="44" width="188" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A fast and addictive game of dice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0z-j8-xeG">
                                 <rect key="frame" x="32" y="114" width="257" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -65,7 +61,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6JD-48-KUM">
-                                <rect key="frame" x="113" y="280" width="255" height="97"/>
+                                <rect key="frame" x="113" y="285" width="255" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDZ-il-Rzt" userLabel="Button - 2 Player Game">
@@ -102,14 +98,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You will feel good knowing that .69 cents of your purchase will go to supporting the lives of indy app developers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="106" translatesAutoresizingMaskIntoConstraints="NO" id="gX7-Ia-0OE">
-                                <rect key="frame" x="210" y="323" width="106" height="50"/>
+                                <rect key="frame" x="210" y="328" width="106" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="7"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZ6-Dz-xhG" userLabel="Button - Buy 2 Player Game">
-                                <rect key="frame" x="38" y="251" width="282" height="126"/>
+                                <rect key="frame" x="38" y="256" width="282" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <inset key="titleEdgeInsets" minX="60" minY="42" maxX="0.0" maxY="0.0"/>
@@ -122,7 +118,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETo-Rj-S7R">
-                                <rect key="frame" x="20" y="389" width="280" height="42"/>
+                                <rect key="frame" x="20" y="404" width="280" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="More">
@@ -132,6 +128,10 @@
                                     <segue destination="096-jC-RMw" kind="push" identifier="Home_to_More" id="TyN-Ef-h42"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PIG-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="52O-qH-7zb">
+                                <rect key="frame" x="66" y="44" width="188" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -140,6 +140,7 @@
                         <outlet property="btn_buyTwoPlayer" destination="rZ6-Dz-xhG" id="eRs-6i-gju"/>
                         <outlet property="btn_onePlayer" destination="Ce0-Q2-ic4" id="ECr-zj-X6T"/>
                         <outlet property="btn_twoPlayer" destination="mDZ-il-Rzt" id="zzc-45-FT6"/>
+                        <outlet property="iv_pigLogo" destination="52O-qH-7zb" id="zvH-jD-Fdn"/>
                         <outlet property="lbl_buyText" destination="gX7-Ia-0OE" id="VUa-dJ-YAw"/>
                         <outlet property="v_containerPlayerOne" destination="irj-DT-kUE" id="9nd-XW-lfi"/>
                         <outlet property="v_containerPlayerTwo" destination="6JD-48-KUM" id="ypk-Gd-xZi"/>
@@ -220,8 +221,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ww-4B-aIX">
-                                <rect key="frame" x="15" y="20" width="46" height="30"/>
+                                <rect key="frame" x="15" y="20" width="46" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -241,33 +243,14 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag4-3Y-UmE">
-                                <rect key="frame" x="255" y="20" width="50" height="30"/>
+                                <rect key="frame" x="255" y="20" width="50" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Rules">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="eBs-ni-GP4" kind="push" identifier="GamePlay_to_Rules" id="jA2-CX-F2u"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmt-3p-QhD" userLabel="Button - Dice 1">
-                                <rect key="frame" x="34" y="186" width="109" height="109"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="dice-white-1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onDiceButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="HPN-h7-HUJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEq-U1-5Ps" userLabel="Button - Dice 2">
-                                <rect key="frame" x="176" y="186" width="109" height="109"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="dice-white-1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onDiceButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="HCM-pU-ahH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzx-js-n5O">
@@ -290,6 +273,40 @@
                                 </state>
                                 <connections>
                                     <action selector="onNewGameButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="qVt-3C-vxd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winner!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w93-iF-EXb">
+                                <rect key="frame" x="19" y="98" width="84" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.98823535442352295" green="0.44705885648727417" blue="0.69019609689712524" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winner!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGJ-KV-U3f">
+                                <rect key="frame" x="217" y="353" width="84" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.18823531270027161" green="0.56862747669219971" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmt-3p-QhD" userLabel="Button - Dice 1">
+                                <rect key="frame" x="34" y="186" width="109" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="dice-white-1.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDiceButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="HPN-h7-HUJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEq-U1-5Ps" userLabel="Button - Dice 2">
+                                <rect key="frame" x="176" y="186" width="109" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="dice-white-1.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDiceButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="HCM-pU-ahH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-Oj-nyP">
@@ -334,20 +351,6 @@
                                     <constraint firstAttribute="centerY" secondItem="YUE-NX-ZbV" secondAttribute="centerY" id="ubU-GQ-wQ4"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winner!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w93-iF-EXb">
-                                <rect key="frame" x="19" y="98" width="84" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" red="0.98823535442352295" green="0.44705885648727417" blue="0.69019609689712524" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winner!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGJ-KV-U3f">
-                                <rect key="frame" x="217" y="353" width="84" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" red="0.18823531270027161" green="0.56862747669219971" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -398,8 +401,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-V2-dwn">
-                                <rect key="frame" x="15" y="20" width="46" height="30"/>
+                                <rect key="frame" x="15" y="20" width="46" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -532,6 +536,14 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqB-Hl-4xt">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="onTintColor" red="0.98823535442352295" green="0.44705885648727417" blue="0.69019609689712524" alpha="1" colorSpace="deviceRGB"/>
+                                                    <connections>
+                                                        <action selector="onVibrateSwitchValueChanged:" destination="CMu-eT-MjB" eventType="valueChanged" id="BGk-ic-BEC"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -543,6 +555,9 @@
                             <outlet property="delegate" destination="CMu-eT-MjB" id="ift-jy-igV"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="sw_vibrate" destination="iqB-Hl-4xt" id="gO7-UL-aSh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOC-Vs-wSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -557,7 +572,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eb0-B9-L31"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="adC-Mz-Vml">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="505"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rules" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahD-2k-oa6">
@@ -635,8 +650,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdB-RU-FwI">
-                                <rect key="frame" x="15" y="20" width="46" height="30"/>
+                                <rect key="frame" x="15" y="20" width="46" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -678,11 +694,16 @@
         <image name="button-bg-large-pink.png" width="253" height="106"/>
         <image name="buyTwoPlayer.png" width="111" height="105"/>
         <image name="dice-white-1.png" width="109" height="109"/>
+        <image name="dice-white-1.png" width="109" height="109"/>
         <image name="pig-large-transparent.png" width="290" height="266"/>
         <image name="pig-smiling.png" width="164" height="150"/>
         <image name="player-bg-blue-reverse.png" width="255" height="97"/>
         <image name="player-bg-blue.png" width="255" height="97"/>
         <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
         <image name="points-bg-white.png" width="79" height="79"/>
         <image name="rabbit.png" width="35" height="25"/>
         <image name="snake.png" width="147" height="150"/>
@@ -695,6 +716,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Mkl-Lm-sWP"/>
-        <segue reference="3EQ-Iu-zDi"/>
+        <segue reference="jA2-CX-F2u"/>
     </inferredMetricsTieBreakers>
 </document>

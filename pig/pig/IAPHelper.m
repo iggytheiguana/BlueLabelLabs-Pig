@@ -11,6 +11,9 @@
 
 NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurchasedNotification";
 NSString *const IAPHelperFailedTransactionNotification = @"IAPHelperFailedTransactionNotification";
+NSString *const IAPHelperRestoreCompletedNotification = @"IAPHelperRestoreCompletedNotification";
+NSString *const IAPHelperRestoreFailedNotification = @"IAPHelperRestoreFailedNotification";
+NSString *const IAPHelperRestoreCanceledNotification = @"IAPHelperRestoreCanceledNotification";
 
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
@@ -24,7 +27,6 @@ NSString *const IAPHelperFailedTransactionNotification = @"IAPHelperFailedTransa
 }
 
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers {
-    
     if ((self = [super init])) {
         
         // Store product identifiers
@@ -61,7 +63,6 @@ NSString *const IAPHelperFailedTransactionNotification = @"IAPHelperFailedTransa
 }
 
 - (void)buyProduct:(SKProduct *)product {
-    
     NSLog(@"Buying %@...", product.productIdentifier);
     
     SKPayment * payment = [SKPayment paymentWithProduct:product];
@@ -119,7 +120,6 @@ NSString *const IAPHelperFailedTransactionNotification = @"IAPHelperFailedTransa
 
 #pragma mark - SKProductsRequestDelegate
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    
     NSLog(@"Loaded list of products...");
     _productsRequest = nil;
     
@@ -136,7 +136,6 @@ NSString *const IAPHelperFailedTransactionNotification = @"IAPHelperFailedTransa
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-    
     NSLog(@"Failed to load list of products.");
     _productsRequest = nil;
     
@@ -162,6 +161,26 @@ NSString *const IAPHelperFailedTransactionNotification = @"IAPHelperFailedTransa
                 break;
         }
     };
+}
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+    NSLog(@"Purchases restored.");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperRestoreCompletedNotification object:nil];
+}
+
+- (void)paymentQueue:(SKPaymentQueue*)queue restoreCompletedTransactionsFailedWithError:(NSError*)error
+{
+    NSLog(@"Canceled restore: %@", error.localizedDescription);
+    
+    if (error.code == SKErrorPaymentCancelled) {
+        // User has cancelled
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperRestoreCanceledNotification object:nil];
+    }
+    else {
+        // Other error
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperRestoreFailedNotification object:nil];
+    }
 }
 
 @end

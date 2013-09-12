@@ -14,7 +14,6 @@
 #import "PIGGCHelper.h"
 #import "PIGGameConstants.h"
 
-#define kGAMESPEEDSETTING @"GameSpeedSetting"
 #define kFASTGAME 1
 #define kSLOWGAME 1.5
 
@@ -35,6 +34,7 @@
     BOOL _gameOver;
     BOOL _landedOn100;
     BOOL _perfectGamePlayer1;
+    BOOL _vibrateOn;
     NSString *_namePlayer1;
     NSString *_namePlayer2;
     NSArray *_whiteDiceImages;
@@ -66,6 +66,7 @@
                           nil];
     _whiteDiceImages = whiteDiceArray;
     
+    // Get Player names
     if ([[PIGGCHelper sharedInstance] playerAuthenticated]) {
         GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
         _namePlayer1 = localPlayer.alias;
@@ -120,20 +121,54 @@
     [self.btn_dice2 addTarget:self action:@selector(dragMoving:withEvent:) forControlEvents: UIControlEventTouchDragInside];
     [self.btn_dice2 addTarget:self action:@selector(dragEnded:withEvent:) forControlEvents: UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     
+    // Give the dice, roll label, and roll images a shadow that will add to the motion effect
+    self.btn_dice1.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btn_dice1.layer.shadowOpacity = 0.3f;
+    self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.btn_dice1.layer.shadowRadius = 0.0f;
+    
+    self.btn_dice2.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btn_dice2.layer.shadowOpacity = 0.3f;
+    self.btn_dice2.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.btn_dice2.layer.shadowRadius = 0.0f;
+    
+//    self.lbl_rollValue.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.lbl_rollValue.layer.shadowOpacity = 0.3f;
+//    self.lbl_rollValue.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+//    self.lbl_rollValue.layer.shadowRadius = 0.0f;
+//    
+//    self.iv_rollImage.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.iv_rollImage.layer.shadowOpacity = 0.3f;
+//    self.iv_rollImage.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+//    self.iv_rollImage.layer.shadowRadius = 0.0f;
+//    
+//    self.iv_winImage.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.iv_winImage.layer.shadowOpacity = 0.3f;
+//    self.iv_winImage.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+//    self.iv_winImage.layer.shadowRadius = 0.0f;
+    
+//    self.v_containerPlayer1.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.v_containerPlayer1.layer.shadowOpacity = 0.3f;
+//    self.v_containerPlayer1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+//    self.v_containerPlayer1.layer.shadowRadius = 0.0f;
+    
     // Add motion effects to dice
-//    UIMotionEffect *motionEffect = [[UIMotionEffect alloc] init];
-//    [motionEffect keyPathsAndRelativeValuesForViewerOffset:UIOffsetMake(1.0, 1.0)];
     PIGMotionEffect *motionEffect = [[PIGMotionEffect alloc] init];
+    [self.btn_dice1 addMotionEffect:motionEffect];
     [self.btn_dice2 addMotionEffect:motionEffect];
+//    [self.lbl_rollValue addMotionEffect:motionEffect];
+//    [self.iv_rollImage addMotionEffect:motionEffect];
+//    [self.iv_winImage addMotionEffect:motionEffect];
+//    [self.v_containerPlayer1 addMotionEffect:motionEffect];
     
     // Setup game speed from user's last setting
-    _gameSpeedMultiplier = [[NSUserDefaults standardUserDefaults] floatForKey:kGAMESPEEDSETTING];
+    _gameSpeedMultiplier = [[NSUserDefaults standardUserDefaults] floatForKey:kSettingsGameSpeed];
     if (_gameSpeedMultiplier == 0) {
         // Default to slow game speed
         _gameSpeedMultiplier = kSLOWGAME;
         
         // Save setting to user defaults
-        [[NSUserDefaults standardUserDefaults] setFloat:_gameSpeedMultiplier forKey:kGAMESPEEDSETTING];
+        [[NSUserDefaults standardUserDefaults] setFloat:_gameSpeedMultiplier forKey:kSettingsGameSpeed];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
@@ -142,6 +177,19 @@
     }
     else {
         [self.sgmt_gameSpeed setSelectedSegmentIndex:1];
+    }
+    
+    // Setup vibrate setting from user defaults
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kSettingsVibrate]) {
+        _vibrateOn = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingsVibrate];
+    }
+    else {
+        // Default to ON
+        _vibrateOn = YES;
+        
+        // Save setting to user defaults
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSettingsVibrate];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     [self reset];
@@ -214,6 +262,33 @@
 - (void)dragEnded:(UIControl *)control withEvent:event {
     [self.animator removeBehavior:self.touchAttachmentBehavior];
     [self.animator removeBehavior:self.touchAttachmentBehavior2];
+}
+
+- (void)diceShadows:(BOOL)showShadow {
+    if (showShadow == YES) {
+        // Give the dice, roll label, and roll images a shadow that will add to the motion effect
+        self.btn_dice1.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.btn_dice1.layer.shadowOpacity = 0.3f;
+        self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+        self.btn_dice1.layer.shadowRadius = 0.0f;
+        
+        self.btn_dice2.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.btn_dice2.layer.shadowOpacity = 0.3f;
+        self.btn_dice2.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+        self.btn_dice2.layer.shadowRadius = 0.0f;
+    }
+    else {
+        // Give the dice, roll label, and roll images a shadow that will add to the motion effect
+        self.btn_dice1.layer.shadowColor = [UIColor clearColor].CGColor;
+        self.btn_dice1.layer.shadowOpacity = 0.0f;
+        self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+        self.btn_dice1.layer.shadowRadius = 0.0f;
+        
+        self.btn_dice2.layer.shadowColor = [UIColor clearColor].CGColor;
+        self.btn_dice2.layer.shadowOpacity = 0.0f;
+        self.btn_dice2.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+        self.btn_dice2.layer.shadowRadius = 0.0f;
+    }
 }
 
 - (void)reset {
@@ -401,7 +476,9 @@
     
     // If the roll was turn ending, we vibrate the phone.
     if (turnEnded == YES) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        if (_vibrateOn == YES) {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        }
         
         // If the turn ended and this was player 1's turn, they cannot earn the perfect game achievement
         if (m_lbl_activePlayer == self.lbl_player1) {
@@ -434,6 +511,8 @@
     else {
         rollView = self.lbl_rollValue;
     }
+    
+    [self diceShadows:NO];
     
     [rollView setAlpha:0.0];
     [rollView setHidden:NO];
@@ -476,6 +555,8 @@
                                                                                         [rollView setAlpha:0.0];
                                                                                         [rollView setHidden:YES];
                                                                                         rollView.transform = CGAffineTransformIdentity;
+                                                                                        
+                                                                                        [self diceShadows:YES];
                                                                                         
                                                                                         [m_lbl_activePlayer setText:[NSString stringWithFormat:@"%d", currentPlayerScore]];
                                                                                         
@@ -796,7 +877,9 @@
         if (_winner2 == YES) {
             _gameOver = YES;
             
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            if (_vibrateOn == YES) {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            }
             
             [self playerTwoActive];
             
@@ -823,7 +906,9 @@
         if (_winner1 == YES) {
             _gameOver = YES;
             
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            if (_vibrateOn == YES) {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            }
             
             [self playerOneActive];
             
@@ -989,7 +1074,7 @@
     }
 
     // Save setting to user defaults
-    [[NSUserDefaults standardUserDefaults] setFloat:_gameSpeedMultiplier forKey:kGAMESPEEDSETTING];
+    [[NSUserDefaults standardUserDefaults] setFloat:_gameSpeedMultiplier forKey:kSettingsGameSpeed];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

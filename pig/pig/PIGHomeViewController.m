@@ -10,6 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "PIGIAPHelper.h"
 #import "Reachability.h"
+#import "PIGMotionEffect.h"
 
 NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGameProductPurchased";
 
@@ -50,6 +51,16 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 //    [animator addBehavior:twoPlayerSnap];
 //    
 //    self.animator = animator;
+    
+    // Give the PIG logo a shadow to add to the motion effect
+    self.iv_pigLogo.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.iv_pigLogo.layer.shadowOpacity = 0.3f;
+    self.iv_pigLogo.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.iv_pigLogo.layer.shadowRadius = 0.0f;
+    
+    // Add motion effects to dice
+    PIGMotionEffect *motionEffect = [[PIGMotionEffect alloc] init];
+    [self.iv_pigLogo addMotionEffect:motionEffect];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

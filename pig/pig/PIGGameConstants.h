@@ -9,7 +9,11 @@
 #ifndef pig_PIGGameConstants_h
 #define pig_PIGGameConstants_h
 
-//User Defaults
+// Settings
+#define kSettingsGameSpeed @"GameSpeedSetting"
+#define kSettingsVibrate @"settingsvibrate"
+
+//User Scores
 #define kTotalScorePlayer @"totalscoreplayer"
 #define kHighestGameScorePlayer @"highestgamescoreplayer"
 

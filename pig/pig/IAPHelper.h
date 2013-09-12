@@ -10,6 +10,9 @@
 
 UIKIT_EXTERN NSString *const IAPHelperProductPurchasedNotification;
 UIKIT_EXTERN NSString *const IAPHelperFailedTransactionNotification;
+UIKIT_EXTERN NSString *const IAPHelperRestoreCompletedNotification;
+UIKIT_EXTERN NSString *const IAPHelperRestoreFailedNotification;
+UIKIT_EXTERN NSString *const IAPHelperRestoreCanceledNotification;
 
 typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * products);
 

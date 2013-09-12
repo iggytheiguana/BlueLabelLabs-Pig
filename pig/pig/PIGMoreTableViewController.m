@@ -8,6 +8,7 @@
 
 #import "PIGMoreTableViewController.h"
 #import "PIGIAPHelper.h"
+#import "PIGGameConstants.h"
 
 @interface PIGMoreTableViewController () {
     NSArray *_products;
@@ -37,6 +38,19 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Setup vibrate setting from user defaults
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kSettingsVibrate]) {
+        self.sw_vibrate.on = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingsVibrate];
+    }
+    else {
+        // Default to ON
+        self.sw_vibrate.on = YES;
+        
+        // Save setting to user defaults
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSettingsVibrate];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,13 +61,20 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     if (twoPlayerProductPurchased == YES) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+        [cell setUserInteractionEnabled:NO];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        [cell setUserInteractionEnabled:YES];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedTransaction:) name:IAPHelperFailedTransactionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreFailed:) name:IAPHelperRestoreFailedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreCanceled:) name:IAPHelperRestoreCanceledNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreCompleted:) name:IAPHelperRestoreCompletedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -79,21 +100,6 @@
 }
 
 #pragma mark - In App Purchase Methods
-- (void)productPurchased:(NSNotification *)notification {
-    NSString *productIdentifier = notification.object;
-    [_products enumerateObjectsUsingBlock:^(SKProduct *product, NSUInteger idx, BOOL *stop) {
-        if ([product.productIdentifier isEqualToString:productIdentifier]) {
-            [m_ai_RestorePurchases stopAnimating];
-            
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-            cell.accessoryView = nil;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            
-            *stop = YES;
-        }
-    }];
-}
-
 - (void)failedTransaction:(NSString *)errorMessage {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iTunes Store Error"
                                                     message:[NSString stringWithFormat:@"Transaction error: %@", errorMessage]
@@ -101,6 +107,35 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (void)restoreFailed:(NSString *)errorMessage {
+    [m_ai_RestorePurchases stopAnimating];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.accessoryView = nil;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iTunes Store Error"
+                                                    message:[NSString stringWithFormat:@"Transaction error: %@", errorMessage]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)restoreCanceled:(NSError *)error {
+    [m_ai_RestorePurchases stopAnimating];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.accessoryView = nil;
+}
+
+- (void)restoreCompleted:(NSError *)error {
+    [m_ai_RestorePurchases stopAnimating];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    cell.textLabel.textColor = [UIColor lightGrayColor];
+    [cell setUserInteractionEnabled:NO];
 }
 
 #pragma mark - TableView Delegate Methods
@@ -158,6 +193,15 @@
 #pragma mark - PIGRulesViewController Delegate
 - (void)pigRulesViewControllerDidClose {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UIAction Methods
+- (IBAction)onVibrateSwitchValueChanged:(id)sender {
+    BOOL vibrate = self.sw_vibrate.on;
+    
+    // Save setting to user defaults
+    [[NSUserDefaults standardUserDefaults] setBool:vibrate forKey:kSettingsVibrate];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

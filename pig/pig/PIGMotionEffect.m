@@ -11,8 +11,14 @@
 @implementation PIGMotionEffect
 
 - (NSDictionary *)keyPathsAndRelativeValuesForViewerOffset:(UIOffset)viewerOffset {
-    NSDictionary* dict = @{@"center" : [NSValue valueWithCGPoint:CGPointMake(3.4, 1.2)], @"layer.shadowOffset" : [NSValue valueWithCGPoint:CGPointMake(-1.1, 0.0)]};
-//    NSDictionary* dict = @{@"center" : [NSValue valueWithCGPoint:CGPointMake(3.4, 1.2)]};
+    float radiusOffset = radiusOffset = fmaxf(fabsf(viewerOffset.vertical), fabsf(viewerOffset.horizontal))*20.0f;
+    
+    NSDictionary* dict = @{
+                           @"layer.shadowOffset" : [NSValue valueWithCGSize:CGSizeMake(-20.0*viewerOffset.horizontal, -20.0*viewerOffset.vertical)],
+                           @"layer.shadowRadius" : [NSNumber numberWithFloat:radiusOffset],
+                           @"center" : [NSValue valueWithCGPoint:CGPointMake(30.0*viewerOffset.horizontal, 30.0*viewerOffset.vertical)]
+                           };
+    
     return dict;
 }
 
