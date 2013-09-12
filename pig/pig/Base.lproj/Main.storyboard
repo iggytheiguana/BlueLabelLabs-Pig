@@ -522,7 +522,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="I1K-xf-AOG">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="I1K-xf-AOG">
                                         <rect key="frame" x="0.0" y="259" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1K-xf-AOG" id="eoH-x7-utZ">
@@ -716,6 +716,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Mkl-Lm-sWP"/>
-        <segue reference="jA2-CX-F2u"/>
+        <segue reference="3EQ-Iu-zDi"/>
     </inferredMetricsTieBreakers>
 </document>
