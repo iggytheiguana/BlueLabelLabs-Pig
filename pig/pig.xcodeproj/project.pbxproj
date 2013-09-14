@@ -36,6 +36,10 @@
 		52B3E2E617E018CD009C72DC /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3E2E217E018CD009C72DC /* turtle.png */; };
 		52B3E2E717E018CD009C72DC /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3E2E317E018CD009C72DC /* turtle@2x.png */; };
 		52B3E2EF17E03C81009C72DC /* PIGMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3E2EE17E03C81009C72DC /* PIGMoreViewController.m */; };
+		52BFB9F217E4329100757BBE /* rollTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F017E4329100757BBE /* rollTutorial.png */; };
+		52BFB9F317E4329100757BBE /* rollTutorial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F117E4329100757BBE /* rollTutorial@2x.png */; };
+		52BFB9F617E45C3E00757BBE /* button-bg-large-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */; };
+		52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */; };
 		52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA817D7B98E009AD64E /* dice-white-1.png */; };
 		52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */; };
 		52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAA17D7B98E009AD64E /* dice-white-2.png */; };
@@ -144,6 +148,10 @@
 		52B3E2E317E018CD009C72DC /* turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@2x.png"; sourceTree = "<group>"; };
 		52B3E2ED17E03C81009C72DC /* PIGMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMoreViewController.h; sourceTree = "<group>"; };
 		52B3E2EE17E03C81009C72DC /* PIGMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMoreViewController.m; sourceTree = "<group>"; };
+		52BFB9F017E4329100757BBE /* rollTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollTutorial.png; sourceTree = "<group>"; };
+		52BFB9F117E4329100757BBE /* rollTutorial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollTutorial@2x.png"; sourceTree = "<group>"; };
+		52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-grey.png"; sourceTree = "<group>"; };
+		52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-grey@2x.png"; sourceTree = "<group>"; };
 		52E1FDA817D7B98E009AD64E /* dice-white-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1.png"; sourceTree = "<group>"; };
 		52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1@2x.png"; sourceTree = "<group>"; };
 		52E1FDAA17D7B98E009AD64E /* dice-white-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-2.png"; sourceTree = "<group>"; };
@@ -336,6 +344,8 @@
 				52FFF72C17DE61A600F259E7 /* button-bg-large-blue@2x.png */,
 				52FFF72D17DE61A600F259E7 /* button-bg-large-pink.png */,
 				52FFF72E17DE61A600F259E7 /* button-bg-large-pink@2x.png */,
+				52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */,
+				52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */,
 				52E1FDA817D7B98E009AD64E /* dice-white-1.png */,
 				52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */,
 				52E1FDAA17D7B98E009AD64E /* dice-white-2.png */,
@@ -386,6 +396,8 @@
 				52B3E2E317E018CD009C72DC /* turtle@2x.png */,
 				52FFF73F17DE7DD700F259E7 /* buyTwoPlayer.png */,
 				52FFF74017DE7DD700F259E7 /* buyTwoPlayer@2x.png */,
+				52BFB9F017E4329100757BBE /* rollTutorial.png */,
+				52BFB9F117E4329100757BBE /* rollTutorial@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -541,6 +553,7 @@
 				52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */,
 				52FFF72217DE509400F259E7 /* player-bg-pink@2x.png in Resources */,
 				52FFF73217DE61A600F259E7 /* button-bg-large-pink@2x.png in Resources */,
+				52BFB9F617E45C3E00757BBE /* button-bg-large-grey.png in Resources */,
 				52E1FDE617D7B98E009AD64E /* snake.png in Resources */,
 				52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */,
 				52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */,
@@ -554,10 +567,13 @@
 				52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */,
 				52FFF71A17DE4E2B00F259E7 /* pig-large-transparent@2x.png in Resources */,
 				52E1FDE117D7B98E009AD64E /* points-bg-pink@2x.png in Resources */,
+				52BFB9F317E4329100757BBE /* rollTutorial@2x.png in Resources */,
 				5201335E17D864DB009679F0 /* dice-red-1.png in Resources */,
+				52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */,
 				52B3E2E717E018CD009C72DC /* turtle@2x.png in Resources */,
 				52FFF74217DE7DD700F259E7 /* buyTwoPlayer@2x.png in Resources */,
 				52FFF72A17DE57E700F259E7 /* player-bg-blue-reverse@2x.png in Resources */,
+				52BFB9F217E4329100757BBE /* rollTutorial.png in Resources */,
 				52FFF73A17DE7A9A00F259E7 /* pig-smiling@2x.png in Resources */,
 				52FFF71917DE4E2B00F259E7 /* pig-large-transparent.png in Resources */,
 				52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */,

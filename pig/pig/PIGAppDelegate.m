@@ -19,9 +19,6 @@
     // Check for IAP transactions
     [PIGIAPHelper sharedInstance];
     
-    // Check Game Center availability and authentication
-    [[PIGGCHelper sharedInstance] authenticateLocalPlayer];
-    
     return YES;
 }
 							

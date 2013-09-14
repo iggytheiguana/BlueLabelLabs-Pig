@@ -14,11 +14,11 @@
 - (void)pigViewControllerDidClose;
 @end
 
-@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate >
+@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate, GCHelperDelegate >
 
 @property (weak, nonatomic) id <PIGViewControllerDelegate> delegate;
 
-@property (nonatomic, assign) BOOL onePlayerGame;
+@property (nonatomic, assign) int gameType;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_dice1;
 @property (weak, nonatomic) IBOutlet UIButton *btn_dice2;
@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iv_winImage;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer2;
+@property (weak, nonatomic) IBOutlet UIButton *btn_rollTutorial;
 
 - (IBAction)onHomeButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;
@@ -47,5 +48,6 @@
 - (IBAction)onPlayerReadyButtonPressed:(id)sender;
 - (IBAction)onNewGameButtonPressed:(id)sender;
 - (IBAction)onGameSpeedValueChanged:(id)sender;
+- (IBAction)onRollTutorialButtonPressed:(id)sender;
 
 @end

@@ -9,10 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
-@interface GCHelper : NSObject {
+@protocol GCHelperDelegate
+- (void)enterNewGame:(GKTurnBasedMatch *)match;
+- (void)layoutMatch:(GKTurnBasedMatch *)match;
+- (void)takeTurn:(GKTurnBasedMatch *)match;
+- (void)recieveEndGame:(GKTurnBasedMatch *)match;
+- (void)sendNotice:(NSString *)notice forMatch:(GKTurnBasedMatch *)match;
+@end
+
+@interface GCHelper : NSObject < GKTurnBasedMatchmakerViewControllerDelegate, GKLocalPlayerListener > {
     BOOL _gameCenterAvailable;
     BOOL _gameCenterFeaturesEnabled;
     BOOL _playerAuthenticated;
+    
+    UIViewController *_presentingViewController;
 }
 
 @property (assign, readonly) BOOL gameCenterAvailable;
@@ -22,14 +32,22 @@
 // that occured while using the Game Center API's
 @property (nonatomic, readonly) NSError* lastError;
 
+@property (strong) GKTurnBasedMatch * currentMatch;
+
+@property (nonatomic, assign) id <GCHelperDelegate> delegate;
+
 + (GCHelper *)sharedInstance;
 - (BOOL)isGameCenterAvailable;
 - (void)authenticationChanged;
-- (void)authenticateLocalPlayer;
+- (void)authenticateLocalUserFromViewController:(UIViewController *)authenticationPresentingViewController;
 - (void)reportScore:(int64_t)score forLeaderboardID:(NSString*)identifier;
 // Report a single achievement
 - (void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float)percent;
 // Report multiple achievements
 - (void)reportAchievements:(NSArray*)achievements;
+
+- (void)findMatchWithMinPlayers:(int)minPlayers
+                     maxPlayers:(int)maxPlayers
+                 viewController:(UIViewController *)viewController;
 
 @end

@@ -11,7 +11,7 @@
 #import "PIGViewController.h"
 #import "PIGMoreViewController.h"
 
-@interface PIGHomeViewController : UIViewController < GKGameCenterControllerDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate >
+@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, GCHelperDelegate >
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_onePlayer;
 @property (weak, nonatomic) IBOutlet UIButton *btn_twoPlayer;
@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerTwo;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_pigLogo;
 
+- (IBAction)onTwoPlayerButtonPressed:(id)sender;
 - (IBAction)onBuyTwoPlayerButtonPressed:(id)sender;
-
 
 @end

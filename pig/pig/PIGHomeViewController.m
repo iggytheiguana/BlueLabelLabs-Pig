@@ -11,6 +11,7 @@
 #import "PIGIAPHelper.h"
 #import "Reachability.h"
 #import "PIGMotionEffect.h"
+#import "PIGGameConstants.h"
 
 NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGameProductPurchased";
 
@@ -24,6 +25,7 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 
 @implementation PIGHomeViewController
 
+#pragma mark - Initialization
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,6 +40,11 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Check Game Center availability and authentication
+    [[PIGGCHelper sharedInstance] authenticateLocalUserFromViewController:self];
+    [PIGGCHelper sharedInstance].delegate = self;
+    
+    // Load In App Purchases
     [self loadIAPs];
     
 //    // Add dynamic animations to the one player and two player buttons
@@ -100,13 +107,13 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 	{
 		PIGViewController *gameplayViewController = segue.destinationViewController;
         gameplayViewController.delegate = self;
-        gameplayViewController.onePlayerGame = YES;
+        gameplayViewController.gameType = kONEPLAYERGAME;
 	}
     else if ([segue.identifier isEqualToString:@"Home_to_TwoPlayerGame"])
 	{
 		PIGViewController *gameplayViewController = segue.destinationViewController;
         gameplayViewController.delegate = self;
-        gameplayViewController.onePlayerGame = NO;
+        gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
 	}
     else if ([segue.identifier isEqualToString:@"Home_to_More"])
 	{
@@ -166,31 +173,43 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     [alert show];
 }
 
-#pragma mark - Game Center Methods
-- (void)showLeaderboard {
-    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
-    if (gameCenterController != nil)
-    {
-        gameCenterController.gameCenterDelegate = self;
-        gameCenterController.viewState = GKGameCenterViewControllerStateDefault;
-        
-        [self presentViewController:gameCenterController animated:YES completion:nil];
-    }
+#pragma mark - GCHelperDelegate Multiplayer Methods
+-(void)enterNewGame:(GKTurnBasedMatch *)match {
+    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    
+    [self.navigationController pushViewController:gameplayViewController animated:YES];
 }
 
-- (void)showAchievements {
-    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
-    if (gameCenterController != nil)
-    {
-        gameCenterController.gameCenterDelegate = self;
-        gameCenterController.viewState = GKGameCenterViewControllerStateAchievements;
-        
-        [self presentViewController:gameCenterController animated:YES completion:nil];
-    }
+-(void)takeTurn:(GKTurnBasedMatch *)match {
+    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    
+    [self presentViewController:gameplayViewController animated:YES completion:^{
+        [gameplayViewController takeTurn:match];
+    }];
 }
 
-- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
+-(void)layoutMatch:(GKTurnBasedMatch *)match {
+    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    
+    [self presentViewController:gameplayViewController animated:YES completion:^{
+        [gameplayViewController layoutMatch:match];
+    }];
+}
+
+- (void)sendNotice:(NSString *)notice forMatch:(GKTurnBasedMatch *)match {
+    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    
+    [self presentViewController:gameplayViewController animated:YES completion:^{
+        [gameplayViewController sendNotice:notice forMatch:match];
+    }];
 }
 
 #pragma mark - UIAlert Delegate
@@ -201,7 +220,8 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 #pragma mark - UI Actions
 - (IBAction)onBuyTwoPlayerButtonPressed:(id)sender {
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
-    gameplayViewController.onePlayerGame = NO;
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
     [self.navigationController pushViewController:gameplayViewController animated:YES];
     
 //    Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
@@ -222,6 +242,13 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 //                                              otherButtonTitles:nil];
 //        [alert show];
 //    }
+}
+
+- (IBAction)onTwoPlayerButtonPressed:(id)sender {
+    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    [self.navigationController pushViewController:gameplayViewController animated:YES];
 }
 
 @end

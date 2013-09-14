@@ -73,7 +73,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="hEz-FG-OA1" kind="push" identifier="Home_to_TwoPlayerGame" id="OJB-KY-2wA"/>
+                                            <action selector="onTwoPlayerButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="qMe-7D-l7m"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-Tj-zq5">
@@ -309,7 +309,7 @@
                                     <action selector="onDiceButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="HCM-pU-ahH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-Oj-nyP">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-Oj-nyP">
                                 <rect key="frame" x="34" y="188" width="253" height="106"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
@@ -351,11 +351,22 @@
                                     <constraint firstAttribute="centerY" secondItem="YUE-NX-ZbV" secondAttribute="centerY" id="ubU-GQ-wQ4"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYI-VH-lCa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="rollTutorial.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRollTutorialButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="tKf-s1-3FX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="vIi-Oj-nyP" secondAttribute="centerX" id="66r-Rr-xgk"/>
                             <constraint firstAttribute="centerX" secondItem="vIi-Oj-nyP" secondAttribute="centerX" id="Edd-uy-FTN"/>
+                            <constraint firstAttribute="centerY" secondItem="vYI-VH-lCa" secondAttribute="centerY" id="XIs-QU-Y8m"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WlR-Yi-vog">
@@ -367,6 +378,7 @@
                         <outlet property="btn_newGame" destination="AXc-zG-EaM" id="8jl-rY-f2d"/>
                         <outlet property="btn_pass" destination="Wzx-js-n5O" id="bt3-t2-mbq"/>
                         <outlet property="btn_playerReady" destination="vIi-Oj-nyP" id="ACm-jC-3FR"/>
+                        <outlet property="btn_rollTutorial" destination="vYI-VH-lCa" id="ia3-yh-Ibh"/>
                         <outlet property="iv_circlePlayer1" destination="dUJ-1X-ifq" id="7V3-if-UQU"/>
                         <outlet property="iv_circlePlayer2" destination="JRz-fU-icg" id="ECr-xV-Z5e"/>
                         <outlet property="iv_rollImage" destination="gLP-ri-975" id="MaH-68-3um"/>
@@ -694,18 +706,14 @@
         <image name="button-bg-large-pink.png" width="253" height="106"/>
         <image name="buyTwoPlayer.png" width="111" height="105"/>
         <image name="dice-white-1.png" width="109" height="109"/>
-        <image name="dice-white-1.png" width="109" height="109"/>
         <image name="pig-large-transparent.png" width="290" height="266"/>
         <image name="pig-smiling.png" width="164" height="150"/>
         <image name="player-bg-blue-reverse.png" width="255" height="97"/>
         <image name="player-bg-blue.png" width="255" height="97"/>
         <image name="player-bg-pink.png" width="255" height="97"/>
-        <image name="player-bg-pink.png" width="255" height="97"/>
-        <image name="points-bg-white.png" width="79" height="79"/>
-        <image name="points-bg-white.png" width="79" height="79"/>
-        <image name="points-bg-white.png" width="79" height="79"/>
         <image name="points-bg-white.png" width="79" height="79"/>
         <image name="rabbit.png" width="35" height="25"/>
+        <image name="rollTutorial.png" width="320" height="568"/>
         <image name="snake.png" width="147" height="150"/>
         <image name="turtle.png" width="47" height="25"/>
     </resources>
@@ -715,7 +723,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Mkl-Lm-sWP"/>
-        <segue reference="3EQ-Iu-zDi"/>
+        <segue reference="jA2-CX-F2u"/>
     </inferredMetricsTieBreakers>
 </document>
