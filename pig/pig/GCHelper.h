@@ -48,6 +48,7 @@
 
 - (void)findMatchWithMinPlayers:(int)minPlayers
                      maxPlayers:(int)maxPlayers
-                 viewController:(UIViewController *)viewController;
+                 viewController:(UIViewController *)viewController
+            showExistingMatches:(BOOL)showExistingMatches;
 
 @end

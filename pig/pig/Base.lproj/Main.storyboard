@@ -7,7 +7,7 @@
         <!--Home View Controller-->
         <scene sceneID="Owg-sF-2Ym">
             <objects>
-                <viewController id="RhE-1W-73d" customClass="PIGHomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeIdentifier" id="RhE-1W-73d" customClass="PIGHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qs6-1X-OZa"/>
                         <viewControllerLayoutGuide type="bottom" id="dXe-NG-b6v"/>
@@ -73,7 +73,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onTwoPlayerButtonPressed:" destination="RhE-1W-73d" eventType="touchUpInside" id="qMe-7D-l7m"/>
+                                            <segue destination="L0X-xr-kQ1" kind="push" identifier="Home_to_TwoPlayerGame" id="9nH-jf-3dK"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-Tj-zq5">
@@ -135,7 +135,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6j2-3R-WOg"/>
+                    <navigationItem key="navigationItem" id="6j2-3R-WOg">
+                        <barButtonItem key="backBarButtonItem" title="Home" id="pd9-M7-nsV"/>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btn_buyTwoPlayer" destination="rZ6-Dz-xhG" id="eRs-6i-gju"/>
                         <outlet property="btn_onePlayer" destination="Ce0-Q2-ic4" id="ECr-zj-X6T"/>
@@ -224,11 +227,11 @@
                                 <rect key="frame" x="15" y="20" width="46" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Home">
+                                <state key="normal" title="Quit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onHomeButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="qiK-Ky-q54"/>
+                                    <action selector="onQuitButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="caR-QA-BYT"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AGF-DN-Ll4">
@@ -398,12 +401,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-bc-S0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="-78"/>
+            <point key="canvasLocation" x="1267" y="-418"/>
+        </scene>
+        <!--Multiplayer View Controller - Two Player Games-->
+        <scene sceneID="1LK-CA-uuM">
+            <objects>
+                <tableViewController storyboardIdentifier="MultiplayerIdentifier" id="L0X-xr-kQ1" customClass="PIGMultiplayerViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4ci-bi-wpz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocalGameCell" textLabel="F7L-gb-ABb" style="IBUITableViewCellStyleDefault" id="65T-T9-F06">
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="65T-T9-F06" id="SaL-bw-878">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Play a local game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F7L-gb-ABb">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewMultiplayerGameCell" textLabel="VHN-sw-R3r" style="IBUITableViewCellStyleDefault" id="SIT-hX-G5j">
+                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SIT-hX-G5j" id="SBF-mo-kJp">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="+ New two player game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VHN-sw-R3r">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MultiplayerGameCell" textLabel="HU4-2C-KZM" detailTextLabel="mMF-re-BzB" style="IBUITableViewCellStyleValue1" id="MOn-il-9yv">
+                                <rect key="frame" x="0.0" y="207" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MOn-il-9yv" id="2Ns-hN-M5p">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HU4-2C-KZM">
+                                            <rect key="frame" x="15" y="11" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="101 vs 99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mMF-re-BzB">
+                                            <rect key="frame" x="222" y="15" width="63" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.98823535442352295" green="0.44705885648727417" blue="0.69019609689712524" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="L0X-xr-kQ1" id="G12-2P-6A9"/>
+                            <outlet property="delegate" destination="L0X-xr-kQ1" id="l3u-TC-rtQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Two Player Games" id="3eY-SE-H1O"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9wz-tT-CpB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1267" y="256"/>
         </scene>
         <!--More View Controller-->
         <scene sceneID="hiJ-fU-500">
             <objects>
-                <viewController id="096-jC-RMw" customClass="PIGMoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreIdentifier" id="096-jC-RMw" customClass="PIGMoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K3k-1s-oQv"/>
                         <viewControllerLayoutGuide type="bottom" id="R4t-3G-hxw"/>
@@ -412,7 +496,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-V2-dwn">
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-PN-9Fd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="CMu-eT-MjB" kind="embed" id="7ex-Yd-OPX"/>
+                                </connections>
+                            </containerView>
+                            <view hidden="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RxF-6a-J3A">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-V2-dwn">
                                 <rect key="frame" x="15" y="20" width="46" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -423,18 +520,10 @@
                                     <action selector="onHomeButtonPressed:" destination="096-jC-RMw" eventType="touchUpInside" id="gnh-uX-DAj"/>
                                 </connections>
                             </button>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-PN-9Fd">
-                                <rect key="frame" x="0.0" y="63" width="320" height="505"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="CMu-eT-MjB" kind="embed" id="7ex-Yd-OPX"/>
-                                </connections>
-                            </containerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3K-2a-nh3">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3K-2a-nh3">
                                 <rect key="frame" x="0.0" y="50" width="320" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.18823531270027161" green="0.56862747669219971" blue="0.92156869173049927" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -443,17 +532,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nhl-NP-9B2"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="lbl_title" destination="Z3K-2a-nh3" id="r9R-7Q-LeE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5et-u6-dUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="678"/>
+            <point key="canvasLocation" x="1267" y="957"/>
         </scene>
         <!--More Table View Controller-->
         <scene sceneID="WbD-ok-daU">
             <objects>
                 <tableViewController id="CMu-eT-MjB" customClass="PIGMoreTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="N4Z-Hs-4P9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="505"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -573,12 +666,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOC-Vs-wSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="958"/>
+            <point key="canvasLocation" x="1696" y="1237"/>
         </scene>
         <!--Rules View Controller-->
         <scene sceneID="jbw-T8-3Rh">
             <objects>
-                <viewController id="eBs-ni-GP4" customClass="PIGRulesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RulesIdentifier" id="eBs-ni-GP4" customClass="PIGRulesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vgY-xp-zTu"/>
                         <viewControllerLayoutGuide type="bottom" id="eb0-B9-L31"/>
@@ -679,14 +772,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o31-fL-fs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1866" y="281"/>
+            <point key="canvasLocation" x="1894" y="243"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ilX-ih-dRJ">
             <objects>
-                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="bc1-NP-6oS" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="bc1-NP-6oS" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ORk-7Z-uel">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.18431372940540314" green="0.45098042488098145" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="IDh-te-kWy">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -723,6 +822,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jA2-CX-F2u"/>
+        <segue reference="3EQ-Iu-zDi"/>
     </inferredMetricsTieBreakers>
 </document>

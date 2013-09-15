@@ -200,7 +200,7 @@
     }
     
     if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
-        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self];
+        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:YES];
         [PIGGCHelper sharedInstance].delegate = self;
         
         _matchDataDict = [[NSMutableDictionary alloc] init];
@@ -222,6 +222,12 @@
     // Used for testing
 //    _score1 = 99;
 //    _score2 = 99;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -1144,7 +1150,7 @@
 }
 
 #pragma mark - UIAction Methods
-- (IBAction)onHomeButtonPressed:(id)sender {
+- (IBAction)onQuitButtonPressed:(id)sender {
     // Move the player 2 label into the center
     CGRect frame = self.v_containerPlayer2.frame;
     frame.origin.x = 0.0f;

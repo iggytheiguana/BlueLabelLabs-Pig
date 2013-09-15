@@ -73,6 +73,8 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
     // Check if two-palyer game has been unlocked already
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
     if (twoPlayerProductPurchased == YES) {
@@ -111,9 +113,8 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 	}
     else if ([segue.identifier isEqualToString:@"Home_to_TwoPlayerGame"])
 	{
-		PIGViewController *gameplayViewController = segue.destinationViewController;
-        gameplayViewController.delegate = self;
-        gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
+		PIGMultiplayerViewController *multiplayerViewController = segue.destinationViewController;
+        multiplayerViewController.delegate = self;
 	}
     else if ([segue.identifier isEqualToString:@"Home_to_More"])
 	{

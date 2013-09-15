@@ -119,6 +119,7 @@ static GCHelper *sharedHelper = nil;
 - (void)findMatchWithMinPlayers:(int)minPlayers
                      maxPlayers:(int)maxPlayers
                  viewController:(UIViewController *)viewController
+            showExistingMatches:(BOOL)showExistingMatches
 {
     if (!_gameCenterAvailable)
         return;
@@ -131,7 +132,7 @@ static GCHelper *sharedHelper = nil;
     
     GKTurnBasedMatchmakerViewController *mmvc = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
     mmvc.turnBasedMatchmakerDelegate = self;
-    mmvc.showExistingMatches = YES;
+    mmvc.showExistingMatches = showExistingMatches;
     
     [_presentingViewController presentViewController:mmvc animated:YES completion:nil];
 }

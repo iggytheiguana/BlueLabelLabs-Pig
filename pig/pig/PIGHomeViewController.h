@@ -10,8 +10,9 @@
 #import <GameKit/GameKit.h>
 #import "PIGViewController.h"
 #import "PIGMoreViewController.h"
+#import "PIGMultiplayerViewController.h"
 
-@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, GCHelperDelegate >
+@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, PIGMultiplayerViewControllerDelegate, GCHelperDelegate >
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_onePlayer;
 @property (weak, nonatomic) IBOutlet UIButton *btn_twoPlayer;

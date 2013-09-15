@@ -42,7 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer2;
 @property (weak, nonatomic) IBOutlet UIButton *btn_rollTutorial;
 
-- (IBAction)onHomeButtonPressed:(id)sender;
+- (IBAction)onQuitButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;
 - (IBAction)onDiceButtonPressed:(id)sender;
 - (IBAction)onPlayerReadyButtonPressed:(id)sender;

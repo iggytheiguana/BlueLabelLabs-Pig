@@ -40,6 +40,7 @@
 		52BFB9F317E4329100757BBE /* rollTutorial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F117E4329100757BBE /* rollTutorial@2x.png */; };
 		52BFB9F617E45C3E00757BBE /* button-bg-large-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */; };
 		52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */; };
+		52D0CBF417E5201B003E46A2 /* PIGMultiplayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D0CBF317E5201B003E46A2 /* PIGMultiplayerViewController.m */; };
 		52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA817D7B98E009AD64E /* dice-white-1.png */; };
 		52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */; };
 		52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAA17D7B98E009AD64E /* dice-white-2.png */; };
@@ -152,6 +153,8 @@
 		52BFB9F117E4329100757BBE /* rollTutorial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollTutorial@2x.png"; sourceTree = "<group>"; };
 		52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-grey.png"; sourceTree = "<group>"; };
 		52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg-large-grey@2x.png"; sourceTree = "<group>"; };
+		52D0CBF217E5201B003E46A2 /* PIGMultiplayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMultiplayerViewController.h; sourceTree = "<group>"; };
+		52D0CBF317E5201B003E46A2 /* PIGMultiplayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMultiplayerViewController.m; sourceTree = "<group>"; };
 		52E1FDA817D7B98E009AD64E /* dice-white-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1.png"; sourceTree = "<group>"; };
 		52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-1@2x.png"; sourceTree = "<group>"; };
 		52E1FDAA17D7B98E009AD64E /* dice-white-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-2.png"; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 				525FD64C17CC726000BE7E07 /* PIGViewController.m */,
 				525FD68817CC887B00BE7E07 /* PIGHomeViewController.h */,
 				525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */,
+				52D0CBF217E5201B003E46A2 /* PIGMultiplayerViewController.h */,
+				52D0CBF317E5201B003E46A2 /* PIGMultiplayerViewController.m */,
 				52B3E2ED17E03C81009C72DC /* PIGMoreViewController.h */,
 				52B3E2EE17E03C81009C72DC /* PIGMoreViewController.m */,
 				5245623917E0510E00F73533 /* PIGMoreTableViewController.h */,
@@ -625,6 +630,7 @@
 				52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */,
 				5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */,
 				52B3E2EF17E03C81009C72DC /* PIGMoreViewController.m in Sources */,
+				52D0CBF417E5201B003E46A2 /* PIGMultiplayerViewController.m in Sources */,
 				52E4126217D00CF400F75335 /* IAPHelper.m in Sources */,
 				5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */,
 				525FD64D17CC726000BE7E07 /* PIGViewController.m in Sources */,

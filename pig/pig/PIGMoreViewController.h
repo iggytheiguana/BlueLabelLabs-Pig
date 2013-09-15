@@ -15,6 +15,7 @@
 @interface PIGMoreViewController : UIViewController < UITableViewDelegate >
 
 @property (weak, nonatomic) id <PIGMoreViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_title;
 
 - (IBAction)onHomeButtonPressed:(id)sender;
 
