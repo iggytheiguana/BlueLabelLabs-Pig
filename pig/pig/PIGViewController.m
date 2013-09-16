@@ -200,15 +200,12 @@
     }
     
     if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
-        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:YES];
-        [PIGGCHelper sharedInstance].delegate = self;
+//        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:YES];
+//        [PIGGCHelper sharedInstance].delegate = self;
         
         _matchDataDict = [[NSMutableDictionary alloc] init];
         
-        [self enterNewGame:nil];
-    }
-    else {
-        
+//        [self enterNewGame:nil];
     }
     
     // Hide the roll tutorial if the user has already seen it
@@ -1151,10 +1148,10 @@
 
 #pragma mark - UIAction Methods
 - (IBAction)onQuitButtonPressed:(id)sender {
-    // Move the player 2 label into the center
-    CGRect frame = self.v_containerPlayer2.frame;
-    frame.origin.x = 0.0f;
-    self.v_containerPlayer2.frame = frame;
+//    // Move the player 2 label into the center
+//    CGRect frame = self.v_containerPlayer2.frame;
+//    frame.origin.x = 0.0f;
+//    self.v_containerPlayer2.frame = frame;
     
     [self.delegate pigViewControllerDidClose];
 }

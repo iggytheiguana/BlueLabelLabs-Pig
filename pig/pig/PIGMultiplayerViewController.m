@@ -9,6 +9,7 @@
 #import "PIGMultiplayerViewController.h"
 #import <GameKit/GameKit.h>
 #import "PIGGameConstants.h"
+#import "UIColor+PIGCustomColors.h"
 
 @interface PIGMultiplayerViewController ()
 
@@ -30,6 +31,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Add title view
+    CGRect viewFrame = CGRectMake(0.0, 0.0, 320.0, 66.0);
+    UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+    [titleView setContentMode:UIViewContentModeCenter];
+    
+    CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
+    [titleLabel setTextColor:[UIColor pigBlueColor]];
+    [titleLabel setText:@"Two Player Games"];
+    
+    [titleView addSubview:titleLabel];
+    [self.tableView setTableHeaderView:titleView];
 
     [self reloadTableView];
 }
@@ -180,36 +197,37 @@
         PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
         gameplayViewController.delegate = self;
         gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
-        [self.navigationController pushViewController:gameplayViewController animated:YES];
+        
+        [self presentViewController:gameplayViewController animated:YES completion:nil];
     }
     else if (indexPath.section == 1 && indexPath.row == [[_existingMatches objectAtIndex:0] count]) {
-//        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];
-//        [PIGGCHelper sharedInstance].delegate = self;
+        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];
+        [PIGGCHelper sharedInstance].delegate = self;
 //
 //        [self.gamePlayViewController dismissViewControllerAnimated:YES completion:nil];
 //        [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
         
-        GKMatchRequest *request = [[GKMatchRequest alloc] init];
-        
-        request.maxPlayers = 12;
-        request.minPlayers = 2;
-        
-        [GKTurnBasedMatch findMatchForRequest:request withCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
-            if (error) {
-                NSLog(@"%@", error.localizedDescription );
-            } else {
-                NSLog(@"match found!");
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
-                PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
-                gameplayViewController.delegate = self;
-                gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
-                [PIGGCHelper sharedInstance].delegate = gameplayViewController;
-                [self.navigationController pushViewController:gameplayViewController animated:YES];
-                
-                [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
-            }
-        }];
+//        GKMatchRequest *request = [[GKMatchRequest alloc] init];
+//        
+//        request.maxPlayers = 2;
+//        request.minPlayers = 2;
+//        
+//        [GKTurnBasedMatch findMatchForRequest:request withCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
+//            if (error) {
+//                NSLog(@"%@", error.localizedDescription );
+//            } else {
+//                NSLog(@"match found!");
+////                [self dismissViewControllerAnimated:YES completion:nil];
+//                
+//                PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+//                gameplayViewController.delegate = self;
+//                gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+//                [PIGGCHelper sharedInstance].delegate = gameplayViewController;
+//                [self.navigationController pushViewController:gameplayViewController animated:YES];
+//                
+//                [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
+//            }
+//        }];
     }
 }
 
@@ -311,7 +329,9 @@
 
 #pragma mark - PIGViewController Delegate
 - (void)pigViewControllerDidClose {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

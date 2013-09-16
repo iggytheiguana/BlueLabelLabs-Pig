@@ -107,7 +107,8 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 {
 	if ([segue.identifier isEqualToString:@"Home_to_OnePlayerGame"])
 	{
-		PIGViewController *gameplayViewController = segue.destinationViewController;
+		UINavigationController *navigationController = segue.destinationViewController;
+        PIGViewController *gameplayViewController = [navigationController.viewControllers objectAtIndex:0];
         gameplayViewController.delegate = self;
         gameplayViewController.gameType = kONEPLAYERGAME;
 	}
@@ -125,7 +126,9 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
 
 #pragma mark - PIGViewController Delegate
 - (void)pigViewControllerDidClose {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - PIGMoreViewController Delegate

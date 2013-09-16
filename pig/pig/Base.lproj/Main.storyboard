@@ -36,7 +36,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="hEz-FG-OA1" kind="push" identifier="Home_to_OnePlayerGame" id="Mkl-Lm-sWP"/>
+                                            <segue destination="pQZ-Pj-DUo" kind="modal" identifier="Home_to_OnePlayerGame" modalTransitionStyle="crossDissolve" id="Mkl-Lm-sWP"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="U1L-PB-E6R">
@@ -156,7 +156,7 @@
         <!--View Controller-->
         <scene sceneID="u3m-P9-AVH">
             <objects>
-                <viewController storyboardIdentifier="GamePlayIdentifier" id="hEz-FG-OA1" customClass="PIGViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GamePlayIdentifier" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="hEz-FG-OA1" customClass="PIGViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t4N-Ug-ugv"/>
                         <viewControllerLayoutGuide type="bottom" id="jxr-hV-tGr"/>
@@ -375,6 +375,7 @@
                     <navigationItem key="navigationItem" id="WlR-Yi-vog">
                         <nil key="title"/>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btn_dice1" destination="bmt-3p-QhD" id="mwd-I0-fx4"/>
                         <outlet property="btn_dice2" destination="nEq-U1-5Ps" id="KPC-hA-3ZW"/>
@@ -401,16 +402,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-bc-S0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1267" y="-418"/>
+            <point key="canvasLocation" x="1793" y="-418"/>
         </scene>
-        <!--Multiplayer View Controller - Two Player Games-->
+        <!--Multiplayer View Controller-->
         <scene sceneID="1LK-CA-uuM">
             <objects>
                 <tableViewController storyboardIdentifier="MultiplayerIdentifier" id="L0X-xr-kQ1" customClass="PIGMultiplayerViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4ci-bi-wpz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocalGameCell" textLabel="F7L-gb-ABb" style="IBUITableViewCellStyleDefault" id="65T-T9-F06">
                                 <rect key="frame" x="0.0" y="119" width="320" height="44"/>
@@ -477,7 +478,7 @@
                             <outlet property="delegate" destination="L0X-xr-kQ1" id="l3u-TC-rtQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Two Player Games" id="3eY-SE-H1O"/>
+                    <navigationItem key="navigationItem" id="3eY-SE-H1O"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wz-tT-CpB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -772,7 +773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o31-fL-fs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1894" y="243"/>
+            <point key="canvasLocation" x="2264" y="245"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ilX-ih-dRJ">
@@ -799,17 +800,40 @@
             </objects>
             <point key="canvasLocation" x="247" y="256"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cCU-g1-Ac6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="pQZ-Pj-DUo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KRG-Xx-VdA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hEz-FG-OA1" kind="relationship" relationship="rootViewController" id="Eoj-od-nxD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYO-M3-mVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1267" y="-418"/>
+        </scene>
     </scenes>
     <resources>
         <image name="PIG-logo.png" width="188" height="62"/>
         <image name="button-bg-large-pink.png" width="253" height="106"/>
         <image name="buyTwoPlayer.png" width="111" height="105"/>
         <image name="dice-white-1.png" width="109" height="109"/>
+        <image name="dice-white-1.png" width="109" height="109"/>
         <image name="pig-large-transparent.png" width="290" height="266"/>
         <image name="pig-smiling.png" width="164" height="150"/>
         <image name="player-bg-blue-reverse.png" width="255" height="97"/>
         <image name="player-bg-blue.png" width="255" height="97"/>
         <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
         <image name="points-bg-white.png" width="79" height="79"/>
         <image name="rabbit.png" width="35" height="25"/>
         <image name="rollTutorial.png" width="320" height="568"/>
@@ -822,6 +846,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3EQ-Iu-zDi"/>
+        <segue reference="jA2-CX-F2u"/>
     </inferredMetricsTieBreakers>
 </document>

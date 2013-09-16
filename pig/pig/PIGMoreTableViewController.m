@@ -34,28 +34,21 @@
 {
     [super viewDidLoad];
     
-//    [self.tableView setContentInset:UIEdgeInsetsMake(63,0,0,0)];
+    // Add title view
     CGRect viewFrame = CGRectMake(0.0, 0.0, 320.0, 66.0);
     UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
     [titleView setContentMode:UIViewContentModeCenter];
     
-    CGRect labelFrame = CGRectMake(0.0, 0.0, 320.0, 36.0);
+    CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
     [titleLabel setTextColor:[UIColor pigBlueColor]];
     [titleLabel setText:@"More"];
-    [titleLabel sizeToFit];
     
     [titleView addSubview:titleLabel];
     [self.tableView setTableHeaderView:titleView];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Setup vibrate setting from user defaults
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kSettingsVibrate]) {
