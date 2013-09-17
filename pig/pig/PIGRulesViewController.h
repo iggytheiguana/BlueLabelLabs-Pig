@@ -15,6 +15,8 @@
 @interface PIGRulesViewController : UIViewController
 
 @property (weak, nonatomic) id <PIGRulesViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIScrollView *sv_scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_lastRule;
 
 - (IBAction)onCloseButtonPressed:(id)sender;
 

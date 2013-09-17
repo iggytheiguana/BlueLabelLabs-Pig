@@ -20,6 +20,8 @@
 
 @property (nonatomic, assign) int gameType;
 
+@property (strong, nonatomic) GKTurnBasedMatch *currentMatch;
+
 @property (weak, nonatomic) IBOutlet UIButton *btn_dice1;
 @property (weak, nonatomic) IBOutlet UIButton *btn_dice2;
 @property (weak, nonatomic) IBOutlet UIButton *btn_pass;
@@ -41,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer2;
 @property (weak, nonatomic) IBOutlet UIButton *btn_rollTutorial;
+@property (weak, nonatomic) IBOutlet UIButton *btn_quit;
 
 - (IBAction)onQuitButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;

@@ -7,6 +7,7 @@
 //
 
 #import "PIGRulesViewController.h"
+#import "UIColor+PIGCustomColors.h"
 
 @interface PIGRulesViewController ()
 
@@ -27,6 +28,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    CGSize contentSize = CGSizeMake(320.0, self.lbl_lastRule.frame.origin.y + self.lbl_lastRule.frame.size.height + 20.0);
+    [self.sv_scrollView setContentSize:contentSize];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    // Hide the Navigation bar line
+    for (UIView *view in self.navigationController.navigationBar.subviews) {
+        for (UIView *view2 in view.subviews) {
+            if ([view2 isKindOfClass:[UIImageView class]]) {
+                [view2 removeFromSuperview];
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

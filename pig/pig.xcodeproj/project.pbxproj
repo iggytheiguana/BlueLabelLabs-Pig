@@ -28,6 +28,7 @@
 		525FD66217CC726000BE7E07 /* pigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD66117CC726000BE7E07 /* pigTests.m */; };
 		525FD68A17CC887B00BE7E07 /* PIGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */; };
 		525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */; };
+		52640E9117E84AAD00A64624 /* PIGUpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52640E9017E84AAD00A64624 /* PIGUpgradeViewController.m */; };
 		5280427A17DA66070093C4AB /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280427917DA66070093C4AB /* GCHelper.m */; };
 		5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5280427B17DA67B00093C4AB /* GameKit.framework */; };
 		5280428117DA976E0093C4AB /* PIGGCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280428017DA976E0093C4AB /* PIGGCHelper.m */; };
@@ -53,18 +54,6 @@
 		52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB117D7B98E009AD64E /* dice-white-5@2x.png */; };
 		52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB217D7B98E009AD64E /* dice-white-6.png */; };
 		52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */; };
-		52E1FDD617D7B98E009AD64E /* name-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB417D7B98E009AD64E /* name-bg-blue.png */; };
-		52E1FDD717D7B98E009AD64E /* name-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */; };
-		52E1FDD817D7B98E009AD64E /* name-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB617D7B98E009AD64E /* name-bg-pink.png */; };
-		52E1FDD917D7B98E009AD64E /* name-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */; };
-		52E1FDDE17D7B98E009AD64E /* points-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */; };
-		52E1FDDF17D7B98E009AD64E /* points-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */; };
-		52E1FDE017D7B98E009AD64E /* points-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */; };
-		52E1FDE117D7B98E009AD64E /* points-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDBF17D7B98E009AD64E /* points-bg-pink@2x.png */; };
-		52E1FDE217D7B98E009AD64E /* points-bg-solid-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC017D7B98E009AD64E /* points-bg-solid-blue.png */; };
-		52E1FDE317D7B98E009AD64E /* points-bg-solid-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */; };
-		52E1FDE417D7B98E009AD64E /* points-bg-solid-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */; };
-		52E1FDE517D7B98E009AD64E /* points-bg-solid-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */; };
 		52E1FDE617D7B98E009AD64E /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC417D7B98E009AD64E /* snake.png */; };
 		52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC517D7B98E009AD64E /* snake@2x.png */; };
 		52E4126217D00CF400F75335 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126117D00CF400F75335 /* IAPHelper.m */; };
@@ -137,6 +126,8 @@
 		525FD68817CC887B00BE7E07 /* PIGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGHomeViewController.h; sourceTree = "<group>"; };
 		525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGHomeViewController.m; sourceTree = "<group>"; };
 		525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		52640E8F17E84AAD00A64624 /* PIGUpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGUpgradeViewController.h; sourceTree = "<group>"; };
+		52640E9017E84AAD00A64624 /* PIGUpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGUpgradeViewController.m; sourceTree = "<group>"; };
 		5280427817DA66070093C4AB /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		5280427917DA66070093C4AB /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 		5280427B17DA67B00093C4AB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -167,18 +158,6 @@
 		52E1FDB117D7B98E009AD64E /* dice-white-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-5@2x.png"; sourceTree = "<group>"; };
 		52E1FDB217D7B98E009AD64E /* dice-white-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-6.png"; sourceTree = "<group>"; };
 		52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-white-6@2x.png"; sourceTree = "<group>"; };
-		52E1FDB417D7B98E009AD64E /* name-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-blue.png"; sourceTree = "<group>"; };
-		52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-blue@2x.png"; sourceTree = "<group>"; };
-		52E1FDB617D7B98E009AD64E /* name-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-pink.png"; sourceTree = "<group>"; };
-		52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name-bg-pink@2x.png"; sourceTree = "<group>"; };
-		52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-blue.png"; sourceTree = "<group>"; };
-		52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-blue@2x.png"; sourceTree = "<group>"; };
-		52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-pink.png"; sourceTree = "<group>"; };
-		52E1FDBF17D7B98E009AD64E /* points-bg-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-pink@2x.png"; sourceTree = "<group>"; };
-		52E1FDC017D7B98E009AD64E /* points-bg-solid-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-blue.png"; sourceTree = "<group>"; };
-		52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-blue@2x.png"; sourceTree = "<group>"; };
-		52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-pink.png"; sourceTree = "<group>"; };
-		52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "points-bg-solid-pink@2x.png"; sourceTree = "<group>"; };
 		52E1FDC417D7B98E009AD64E /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
 		52E1FDC517D7B98E009AD64E /* snake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snake@2x.png"; sourceTree = "<group>"; };
 		52E4126017D00CF400F75335 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
@@ -307,6 +286,8 @@
 				5245623A17E0510E00F73533 /* PIGMoreTableViewController.m */,
 				52E4126D17D0132E00F75335 /* PIGRulesViewController.h */,
 				52E4126E17D0132E00F75335 /* PIGRulesViewController.m */,
+				52640E8F17E84AAD00A64624 /* PIGUpgradeViewController.h */,
+				52640E9017E84AAD00A64624 /* PIGUpgradeViewController.m */,
 				525FD64E17CC726000BE7E07 /* Images.xcassets */,
 				525FD63D17CC726000BE7E07 /* Supporting Files */,
 			);
@@ -365,18 +346,6 @@
 				52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */,
 				5201335C17D864DB009679F0 /* dice-red-1.png */,
 				5201335D17D864DB009679F0 /* dice-red-1@2x.png */,
-				52E1FDB417D7B98E009AD64E /* name-bg-blue.png */,
-				52E1FDB517D7B98E009AD64E /* name-bg-blue@2x.png */,
-				52E1FDB617D7B98E009AD64E /* name-bg-pink.png */,
-				52E1FDB717D7B98E009AD64E /* name-bg-pink@2x.png */,
-				52E1FDBC17D7B98E009AD64E /* points-bg-blue.png */,
-				52E1FDBD17D7B98E009AD64E /* points-bg-blue@2x.png */,
-				52E1FDBE17D7B98E009AD64E /* points-bg-pink.png */,
-				52E1FDBF17D7B98E009AD64E /* points-bg-pink@2x.png */,
-				52E1FDC017D7B98E009AD64E /* points-bg-solid-blue.png */,
-				52E1FDC117D7B98E009AD64E /* points-bg-solid-blue@2x.png */,
-				52E1FDC217D7B98E009AD64E /* points-bg-solid-pink.png */,
-				52E1FDC317D7B98E009AD64E /* points-bg-solid-pink@2x.png */,
 				52FFF71B17DE509300F259E7 /* player-bg-blue.png */,
 				52FFF71C17DE509300F259E7 /* player-bg-blue@2x.png */,
 				52FFF72717DE57E700F259E7 /* player-bg-blue-reverse.png */,
@@ -550,8 +519,6 @@
 				52FFF72617DE519800F259E7 /* points-bg-white@2x.png in Resources */,
 				52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */,
 				52E1FDD017D7B98E009AD64E /* dice-white-4.png in Resources */,
-				52E1FDE417D7B98E009AD64E /* points-bg-solid-pink.png in Resources */,
-				52E1FDDF17D7B98E009AD64E /* points-bg-blue@2x.png in Resources */,
 				52FFF73D17DE7B1300F259E7 /* pig.png in Resources */,
 				52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */,
 				525FD64117CC726000BE7E07 /* InfoPlist.strings in Resources */,
@@ -563,15 +530,12 @@
 				52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */,
 				52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */,
 				52E1FDCF17D7B98E009AD64E /* dice-white-3@2x.png in Resources */,
-				52E1FDD817D7B98E009AD64E /* name-bg-pink.png in Resources */,
 				52E1FDCD17D7B98E009AD64E /* dice-white-2@2x.png in Resources */,
 				52FFF72017DE509400F259E7 /* player-bg-blue@2x.png in Resources */,
-				52E1FDDE17D7B98E009AD64E /* points-bg-blue.png in Resources */,
 				52FFF73917DE7A9A00F259E7 /* pig-smiling.png in Resources */,
 				52FFF74117DE7DD700F259E7 /* buyTwoPlayer.png in Resources */,
 				52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */,
 				52FFF71A17DE4E2B00F259E7 /* pig-large-transparent@2x.png in Resources */,
-				52E1FDE117D7B98E009AD64E /* points-bg-pink@2x.png in Resources */,
 				52BFB9F317E4329100757BBE /* rollTutorial@2x.png in Resources */,
 				5201335E17D864DB009679F0 /* dice-red-1.png in Resources */,
 				52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */,
@@ -582,26 +546,19 @@
 				52FFF73A17DE7A9A00F259E7 /* pig-smiling@2x.png in Resources */,
 				52FFF71917DE4E2B00F259E7 /* pig-large-transparent.png in Resources */,
 				52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */,
-				52E1FDE317D7B98E009AD64E /* points-bg-solid-blue@2x.png in Resources */,
 				52B3E2E617E018CD009C72DC /* turtle.png in Resources */,
 				52FFF72F17DE61A600F259E7 /* button-bg-large-blue.png in Resources */,
 				5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */,
 				52FFF70E17DE4B3E00F259E7 /* PIG-logo@2x.png in Resources */,
-				52E1FDD717D7B98E009AD64E /* name-bg-blue@2x.png in Resources */,
 				52B3E2E417E018CD009C72DC /* rabbit.png in Resources */,
-				52E1FDE017D7B98E009AD64E /* points-bg-pink.png in Resources */,
 				52E1FDCE17D7B98E009AD64E /* dice-white-3.png in Resources */,
 				52FFF72917DE57E700F259E7 /* player-bg-blue-reverse.png in Resources */,
-				52E1FDE217D7B98E009AD64E /* points-bg-solid-blue.png in Resources */,
-				52E1FDD917D7B98E009AD64E /* name-bg-pink@2x.png in Resources */,
 				52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */,
 				52FFF72117DE509400F259E7 /* player-bg-pink.png in Resources */,
 				525FD64A17CC726000BE7E07 /* Main.storyboard in Resources */,
 				52FFF73117DE61A600F259E7 /* button-bg-large-pink.png in Resources */,
 				52B3E2E517E018CD009C72DC /* rabbit@2x.png in Resources */,
 				52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */,
-				52E1FDE517D7B98E009AD64E /* points-bg-solid-pink@2x.png in Resources */,
-				52E1FDD617D7B98E009AD64E /* name-bg-blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +589,7 @@
 				52B3E2EF17E03C81009C72DC /* PIGMoreViewController.m in Sources */,
 				52D0CBF417E5201B003E46A2 /* PIGMultiplayerViewController.m in Sources */,
 				52E4126217D00CF400F75335 /* IAPHelper.m in Sources */,
+				52640E9117E84AAD00A64624 /* PIGUpgradeViewController.m in Sources */,
 				5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */,
 				525FD64D17CC726000BE7E07 /* PIGViewController.m in Sources */,
 				5280427A17DA66070093C4AB /* GCHelper.m in Sources */,

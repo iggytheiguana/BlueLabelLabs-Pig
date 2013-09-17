@@ -131,6 +131,11 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - PIGMultiplayerViewController Delegate
+- (void)pigMultiplayerViewControllerDidClose {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - PIGMoreViewController Delegate
 - (void)pigMoreViewControllerDidClose {
     [self.navigationController popViewControllerAnimated:YES];
@@ -182,16 +187,24 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
     gameplayViewController.delegate = self;
     gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
-    [self.navigationController pushViewController:gameplayViewController animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    
+    [self presentViewController:navigationController animated:YES completion:^{
+        [gameplayViewController enterNewGame:match];
+    }];
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
     gameplayViewController.delegate = self;
     gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
-    [self presentViewController:gameplayViewController animated:YES completion:^{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    
+    [self presentViewController:navigationController animated:YES completion:^{
         [gameplayViewController takeTurn:match];
     }];
 }
@@ -200,19 +213,29 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
     gameplayViewController.delegate = self;
     gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
-    [self presentViewController:gameplayViewController animated:YES completion:^{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    
+    [self presentViewController:navigationController animated:YES completion:^{
         [gameplayViewController layoutMatch:match];
     }];
 }
 
 - (void)sendNotice:(NSString *)notice forMatch:(GKTurnBasedMatch *)match {
+    
+}
+
+-(void)recieveEndGame:(GKTurnBasedMatch *)match {
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
     gameplayViewController.delegate = self;
     gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
+    [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
-    [self presentViewController:gameplayViewController animated:YES completion:^{
-        [gameplayViewController sendNotice:notice forMatch:match];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    
+    [self presentViewController:navigationController animated:YES completion:^{
+        [gameplayViewController recieveEndGame:match];
     }];
 }
 

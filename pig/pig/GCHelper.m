@@ -132,7 +132,7 @@ static GCHelper *sharedHelper = nil;
     
     GKTurnBasedMatchmakerViewController *mmvc = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
     mmvc.turnBasedMatchmakerDelegate = self;
-    mmvc.showExistingMatches = YES;
+    mmvc.showExistingMatches = showExistingMatches;
     
     [_presentingViewController presentViewController:mmvc animated:YES completion:nil];
 }
@@ -179,6 +179,30 @@ static GCHelper *sharedHelper = nil;
 }
 
 #pragma mark GKTurnBasedMatchmakerViewControllerDelegate
+- (void)didFindMatch:(GKTurnBasedMatch *)match {
+    NSLog(@"Did find match, %@", match);
+    
+    self.currentMatch = match;
+    
+    GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
+    if (firstParticipant.lastTurnDate == NULL) {
+        NSLog(@"New match");
+        
+        [self.delegate enterNewGame:match];
+    }
+    else {
+        NSLog(@"Existing match");
+        if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+            // Local Player's turn
+            [self.delegate takeTurn:match];
+        }
+        else {
+            // Someone else's turn
+            [self.delegate layoutMatch:match];
+        }
+    }
+}
+
 - (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match {
 //    [_presentingViewController dismissViewControllerAnimated:YES completion:nil];
 //    NSLog(@"Did find match, %@", match);
@@ -203,29 +227,41 @@ static GCHelper *sharedHelper = nil;
 //        }
 //    }
     
-    [_presentingViewController dismissViewControllerAnimated:YES completion:^(void) {
-        NSLog(@"Did find match, %@", match);
-        
-        self.currentMatch = match;
-        
-        GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
-        if (firstParticipant.lastTurnDate == NULL) {
-            NSLog(@"New match");
-            
-            [self.delegate enterNewGame:match];
-        }
-        else {
-            NSLog(@"Existing match");
-            if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-                // Local Player's turn
-                [self.delegate takeTurn:match];
-            }
-            else {
-                // Someone else's turn
-                [self.delegate layoutMatch:match];
-            }
-        }
-    }];
+    if (_presentingViewController.presentedViewController &&
+        (UIViewController *)self.delegate == (UIViewController *)_presentingViewController)
+    {
+        // The presentedViewController is currently visible. We need to dismiss it before moving forward.
+        [_presentingViewController dismissViewControllerAnimated:YES completion:^(void) {
+            [self didFindMatch:match];
+        }];
+    }
+    else {
+        [self didFindMatch:match];
+    }
+    
+//    [_presentingViewController dismissViewControllerAnimated:YES completion:^(void) {
+//        NSLog(@"Did find match, %@", match);
+//        
+//        self.currentMatch = match;
+//        
+//        GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
+//        if (firstParticipant.lastTurnDate == NULL) {
+//            NSLog(@"New match");
+//            
+//            [self.delegate enterNewGame:match];
+//        }
+//        else {
+//            NSLog(@"Existing match");
+//            if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+//                // Local Player's turn
+//                [self.delegate takeTurn:match];
+//            }
+//            else {
+//                // Someone else's turn
+//                [self.delegate layoutMatch:match];
+//            }
+//        }
+//    }];
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled:(GKTurnBasedMatchmakerViewController *)viewController {

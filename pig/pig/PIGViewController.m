@@ -212,6 +212,9 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kRollTutorialCompleted]) {
         [self.btn_rollTutorial removeFromSuperview];
     }
+    else {
+        [self.view bringSubviewToFront:self.btn_rollTutorial];
+    }
     
     // Setup the start of the game
     [self reset];
@@ -503,7 +506,7 @@
                 [self.btn_pass setTitle:[NSString stringWithFormat:@"%d Double! (roll again)", _doubleCount] forState:UIControlStateNormal];
             }
             else {
-                [self.btn_pass setTitle:[NSString stringWithFormat:@"Roll again or pass"] forState:UIControlStateNormal];
+                [self.btn_pass setTitle:[NSString stringWithFormat:@"Roll again or HOLD"] forState:UIControlStateNormal];
             }
         }
     }
@@ -614,7 +617,7 @@
                                                                                             // Player can roll again or Pass
                                                                                             [self.btn_pass setEnabled:YES];
                                                                                             [self.btn_pass setTitleColor:[UIColor pigBlueColor] forState:UIControlStateNormal];
-                                                                                            [self.btn_pass setTitle:[NSString stringWithFormat:@"Pass"] forState:UIControlStateNormal];
+                                                                                            [self.btn_pass setTitle:[NSString stringWithFormat:@"HOLD"] forState:UIControlStateNormal];
                                                                                         }
                                                                                         
                                                                                         // Reset state properties
@@ -708,7 +711,7 @@
     [self.btn_pass setHidden:NO];
     [self.btn_pass setEnabled:NO];
     [self.btn_pass setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [self.btn_pass setTitle:@"Pass" forState:UIControlStateNormal];
+    [self.btn_pass setTitle:@"HOLD" forState:UIControlStateNormal];
     
     [self rollDice];
 }
@@ -1153,6 +1156,9 @@
 //    frame.origin.x = 0.0f;
 //    self.v_containerPlayer2.frame = frame;
     
+    // We need to remove the pointer of the singlton to the current match
+    [PIGGCHelper sharedInstance].currentMatch = nil;
+    
     [self.delegate pigViewControllerDidClose];
 }
 
@@ -1350,7 +1356,7 @@
     [self.btn_pass setHidden:NO];
     [self.btn_pass setEnabled:NO];
     [self.btn_pass setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [self.btn_pass setTitle:@"Pass" forState:UIControlStateNormal];
+    [self.btn_pass setTitle:@"HOLD" forState:UIControlStateNormal];
     
     [self rollDice];
 }
@@ -1368,7 +1374,7 @@
     [self.btn_dice2 setHidden:NO];
     
     [self.btn_pass setTitleColor:[UIColor pigBlueColor] forState:UIControlStateNormal];
-    [self.btn_pass setTitle:[NSString stringWithFormat:@"Pass"] forState:UIControlStateNormal];
+    [self.btn_pass setTitle:[NSString stringWithFormat:@"HOLD"] forState:UIControlStateNormal];
     [self.btn_pass setEnabled:YES];
     [self.btn_pass setHidden:NO];
     
