@@ -124,4 +124,12 @@
     }
 }
 
+//- (IBAction)onUpgradeButtonTouched:(id)sender {
+//    [self.iv_whiteCircle setHidden:YES];
+//}
+//
+//- (IBAction)onUpgradeButtonReleased:(id)sender {
+//    [self.iv_whiteCircle setHidden:NO];
+//}
+
 @end

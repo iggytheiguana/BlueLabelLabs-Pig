@@ -17,7 +17,11 @@
 @property (weak, nonatomic) id <PIGUpgradeViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_upgrade;
+//@property (weak, nonatomic) IBOutlet UIImageView *iv_whiteCircle;
 
 - (IBAction)onUpgradeButtonPressed:(id)sender;
+//- (IBAction)onUpgradeButtonTouched:(id)sender;
+//- (IBAction)onUpgradeButtonReleased:(id)sender;
+
 
 @end

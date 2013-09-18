@@ -9,12 +9,17 @@
 #import "PIGAppDelegate.h"
 #import "PIGIAPHelper.h"
 #import "PIGGCHelper.h"
+#import "Flurry.h"
 
 @implementation PIGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Start Flurry
+    [Flurry setCrashReportingEnabled:YES];
+    [Flurry startSession:@"F8KVX5H9N2RCP6RD6VXH"];
     
     // Check for IAP transactions
     [PIGIAPHelper sharedInstance];

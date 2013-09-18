@@ -287,6 +287,10 @@
             [cell.iv_opponentLabel setImage:[UIImage imageNamed:@"player-bg-pink.png"]];
         }
         
+        if (opponentName == nil) {
+            opponentName = @"Opponent";
+        }
+        
         cell.lbl_nameOpponent.text = opponentName;
         cell.lbl_pointsOpponent.text = [NSString stringWithFormat:@"%d", opponentScore];
         cell.lbl_pointsPlayer.text = [NSString stringWithFormat:@"%d", playerScore];
@@ -294,10 +298,16 @@
         // Determine whose turn it is
         if ([match.currentParticipant.playerID isEqualToString:localPlayer.playerID]) {
             // It is the local player's turn
-            cell.lbl_turn.text = @"YOUR TURN";
+            cell.lbl_turn.text = @"Your turn";
+            [cell.contentView setAlpha:1.0];
+        }
+        else if ([opponentName isEqualToString:@"Opponent"]) {
+            cell.lbl_turn.text = @"Waiting for match";
+            [cell.contentView setAlpha:0.3];
         }
         else {
-            cell.lbl_turn.text = @"THEIR TURN";
+            cell.lbl_turn.text = @"Their turn";
+            [cell.contentView setAlpha:0.3];
         }
     }
     
