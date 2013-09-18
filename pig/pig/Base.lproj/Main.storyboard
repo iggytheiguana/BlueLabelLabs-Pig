@@ -212,7 +212,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" id="nKX-4r-aMb">
-                                        <rect key="frame" x="46" y="62" width="120" height="22"/>
+                                        <rect key="frame" x="51" y="62" width="115" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -399,11 +399,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="KOt-Xn-ISd">
-                                            <rect key="frame" x="95" y="11" width="255" height="97"/>
+                                            <rect key="frame" x="95" y="11" width="225" height="97"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-bg-pink.png" id="Pkj-YR-Osg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="255" height="97"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-bg-pink.png" id="Pkj-YR-Osg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="225" height="97"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="points-bg-white.png" id="dXM-eE-e5M">
@@ -548,7 +548,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="dS2-Xt-cjl" userLabel="Button - 2 Player Game">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="scG-uB-aA6" userLabel="Button - Buy 2 Player Game">
                                 <rect key="frame" x="37" y="332" width="284" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -558,7 +558,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onUpgradeButtonPressed:" destination="Vr5-Ce-z91" eventType="touchUpInside" id="Rlz-lZ-bxW"/>
+                                    <action selector="onUpgradeButtonPressed:" destination="Vr5-Ce-z91" eventType="touchUpInside" id="QQe-us-ena"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fjZ-Bl-5v1">
@@ -574,7 +574,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="btn_upgrade" destination="dS2-Xt-cjl" id="5YA-xh-rhM"/>
+                        <outlet property="btn_upgrade" destination="scG-uB-aA6" id="TSl-nf-9Bb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9d-sq-JB0" userLabel="First Responder" sceneMemberID="firstResponder"/>

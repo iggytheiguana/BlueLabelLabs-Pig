@@ -42,7 +42,7 @@
     
     CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setBackgroundColor:[UIColor whiteColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
     [titleLabel setTextColor:[UIColor pigBlueColor]];
@@ -274,14 +274,14 @@
         int playerScore;
         if ([localPlayer.playerID isEqualToString:player1ID]) {
             // The current user is player 1
-            opponentName = [matchDataDict objectForKey:@"player2ID"];
+            opponentName = [matchDataDict objectForKey:@"player2Name"];
             opponentScore = [[matchDataDict objectForKey:@"score2"] intValue];
             playerScore = [[matchDataDict objectForKey:@"score1"] intValue];
             [cell.iv_opponentLabel setImage:[UIImage imageNamed:@"player-bg-blue-reverse.png"]];
         }
         else {
             // The current user is player 2
-            opponentName = [matchDataDict objectForKey:@"player1ID"];
+            opponentName = [matchDataDict objectForKey:@"player1Name"];
             opponentScore = [[matchDataDict objectForKey:@"score1"] intValue];
             playerScore = [[matchDataDict objectForKey:@"score2"] intValue];
             [cell.iv_opponentLabel setImage:[UIImage imageNamed:@"player-bg-pink.png"]];
@@ -303,11 +303,11 @@
         }
         else if ([opponentName isEqualToString:@"Opponent"]) {
             cell.lbl_turn.text = @"Waiting for match";
-            [cell.contentView setAlpha:0.3];
+            [cell.contentView setAlpha:0.4];
         }
         else {
             cell.lbl_turn.text = @"Their turn";
-            [cell.contentView setAlpha:0.3];
+            [cell.contentView setAlpha:0.4];
         }
     }
     

@@ -1046,6 +1046,8 @@
                               [NSNumber numberWithInt:0], @"score2",
                               [GKLocalPlayer localPlayer].playerID, @"player1ID",
                               nil, @"player2ID",
+                              [GKLocalPlayer localPlayer].alias, @"player1Name",
+                              nil, @"player2Name",
                               [NSNumber numberWithBool:_winner1], @"winner1",
                               [NSNumber numberWithBool:_winner2], @"winner2",
                               [NSNumber numberWithBool:_gameOver], @"gameOver",
@@ -1069,17 +1071,18 @@
         if ([localPlayer.playerID isEqualToString:player1ID]) {
             // The current user is player 1
             _namePlayer1 = localPlayer.alias;
-            _namePlayer2 = @"Player 2";
+            _namePlayer2 = [_matchDataDict objectForKey:@"player2Name"];
             
             [self playerOneActive];
         }
         else {
             // The current user is player 2
-            _namePlayer1 = @"Player 1";
+            _namePlayer1 = [_matchDataDict objectForKey:@"player1Name"];
             _namePlayer2 = localPlayer.alias;
             
             // Now that we know who Player 2 is we can update the ID in the match data
             [_matchDataDict setObject:localPlayer.playerID forKey:@"player2ID"];
+            [_matchDataDict setObject:localPlayer.alias forKey:@"player2Name"];
             
             [self playerTwoActive];
         }
