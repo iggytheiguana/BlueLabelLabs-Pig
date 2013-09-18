@@ -15,7 +15,7 @@
 - (void)pigMultiplayerViewControllerDidClose;
 @end
 
-@interface PIGMultiplayerViewController : UITableViewController < UIActionSheetDelegate, PIGViewControllerDelegate, GCHelperDelegate, PIGUpgradeViewControllerDelegate >
+@interface PIGMultiplayerViewController : UITableViewController < UIActionSheetDelegate, UIAlertViewDelegate, PIGViewControllerDelegate, GCHelperDelegate, PIGUpgradeViewControllerDelegate >
 
 @property (weak, nonatomic) id <PIGMultiplayerViewControllerDelegate> delegate;
 

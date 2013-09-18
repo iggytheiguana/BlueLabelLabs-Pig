@@ -10,6 +10,9 @@
 #import <GameKit/GameKit.h>
 #import "PIGGameConstants.h"
 #import "UIColor+PIGCustomColors.h"
+#import "UINavigationController+PIGCustomNavigationController.h"
+#import "PIGIAPHelper.h"
+#import "PIGMultiplayerCell.h"
 
 @interface PIGMultiplayerViewController ()
 
@@ -47,24 +50,21 @@
     
     [titleView addSubview:titleLabel];
     [self.tableView setTableHeaderView:titleView];
+    
+    // Initialize Refresh Control
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(reloadTableView:) forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // Hide the Navigation bar line
-    for (UIView *view in self.navigationController.navigationBar.subviews) {
-        for (UIView *view2 in view.subviews) {
-            if ([view2 isKindOfClass:[UIImageView class]]) {
-                [view2 removeFromSuperview];
-            }
-        }
-    }
     
     [PIGGCHelper sharedInstance].delegate = self;
     
-    [self reloadTableView];
+    [self reloadTableView:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +74,14 @@
 }
 
 #pragma mark - Instance Methods
--(void)reloadTableView {
+-(void)reloadTableView:(id)sender {
+    [self.refreshControl beginRefreshing];
+    
+    if (self.tableView.contentOffset.y == 0.0) {
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    }
+    
+    // Refresh the matches form Game Center, then reload the tableview
     [GKTurnBasedMatch loadMatchesWithCompletionHandler:^(NSArray *matches, NSError *error) {
         if (error) {
             NSLog(@"%@", error.localizedDescription);
@@ -128,6 +135,8 @@
             _existingMatches = [[NSArray alloc] initWithArray:allMatches];
             NSLog(@"Matches: %@", _existingMatches);
             [self.tableView reloadData];
+            
+            [self.refreshControl endRefreshing];
         }
     }];
 }
@@ -146,7 +155,9 @@
         }];
     }
     
-    [self reloadTableView];
+    [match removeWithCompletionHandler:^(NSError *error) {
+        [self reloadTableView:nil];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -229,20 +240,65 @@
 //    
 //    return cell;
     
-    static NSString *CellIdentifier = @"MultiplayerGameCell";
+//    static NSString *CellIdentifier = @"MultiplayerGameCell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
+//    GKTurnBasedMatch *match = [_existingMatches objectAtIndex:indexPath.row];
+//    
+//    if ([match.matchData length] > 0) {
+//        NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+//        
+//        NSString *opponentName = [matchDataDict objectForKey:@"player1ID"];
+//        NSString *scoreString = [NSString stringWithFormat:@"%d vs %d", [[matchDataDict objectForKey:@"score1"] intValue], [[matchDataDict objectForKey:@"score2"] intValue]];
+//        
+//        cell.textLabel.text = opponentName;
+//        cell.detailTextLabel.text = scoreString;
+//    }
+
+    static NSString *CellIdentifier = @"MultiplayerGameCellv2";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    PIGMultiplayerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     GKTurnBasedMatch *match = [_existingMatches objectAtIndex:indexPath.row];
     
     if ([match.matchData length] > 0) {
         NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
         
-        NSString *opponentName = [matchDataDict objectForKey:@"player1ID"];
-        NSString *scoreString = [NSString stringWithFormat:@"%d vs %d", [[matchDataDict objectForKey:@"score1"] intValue], [[matchDataDict objectForKey:@"score2"] intValue]];
+        // Determine which player the current user is
+        NSString *player1ID = [matchDataDict objectForKey:@"player1ID"];
+        GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
         
-        cell.textLabel.text = opponentName;
-        cell.detailTextLabel.text = scoreString;
+        NSString *opponentName;
+        int opponentScore;
+        int playerScore;
+        if ([localPlayer.playerID isEqualToString:player1ID]) {
+            // The current user is player 1
+            opponentName = [matchDataDict objectForKey:@"player2ID"];
+            opponentScore = [[matchDataDict objectForKey:@"score2"] intValue];
+            playerScore = [[matchDataDict objectForKey:@"score1"] intValue];
+            [cell.iv_opponentLabel setImage:[UIImage imageNamed:@"player-bg-blue-reverse.png"]];
+        }
+        else {
+            // The current user is player 2
+            opponentName = [matchDataDict objectForKey:@"player1ID"];
+            opponentScore = [[matchDataDict objectForKey:@"score1"] intValue];
+            playerScore = [[matchDataDict objectForKey:@"score2"] intValue];
+            [cell.iv_opponentLabel setImage:[UIImage imageNamed:@"player-bg-pink.png"]];
+        }
+        
+        cell.lbl_nameOpponent.text = opponentName;
+        cell.lbl_pointsOpponent.text = [NSString stringWithFormat:@"%d", opponentScore];
+        cell.lbl_pointsPlayer.text = [NSString stringWithFormat:@"%d", playerScore];
+        
+        // Determine whose turn it is
+        if ([match.currentParticipant.playerID isEqualToString:localPlayer.playerID]) {
+            // It is the local player's turn
+            cell.lbl_turn.text = @"YOUR TURN";
+        }
+        else {
+            cell.lbl_turn.text = @"THEIR TURN";
+        }
     }
     
     return cell;
@@ -306,13 +362,17 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        GKTurnBasedMatch *match = [_existingMatches objectAtIndex:indexPath.row];
-        [self quitMatch:match];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game in Progress"
+                                                        message:@"Are you sure you want to remove this game?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Remove", nil];
+        [alert show];
     }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"Forfeit";
+    return @"Remove";
 }
 
 /*
@@ -351,6 +411,7 @@
     [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    [navigationController applyCustomStyle];
     
     [self presentViewController:navigationController animated:YES completion:^{
         [gameplayViewController enterNewGame:match];
@@ -364,6 +425,7 @@
     [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    [navigationController applyCustomStyle];
     
     [self presentViewController:navigationController animated:YES completion:^{
         [gameplayViewController takeTurn:match];
@@ -377,6 +439,7 @@
     [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    [navigationController applyCustomStyle];
     
     [self presentViewController:navigationController animated:YES completion:^{
         [gameplayViewController layoutMatch:match];
@@ -384,7 +447,7 @@
 }
 
 - (void)sendNotice:(NSString *)notice forMatch:(GKTurnBasedMatch *)match {
-    
+    [self reloadTableView:nil];
 }
 
 -(void)recieveEndGame:(GKTurnBasedMatch *)match {
@@ -394,6 +457,7 @@
     [PIGGCHelper sharedInstance].delegate = gameplayViewController;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    [navigationController applyCustomStyle];
     
     [self presentViewController:navigationController animated:YES completion:^{
         [gameplayViewController recieveEndGame:match];
@@ -426,14 +490,26 @@
         gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+        [navigationController applyCustomStyle];
         
         [self presentViewController:navigationController animated:YES completion:nil];
     }
 }
 
+#pragma mark - UIAlert Delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex > 0 && buttonIndex < alertView.numberOfButtons) {
+        GKTurnBasedMatch *match = [_existingMatches objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        [self quitMatch:match];
+    }
+}
+
 #pragma mark - UIAction Methods
 - (IBAction)onNewTwoPlayerGameButtonPressed:(id)sender {
-    if ([_existingMatches count] > 1) {
+    // Check if two-palyer game has been unlocked already
+    BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
+    
+    if (twoPlayerProductPurchased == NO && [_existingMatches count] > 1) {
         PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
         [self.navigationController pushViewController:gameplayViewController animated:YES];
     }

@@ -11,8 +11,6 @@
 #import "PIGIAPHelper.h"
 #import "Reachability.h"
 
-NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGameProductPurchased";
-
 @interface PIGUpgradeViewController () {
     NSArray *_products;
 }
@@ -43,14 +41,6 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // Hide the Navigation bar line
-    for (UIView *view in self.navigationController.navigationBar.subviews) {
-        for (UIView *view2 in view.subviews) {
-            if ([view2 isKindOfClass:[UIImageView class]]) {
-                [view2 removeFromSuperview];
-            }
-        }
-    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedTransaction:) name:IAPHelperFailedTransactionNotification object:nil];
@@ -78,7 +68,7 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
             SKProduct *product = (SKProduct *)_products[0];
             
             if ([[PIGIAPHelper sharedInstance] productPurchased:product.productIdentifier]) {
-                
+                [self.delegate pigUpgradeViewControllerDidClose];
             }
             else {
                 
@@ -91,6 +81,7 @@ NSString *const IAPUnlockTwoPlayerGameProductPurchased = @"IAPUnlockTwoPlayerGam
     NSString * productIdentifier = notification.object;
     [_products enumerateObjectsUsingBlock:^(SKProduct *product, NSUInteger idx, BOOL *stop) {
         if ([product.productIdentifier isEqualToString:productIdentifier]) {
+            [self.delegate pigUpgradeViewControllerDidClose];
             *stop = YES;
         }
     }];

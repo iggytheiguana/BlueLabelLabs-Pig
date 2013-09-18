@@ -17,7 +17,7 @@ NSString *const IAPUnlockTwoPlayerGameProductIdentifier = @"com.bluelabellabs.pi
     static PIGIAPHelper *sharedInstance;
     dispatch_once(&once, ^{
         NSSet *productIdentifiers = [NSSet setWithObjects:
-                                     @"com.bluelabellabs.pig.unlock2playergame",
+                                     IAPUnlockTwoPlayerGameProductIdentifier,
                                      nil];
         sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
     });

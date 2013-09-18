@@ -37,14 +37,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // Hide the Navigation bar line
-    for (UIView *view in self.navigationController.navigationBar.subviews) {
-        for (UIView *view2 in view.subviews) {
-            if ([view2 isKindOfClass:[UIImageView class]]) {
-                [view2 removeFromSuperview];
-            }
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning

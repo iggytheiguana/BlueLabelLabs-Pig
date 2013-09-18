@@ -130,12 +130,12 @@
     
     // Give the dice, roll label, and roll images a shadow that will add to the motion effect
     self.btn_dice1.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btn_dice1.layer.shadowOpacity = 0.3f;
+    self.btn_dice1.layer.shadowOpacity = 0.2f;
     self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     self.btn_dice1.layer.shadowRadius = 0.0f;
     
     self.btn_dice2.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btn_dice2.layer.shadowOpacity = 0.3f;
+    self.btn_dice2.layer.shadowOpacity = 0.2f;
     self.btn_dice2.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     self.btn_dice2.layer.shadowRadius = 0.0f;
     
@@ -227,7 +227,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -29,6 +29,10 @@
 		525FD68A17CC887B00BE7E07 /* PIGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */; };
 		525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */; };
 		52640E9117E84AAD00A64624 /* PIGUpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52640E9017E84AAD00A64624 /* PIGUpgradeViewController.m */; };
+		52640E9417E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52640E9317E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m */; };
+		52640E9717E98D4700A64624 /* button-buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 52640E9517E98D4700A64624 /* button-buyTwoPlayer.png */; };
+		52640E9817E98D4700A64624 /* button-buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52640E9617E98D4700A64624 /* button-buyTwoPlayer@2x.png */; };
+		52640E9B17E9AB4B00A64624 /* PIGMultiplayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52640E9A17E9AB4B00A64624 /* PIGMultiplayerCell.m */; };
 		5280427A17DA66070093C4AB /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280427917DA66070093C4AB /* GCHelper.m */; };
 		5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5280427B17DA67B00093C4AB /* GameKit.framework */; };
 		5280428117DA976E0093C4AB /* PIGGCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280428017DA976E0093C4AB /* PIGGCHelper.m */; };
@@ -128,6 +132,12 @@
 		525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		52640E8F17E84AAD00A64624 /* PIGUpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGUpgradeViewController.h; sourceTree = "<group>"; };
 		52640E9017E84AAD00A64624 /* PIGUpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGUpgradeViewController.m; sourceTree = "<group>"; };
+		52640E9217E984B600A64624 /* UINavigationController+PIGCustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+PIGCustomNavigationController.h"; sourceTree = "<group>"; };
+		52640E9317E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+PIGCustomNavigationController.m"; sourceTree = "<group>"; };
+		52640E9517E98D4700A64624 /* button-buyTwoPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-buyTwoPlayer.png"; sourceTree = "<group>"; };
+		52640E9617E98D4700A64624 /* button-buyTwoPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-buyTwoPlayer@2x.png"; sourceTree = "<group>"; };
+		52640E9917E9AB4B00A64624 /* PIGMultiplayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMultiplayerCell.h; sourceTree = "<group>"; };
+		52640E9A17E9AB4B00A64624 /* PIGMultiplayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMultiplayerCell.m; sourceTree = "<group>"; };
 		5280427817DA66070093C4AB /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		5280427917DA66070093C4AB /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 		5280427B17DA67B00093C4AB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -225,6 +235,8 @@
 			children = (
 				5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */,
 				5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */,
+				52640E9217E984B600A64624 /* UINavigationController+PIGCustomNavigationController.h */,
+				52640E9317E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -280,6 +292,8 @@
 				525FD68917CC887B00BE7E07 /* PIGHomeViewController.m */,
 				52D0CBF217E5201B003E46A2 /* PIGMultiplayerViewController.h */,
 				52D0CBF317E5201B003E46A2 /* PIGMultiplayerViewController.m */,
+				52640E9917E9AB4B00A64624 /* PIGMultiplayerCell.h */,
+				52640E9A17E9AB4B00A64624 /* PIGMultiplayerCell.m */,
 				52B3E2ED17E03C81009C72DC /* PIGMoreViewController.h */,
 				52B3E2EE17E03C81009C72DC /* PIGMoreViewController.m */,
 				5245623917E0510E00F73533 /* PIGMoreTableViewController.h */,
@@ -332,6 +346,8 @@
 				52FFF72E17DE61A600F259E7 /* button-bg-large-pink@2x.png */,
 				52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */,
 				52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */,
+				52640E9517E98D4700A64624 /* button-buyTwoPlayer.png */,
+				52640E9617E98D4700A64624 /* button-buyTwoPlayer@2x.png */,
 				52E1FDA817D7B98E009AD64E /* dice-white-1.png */,
 				52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */,
 				52E1FDAA17D7B98E009AD64E /* dice-white-2.png */,
@@ -522,6 +538,7 @@
 				52FFF73D17DE7B1300F259E7 /* pig.png in Resources */,
 				52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */,
 				525FD64117CC726000BE7E07 /* InfoPlist.strings in Resources */,
+				52640E9817E98D4700A64624 /* button-buyTwoPlayer@2x.png in Resources */,
 				52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */,
 				52FFF72217DE509400F259E7 /* player-bg-pink@2x.png in Resources */,
 				52FFF73217DE61A600F259E7 /* button-bg-large-pink@2x.png in Resources */,
@@ -540,6 +557,7 @@
 				5201335E17D864DB009679F0 /* dice-red-1.png in Resources */,
 				52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */,
 				52B3E2E717E018CD009C72DC /* turtle@2x.png in Resources */,
+				52640E9717E98D4700A64624 /* button-buyTwoPlayer.png in Resources */,
 				52FFF74217DE7DD700F259E7 /* buyTwoPlayer@2x.png in Resources */,
 				52FFF72A17DE57E700F259E7 /* player-bg-blue-reverse@2x.png in Resources */,
 				52BFB9F217E4329100757BBE /* rollTutorial.png in Resources */,
@@ -577,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52640E9417E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m in Sources */,
 				5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */,
 				525FD64317CC726000BE7E07 /* main.m in Sources */,
 				52E4126F17D0132E00F75335 /* PIGRulesViewController.m in Sources */,
@@ -591,6 +610,7 @@
 				52E4126217D00CF400F75335 /* IAPHelper.m in Sources */,
 				52640E9117E84AAD00A64624 /* PIGUpgradeViewController.m in Sources */,
 				5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */,
+				52640E9B17E9AB4B00A64624 /* PIGMultiplayerCell.m in Sources */,
 				525FD64D17CC726000BE7E07 /* PIGViewController.m in Sources */,
 				5280427A17DA66070093C4AB /* GCHelper.m in Sources */,
 			);

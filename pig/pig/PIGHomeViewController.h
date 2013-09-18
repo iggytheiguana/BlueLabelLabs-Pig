@@ -16,13 +16,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_onePlayer;
 @property (weak, nonatomic) IBOutlet UIButton *btn_twoPlayer;
-@property (weak, nonatomic) IBOutlet UIButton *btn_buyTwoPlayer;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_buyText;
+//@property (weak, nonatomic) IBOutlet UIButton *btn_buyTwoPlayer;
+//@property (weak, nonatomic) IBOutlet UILabel *lbl_buyText;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerOne;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerTwo;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_pigLogo;
 
-- (IBAction)onTwoPlayerButtonPressed:(id)sender;
-- (IBAction)onBuyTwoPlayerButtonPressed:(id)sender;
+//- (IBAction)onTwoPlayerButtonPressed:(id)sender;
+//- (IBAction)onBuyTwoPlayerButtonPressed:(id)sender;
 
 @end

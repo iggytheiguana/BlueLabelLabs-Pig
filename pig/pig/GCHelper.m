@@ -308,7 +308,7 @@ static GCHelper *sharedHelper = nil;
             [stillPlaying addObject:p];
         }
     }
-    if ([stillPlaying count] < 2 && [match.participants count] >= 2) {
+    if ([stillPlaying count] < kTurnBasedGameMinPlayers && [match.participants count] >= kTurnBasedGameMaxPlayers) {
         // There's only one player left
         for (GKTurnBasedParticipant *part in stillPlaying) {
             part.matchOutcome = GKTurnBasedMatchOutcomeTied;
@@ -335,7 +335,13 @@ static GCHelper *sharedHelper = nil;
     } else {
         if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
             // It's not the current match and it's our turn now
-            [self.delegate sendNotice:@"It's your turn for another match" forMatch:match];
+            if (didBecomeActive == YES) {
+                self.currentMatch = match;
+                [self.delegate takeTurn:match];
+            }
+            else {
+                [self.delegate sendNotice:@"It's your turn for another match" forMatch:match];
+            }
         }
         else {
             // It's the not current match, and it's someone else's turn

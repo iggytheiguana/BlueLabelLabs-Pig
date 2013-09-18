@@ -35,6 +35,7 @@
 #define kAchievementIdentifierPerfectRoll @"com.bluelabellabs.pig.achievement_perfectroll"
 #define kAchievementIdentifierPerfectGame @"com.bluelabellabs.pig.achievement_perfectgame"
 
+// Game Types
 typedef enum {
     kONEPLAYERGAME,
     kTWOPLAYERGAMELOCAL,
