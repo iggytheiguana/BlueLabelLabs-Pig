@@ -86,6 +86,9 @@
     if (self.gameType == kONEPLAYERGAME) {
         _namePlayer2 = @"Computer";
     }
+    else if (self.gameType == kTWOPLAYERGAMEGAMECENTER){
+        _namePlayer2 = @"Opponent";
+    }
     else {
         _namePlayer2 = @"Player 2";
     }
@@ -1012,6 +1015,8 @@
     [_matchDataDict setObject:[NSNumber numberWithBool:_winner1] forKey:@"winner1"];
     [_matchDataDict setObject:[NSNumber numberWithBool:_winner2] forKey:@"winner2"];
     [_matchDataDict setObject:[NSNumber numberWithBool:_gameOver] forKey:@"gameOver"];
+    [_matchDataDict setObject:_namePlayer1 forKey:@"player1Name"];
+    [_matchDataDict setObject:_namePlayer2 forKey:@"player2Name"];
     
     NSData *data = [NSPropertyListSerialization dataFromPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
     
@@ -1031,6 +1036,10 @@
     _score1 = [[_matchDataDict objectForKey:@"score1"] intValue];
     _score2 = [[_matchDataDict objectForKey:@"score2"] intValue];
     
+    // Update the player names
+    _namePlayer1 = [_matchDataDict objectForKey:@"player1Name"];
+    _namePlayer2 = [_matchDataDict objectForKey:@"player2Name"];
+    
     // Update the player score labels
     [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
     [self.lbl_player2 setText:[NSString stringWithFormat:@"%d", _score2]];
@@ -1046,8 +1055,8 @@
                               [NSNumber numberWithInt:0], @"score2",
                               [GKLocalPlayer localPlayer].playerID, @"player1ID",
                               nil, @"player2ID",
-                              [GKLocalPlayer localPlayer].alias, @"player1Name",
-                              nil, @"player2Name",
+                              _namePlayer1, @"player1Name",
+                              _namePlayer2, @"player2Name",
                               [NSNumber numberWithBool:_winner1], @"winner1",
                               [NSNumber numberWithBool:_winner2], @"winner2",
                               [NSNumber numberWithBool:_gameOver], @"gameOver",
