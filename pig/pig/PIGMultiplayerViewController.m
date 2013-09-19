@@ -20,6 +20,7 @@
 
 @implementation PIGMultiplayerViewController {
     NSArray *_existingMatches;
+    UIActivityIndicatorView *m_ai_loadMatches;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -55,12 +56,19 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(reloadTableView:) forControlEvents:UIControlEventValueChanged];
     [self setRefreshControl:refreshControl];
+    
+    // Setup activity indicator in the navigation bar
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    m_ai_loadMatches = activityIndicator;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    // Temporarily disable the New Game button until we have confirmed that the tableview has been reloaded will all the matches
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     
     [PIGGCHelper sharedInstance].delegate = self;
     
@@ -75,10 +83,15 @@
 
 #pragma mark - Instance Methods
 -(void)reloadTableView:(id)sender {
-    [self.refreshControl beginRefreshing];
+//    [self.refreshControl beginRefreshing];
     
-    if (self.tableView.contentOffset.y == 0.0) {
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+//    if (self.tableView.contentOffset.y == 0.0) {
+//        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+//    }
+    
+    if ([sender isKindOfClass:[UIRefreshControl class]] == NO) {
+        [self.navigationItem setTitleView:m_ai_loadMatches];
+        [m_ai_loadMatches startAnimating];
     }
     
     // Refresh the matches form Game Center, then reload the tableview
@@ -135,9 +148,18 @@
             _existingMatches = [[NSArray alloc] initWithArray:allMatches];
             NSLog(@"Matches: %@", _existingMatches);
             [self.tableView reloadData];
-            
+        }
+        
+        if ([sender isKindOfClass:[UIRefreshControl class]] == NO) {
+            [m_ai_loadMatches stopAnimating];
+            [self.navigationItem setTitleView:nil];
+        }
+        else {
             [self.refreshControl endRefreshing];
         }
+        
+        // Enable the New Game button
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
     }];
 }
 
@@ -520,8 +542,9 @@
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
     
     if (twoPlayerProductPurchased == NO && [_existingMatches count] > 1) {
-        PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
-        [self.navigationController pushViewController:gameplayViewController animated:YES];
+        PIGViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
+        upgradeViewController.delegate = self;
+        [self.navigationController pushViewController:upgradeViewController animated:YES];
     }
     else {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil

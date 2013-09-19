@@ -317,7 +317,14 @@ static GCHelper *sharedHelper = nil;
             if (error) {
                 NSLog(@"Error Ending Match %@", error);
             }
-            [self.delegate layoutMatch:match];
+            
+            if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
+                self.currentMatch = match;
+                [self.delegate layoutMatch:match];
+            }
+            else {
+                [self.delegate sendNotice:@"Match forfieted" forMatch:match];
+            }
         }];
     }
     

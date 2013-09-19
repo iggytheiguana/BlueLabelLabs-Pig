@@ -10,12 +10,16 @@
 #import "PIGIAPHelper.h"
 #import "PIGGCHelper.h"
 #import "Flurry.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation PIGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Start Crashlytics
+    [Crashlytics startWithAPIKey:@"b53fcf08df9b183b382153735d57a10862fc5348"];
     
     // Start Flurry
     [Flurry setCrashReportingEnabled:YES];

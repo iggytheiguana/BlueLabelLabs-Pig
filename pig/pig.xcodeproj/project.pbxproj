@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5201335E17D864DB009679F0 /* dice-red-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335C17D864DB009679F0 /* dice-red-1.png */; };
 		5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335D17D864DB009679F0 /* dice-red-1@2x.png */; };
+		5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5209E37817EAEFF00081CED0 /* Crashlytics.framework */; };
 		5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162817D3BEF200F495E6 /* PIGMotionEffect.m */; };
 		5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */; };
 		5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5245623A17E0510E00F73533 /* PIGMoreTableViewController.m */; };
@@ -103,6 +104,7 @@
 /* Begin PBXFileReference section */
 		5201335C17D864DB009679F0 /* dice-red-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1.png"; sourceTree = "<group>"; };
 		5201335D17D864DB009679F0 /* dice-red-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1@2x.png"; sourceTree = "<group>"; };
+		5209E37817EAEFF00081CED0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5223162717D3BEF200F495E6 /* PIGMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMotionEffect.h; sourceTree = "<group>"; };
 		5223162817D3BEF200F495E6 /* PIGMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMotionEffect.m; sourceTree = "<group>"; };
 		5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PIGCustomColors.h"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			files = (
 				52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */,
 				525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */,
+				5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */,
 				5250787E17EA2A070010CD1D /* libFlurry_4.2.3.a in Frameworks */,
 				525FD63917CC726000BE7E07 /* CoreGraphics.framework in Frameworks */,
 				5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */,
@@ -440,6 +443,7 @@
 		52E4126817D0122300F75335 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				5209E37817EAEFF00081CED0 /* Crashlytics.framework */,
 				5250787B17EA2A070010CD1D /* Flurry */,
 				52E4126917D0124000F75335 /* Reachability */,
 			);
@@ -465,6 +469,7 @@
 				525FD62F17CC726000BE7E07 /* Sources */,
 				525FD63017CC726000BE7E07 /* Frameworks */,
 				525FD63117CC726000BE7E07 /* Resources */,
+				5209E37717EAEEE90081CED0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -603,6 +608,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5209E37717EAEEE90081CED0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run b53fcf08df9b183b382153735d57a10862fc5348";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		525FD62F17CC726000BE7E07 /* Sources */ = {
@@ -751,6 +772,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
 				INFOPLIST_FILE = "pig/pig-Info.plist";
@@ -759,7 +784,7 @@
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "BC0FDBC9-DA7E-4C69-834A-7BBA1088B8EE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -771,6 +796,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
 				INFOPLIST_FILE = "pig/pig-Info.plist";
@@ -779,7 +808,7 @@
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F89EFD27-8003-4C15-AA0E-740B18C7112A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

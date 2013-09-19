@@ -13,6 +13,7 @@
 
 @interface PIGUpgradeViewController () {
     NSArray *_products;
+    UIActivityIndicatorView *m_ai_RestorePurchases;
 }
 
 @end
@@ -33,6 +34,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Setup activity indicator in the navigation bar
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    m_ai_RestorePurchases = activityIndicator;
+    
     // Load In App Purchases
     [self loadIAPs];
 }
@@ -42,8 +47,19 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
+    // Add Restore button to navigation bar
+    UIBarButtonItem *btn_restore = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Restore"
+                                   style:UIBarButtonItemStyleBordered
+                                   target:self
+                                    action:@selector(onRestoreButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = btn_restore;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedTransaction:) name:IAPHelperFailedTransactionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreFailed:) name:IAPHelperRestoreFailedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreCanceled:) name:IAPHelperRestoreCanceledNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreCompleted:) name:IAPHelperRestoreCompletedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -67,6 +83,9 @@
             _products = products;
             SKProduct *product = (SKProduct *)_products[0];
             
+            [m_ai_RestorePurchases stopAnimating];
+            [self.navigationController.navigationItem setTitleView:nil];
+            
             if ([[PIGIAPHelper sharedInstance] productPurchased:product.productIdentifier]) {
                 [self.delegate pigUpgradeViewControllerDidClose];
             }
@@ -81,6 +100,8 @@
     NSString * productIdentifier = notification.object;
     [_products enumerateObjectsUsingBlock:^(SKProduct *product, NSUInteger idx, BOOL *stop) {
         if ([product.productIdentifier isEqualToString:productIdentifier]) {
+            [m_ai_RestorePurchases stopAnimating];
+            [self.navigationController.navigationItem setTitleView:nil];
             [self.delegate pigUpgradeViewControllerDidClose];
             *stop = YES;
         }
@@ -88,12 +109,37 @@
 }
 
 - (void)failedTransaction:(NSString *)errorMessage {
+    [m_ai_RestorePurchases stopAnimating];
+    [self.navigationController.navigationItem setTitleView:nil];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iTunes Store Error"
                                                     message:[NSString stringWithFormat:@"Transaction error: %@", errorMessage]
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (void)restoreFailed:(NSString *)errorMessage {
+    [m_ai_RestorePurchases stopAnimating];
+    [self.navigationController.navigationItem setTitleView:nil];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iTunes Store Error"
+                                                    message:[NSString stringWithFormat:@"Transaction error: %@", errorMessage]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)restoreCanceled:(NSError *)error {
+    [m_ai_RestorePurchases stopAnimating];
+    [self.navigationController.navigationItem setTitleView:nil];
+}
+
+- (void)restoreCompleted:(NSError *)error {
+    [m_ai_RestorePurchases stopAnimating];
+    [self.navigationController.navigationItem setTitleView:nil];
 }
 
 
@@ -107,6 +153,9 @@
     Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
     
     if (internetReachable.isReachable && [_products count] != 0) {
+        [self.navigationItem setTitleView:m_ai_RestorePurchases];
+        [m_ai_RestorePurchases startAnimating];
+        
         SKProduct *product = _products[0];
         
         NSLog(@"Buying %@...", product.productIdentifier);
@@ -124,12 +173,11 @@
     }
 }
 
-//- (IBAction)onUpgradeButtonTouched:(id)sender {
-//    [self.iv_whiteCircle setHidden:YES];
-//}
-//
-//- (IBAction)onUpgradeButtonReleased:(id)sender {
-//    [self.iv_whiteCircle setHidden:NO];
-//}
+- (void)onRestoreButtonPressed:(id)sender {
+    [self.navigationItem setTitleView:m_ai_RestorePurchases];
+    [m_ai_RestorePurchases startAnimating];
+    
+    [[PIGIAPHelper sharedInstance] restoreCompletedTransactions];
+}
 
 @end

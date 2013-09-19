@@ -112,6 +112,10 @@
 
 #pragma mark - In App Purchase Methods
 - (void)failedTransaction:(NSString *)errorMessage {
+    [m_ai_RestorePurchases stopAnimating];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    cell.accessoryView = nil;
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iTunes Store Error"
                                                     message:[NSString stringWithFormat:@"Transaction error: %@", errorMessage]
                                                    delegate:self

@@ -913,6 +913,30 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)quitMatch:(GKTurnBasedMatch *)match {
+    if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+        [PIGGCHelper sharedInstance].delegate = self;
+        [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil playerQuitForMatch:match];
+    }
+    else {
+        [PIGGCHelper sharedInstance].delegate = self;
+        [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
+    
+    [match removeWithCompletionHandler:^(NSError *error) {
+        
+    }];
+    
+    // We need to remove the pointer of the singleton to the current match
+    [PIGGCHelper sharedInstance].currentMatch = nil;
+    
+    [self.delegate pigViewControllerDidClose];
+}
+
 - (void)tieGame {
     // Determine which player the current user is
     NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
@@ -938,15 +962,6 @@
 
 - (IBAction)sendTurn:(id)sender {
     GKTurnBasedMatch *currentMatch = [[PIGGCHelper sharedInstance] currentMatch];
-    
-//    // Update scores and game state in match data
-//    [_matchDataDict setObject:[NSNumber numberWithInt:_score1] forKey:@"score1"];
-//    [_matchDataDict setObject:[NSNumber numberWithInt:_score2] forKey:@"score2"];
-//    [_matchDataDict setObject:[NSNumber numberWithBool:_winner1] forKey:@"winner1"];
-//    [_matchDataDict setObject:[NSNumber numberWithBool:_winner2] forKey:@"winner2"];
-//    [_matchDataDict setObject:[NSNumber numberWithBool:_gameOver] forKey:@"gameOver"];
-//    
-//    NSData *data = [NSPropertyListSerialization dataFromPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
     
     NSData *data = [self packupMatchState:currentMatch];
     
@@ -1168,10 +1183,18 @@
 //    frame.origin.x = 0.0f;
 //    self.v_containerPlayer2.frame = frame;
     
-    // We need to remove the pointer of the singlton to the current match
-    [PIGGCHelper sharedInstance].currentMatch = nil;
-    
-    [self.delegate pigViewControllerDidClose];
+    int matchDataLength = [[PIGGCHelper sharedInstance].currentMatch.matchData length];
+    if (self.gameType == kTWOPLAYERGAMEGAMECENTER && matchDataLength == 0) {
+        // There is no match data, we cannot save this match
+        GKTurnBasedMatch *match = [PIGGCHelper sharedInstance].currentMatch;
+        [self quitMatch:match];
+    }
+    else {
+        // We need to remove the pointer of the singlton to the current match
+        [PIGGCHelper sharedInstance].currentMatch = nil;
+        
+        [self.delegate pigViewControllerDidClose];
+    }
 }
 
 - (IBAction)onPassButtonPressed:(id)sender {
@@ -1210,8 +1233,14 @@
             [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\n%@", _namePlayer2] forState:UIControlStateNormal];
             
             if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
-                // Report the scores to Game Center and save in User Deafults
-                [self reportPlayerScore:_score2];
+                // Determine which player the current user is
+                NSString *player2ID = [_matchDataDict objectForKey:@"player2ID"];
+                GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+                
+                if ([localPlayer.playerID isEqualToString:player2ID]) {
+                    // Report the scores to Game Center and save in User Deafults
+                    [self reportPlayerScore:_score2];
+                }
             }
         }
         else if (_score1 >= 101 && _score1 > _score2) {
@@ -1241,8 +1270,14 @@
             [self.btn_playerReady setEnabled:NO];
             [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\n%@", _namePlayer1] forState:UIControlStateNormal];
             
-            // Report the scores to Game Center and save in User Deafults
-            [self reportPlayerScore:_score1];
+            // Determine which player the current user is
+            NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+            GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+            
+            if ([localPlayer.playerID isEqualToString:player1ID]) {
+                // Report the scores to Game Center and save in User Deafults
+                [self reportPlayerScore:_score1];
+            }
             
 //            int64_t totalScore = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
 //            totalScore = totalScore + _score1;
@@ -1344,7 +1379,9 @@
                              }
              ];
             
-            [self.btn_newGame setHidden:NO];
+            if (self.gameType != kTWOPLAYERGAMEGAMECENTER) {
+                [self.btn_newGame setHidden:NO];
+            }
         }
         else {
             [self.btn_playerReady setHidden:NO];
@@ -1394,6 +1431,46 @@
 }
 
 - (IBAction)onNewGameButtonPressed:(id)sender {
+//    if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
+////        GKTurnBasedMatch *match = [PIGGCHelper sharedInstance].currentMatch;
+////        [match rematchWithCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
+////            if (error) {
+////                NSLog(@"%@", error);
+////            }
+////            else {
+////                // Start a new match
+////                [self reset];
+////                
+////                [PIGGCHelper sharedInstance].currentMatch = match;
+////                [PIGGCHelper sharedInstance].delegate = self;
+////                [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
+////            }
+////        }];
+//        
+//        // Start a new match
+//        [self reset];
+//        
+//        // Get an array of the participants of this game. Do not include the local player
+//        GKTurnBasedMatch *match = [PIGGCHelper sharedInstance].currentMatch;
+//        GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+//        
+//        NSMutableArray *opponents = [NSMutableArray array];
+//        GKTurnBasedParticipant *participant;
+//        
+//        for (int i = 0; i < [match.participants count]; i++) {
+//            participant = [match.participants objectAtIndex:i];
+//            if ([participant.playerID isEqualToString:localPlayer.playerID] == NO) {
+//                [opponents addObject:participant];
+//            }
+//        }
+//        
+//        [PIGGCHelper sharedInstance].delegate = self;
+//        [[PIGGCHelper sharedInstance] player:localPlayer didRequestMatchWithPlayers:opponents];
+//    }
+//    else {
+//        [self reset];
+//    }
+    
     [self reset];
 }
 
