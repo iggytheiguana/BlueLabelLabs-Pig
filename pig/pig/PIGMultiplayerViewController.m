@@ -552,21 +552,21 @@
 #pragma mark - UIAction Methods
 - (IBAction)onNewTwoPlayerGameButtonPressed:(id)sender {
     // Check if two-palyer game has been unlocked already
-    BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
-    
-    if (twoPlayerProductPurchased == NO && [_existingMatches count] > 1) {
+//    BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
+//    
+//    if (twoPlayerProductPurchased == NO && [_existingMatches count] > 1) {
         PIGViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
         upgradeViewController.delegate = self;
         [self.navigationController pushViewController:upgradeViewController animated:YES];
-    }
-    else {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Online Matchmaker", @"Local Match", nil];
-        [actionSheet showFromBarButtonItem:self.btn_newGame animated:YES];
-    }
+//    }
+//    else {
+//        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                                 delegate:self
+//                                                        cancelButtonTitle:@"Cancel"
+//                                                   destructiveButtonTitle:nil
+//                                                        otherButtonTitles:@"Online Matchmaker", @"Local Match", nil];
+//        [actionSheet showFromBarButtonItem:self.btn_newGame animated:YES];
+//    }
 }
 
 @end
