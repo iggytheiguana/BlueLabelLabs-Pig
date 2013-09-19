@@ -13,6 +13,7 @@
 #import "UINavigationController+PIGCustomNavigationController.h"
 #import "PIGIAPHelper.h"
 #import "PIGMultiplayerCell.h"
+#import "Flurry+PIGFlurry.h"
 
 @interface PIGMultiplayerViewController ()
 
@@ -65,6 +66,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [Flurry logEvent:@"MULTIPLAYER_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     // Temporarily disable the New Game button until we have confirmed that the tableview has been reloaded will all the matches
@@ -73,6 +76,12 @@
     [PIGGCHelper sharedInstance].delegate = self;
     
     [self reloadTableView:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [Flurry endTimedEvent:@"MULTIPLAYER_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -512,11 +521,15 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         // Gamecenter Matchmaker game
+        [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWMATCHMAKERGAME" withParameters:[Flurry flurryUserParams]];
+         
         [PIGGCHelper sharedInstance].delegate = self;
         [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];
     }
     else if (buttonIndex == 1) {
         // Local Game
+        [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWLOCALGAME" withParameters:[Flurry flurryUserParams]];
+        
         PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
         gameplayViewController.delegate = self;
         gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;

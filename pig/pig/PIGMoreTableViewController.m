@@ -10,6 +10,7 @@
 #import "PIGIAPHelper.h"
 #import "PIGGameConstants.h"
 #import "UIColor+PIGCustomColors.h"
+#import "Flurry+PIGFlurry.h"
 
 @interface PIGMoreTableViewController () {
     NSArray *_products;
@@ -160,10 +161,14 @@
     
 	if (indexPath.section == 0 && indexPath.row == 1) {
         // Leaderboards selected
+        [Flurry logEvent:@"MORE_SCREEN_LEADERBOARDS_PRESSED" withParameters:[Flurry flurryUserParams]];
+        
         [self showLeaderboard];
     }
     else if (indexPath.section == 0 && indexPath.row == 2) {
         // Achievements selected
+        [Flurry logEvent:@"MORE_SCREEN_ACHIEVEMENTS_PRESSED" withParameters:[Flurry flurryUserParams]];
+        
         [self showAchievements];
     }
     else if (indexPath.section == 1 && indexPath.row == 0) {
@@ -213,6 +218,13 @@
 #pragma mark - UIAction Methods
 - (IBAction)onVibrateSwitchValueChanged:(id)sender {
     BOOL vibrate = self.sw_vibrate.on;
+    
+    if (vibrate == YES) {
+        [Flurry logEvent:@"MORE_SCREEN_VIBRATE_ON" withParameters:[Flurry flurryUserParams]];
+    }
+    else {
+        [Flurry logEvent:@"MORE_SCREEN_VIBRATE_OFF" withParameters:[Flurry flurryUserParams]];
+    }
     
     // Save setting to user defaults
     [[NSUserDefaults standardUserDefaults] setBool:vibrate forKey:kSettingsVibrate];

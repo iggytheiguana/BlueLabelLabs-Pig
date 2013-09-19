@@ -10,6 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "PIGIAPHelper.h"
 #import "Reachability.h"
+#import "Flurry+PIGFlurry.h"
 
 @interface PIGUpgradeViewController () {
     NSArray *_products;
@@ -45,6 +46,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [Flurry logEvent:@"UPGRADE_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     // Add Restore button to navigation bar
@@ -64,6 +67,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    [Flurry endTimedEvent:@"UPGRADE_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -150,6 +155,8 @@
 
 #pragma mark - UIAction Buttons
 - (IBAction)onUpgradeButtonPressed:(id)sender {
+    [Flurry logEvent:@"UPGRADE_SCREEN_UPGRADE_PRESSED" withParameters:[Flurry flurryUserParams]];
+    
     Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
     
     if (internetReachable.isReachable && [_products count] != 0) {

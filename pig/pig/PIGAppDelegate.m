@@ -9,7 +9,7 @@
 #import "PIGAppDelegate.h"
 #import "PIGIAPHelper.h"
 #import "PIGGCHelper.h"
-#import "Flurry.h"
+#import "Flurry+PIGFlurry.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation PIGAppDelegate

@@ -13,6 +13,7 @@
 #import "PIGMotionEffect.h"
 #import "PIGGameConstants.h"
 #import "UINavigationController+PIGCustomNavigationController.h"
+#import "Flurry+PIGFlurry.h"
 
 @interface PIGHomeViewController () {
     NSArray *_products;
@@ -75,6 +76,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [Flurry logEvent:@"HOME_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
+    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [PIGGCHelper sharedInstance].delegate = self;
@@ -96,6 +99,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    [Flurry endTimedEvent:@"HOME_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -165,6 +170,7 @@
 //                [self.btn_buyTwoPlayer setHidden:NO];
 //            }
         }
+        [Flurry logEvent:@"SESSION_START" withParameters:[Flurry flurryUserParams]];
     }];
 }
 

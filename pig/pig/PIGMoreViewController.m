@@ -7,6 +7,7 @@
 //
 
 #import "PIGMoreViewController.h"
+#import "Flurry+PIGFlurry.h"
 
 @interface PIGMoreViewController ()
 
@@ -32,7 +33,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [Flurry logEvent:@"MORE_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [Flurry endTimedEvent:@"MORE_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
 }
 
 - (void)didReceiveMemoryWarning

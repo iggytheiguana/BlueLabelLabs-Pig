@@ -10,6 +10,7 @@
 		5201335E17D864DB009679F0 /* dice-red-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335C17D864DB009679F0 /* dice-red-1.png */; };
 		5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335D17D864DB009679F0 /* dice-red-1@2x.png */; };
 		5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5209E37817EAEFF00081CED0 /* Crashlytics.framework */; };
+		5209E37C17EB75830081CED0 /* Flurry+PIGFlurry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */; };
 		5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162817D3BEF200F495E6 /* PIGMotionEffect.m */; };
 		5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */; };
 		5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5245623A17E0510E00F73533 /* PIGMoreTableViewController.m */; };
@@ -105,6 +106,8 @@
 		5201335C17D864DB009679F0 /* dice-red-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1.png"; sourceTree = "<group>"; };
 		5201335D17D864DB009679F0 /* dice-red-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1@2x.png"; sourceTree = "<group>"; };
 		5209E37817EAEFF00081CED0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5209E37A17EB75830081CED0 /* Flurry+PIGFlurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Flurry+PIGFlurry.h"; sourceTree = "<group>"; };
+		5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Flurry+PIGFlurry.m"; sourceTree = "<group>"; };
 		5223162717D3BEF200F495E6 /* PIGMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMotionEffect.h; sourceTree = "<group>"; };
 		5223162817D3BEF200F495E6 /* PIGMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMotionEffect.m; sourceTree = "<group>"; };
 		5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PIGCustomColors.h"; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */,
 				52640E9217E984B600A64624 /* UINavigationController+PIGCustomNavigationController.h */,
 				52640E9317E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m */,
+				5209E37A17EB75830081CED0 /* Flurry+PIGFlurry.h */,
+				5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -621,7 +626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run b53fcf08df9b183b382153735d57a10862fc5348";
+			shellScript = "#!/bin/bash\n\nbuildPlist=${INFOPLIST_FILE}\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" $buildPlist\n\n#Crashlytics\n./Crashlytics.framework/run b53fcf08df9b183b382153735d57a10862fc5348";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -641,6 +646,7 @@
 				52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */,
 				5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */,
 				52B3E2EF17E03C81009C72DC /* PIGMoreViewController.m in Sources */,
+				5209E37C17EB75830081CED0 /* Flurry+PIGFlurry.m in Sources */,
 				52D0CBF417E5201B003E46A2 /* PIGMultiplayerViewController.m in Sources */,
 				52E4126217D00CF400F75335 /* IAPHelper.m in Sources */,
 				52640E9117E84AAD00A64624 /* PIGUpgradeViewController.m in Sources */,
@@ -794,8 +800,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Blue Label Solutions LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Blue Label Solutions LLC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
@@ -808,7 +814,7 @@
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F89EFD27-8003-4C15-AA0E-740B18C7112A";
+				PROVISIONING_PROFILE = "418165CB-593C-4672-8350-5CEF68E6BDB4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

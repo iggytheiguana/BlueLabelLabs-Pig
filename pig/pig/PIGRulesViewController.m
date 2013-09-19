@@ -8,6 +8,7 @@
 
 #import "PIGRulesViewController.h"
 #import "UIColor+PIGCustomColors.h"
+#import "Flurry+PIGFlurry.h"
 
 @interface PIGRulesViewController ()
 
@@ -36,7 +37,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [Flurry logEvent:@"RULES_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [Flurry endTimedEvent:@"RULES_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
 }
 
 - (void)didReceiveMemoryWarning
