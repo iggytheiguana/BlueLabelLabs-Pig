@@ -248,6 +248,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
 #pragma mark - Storyboard Methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
