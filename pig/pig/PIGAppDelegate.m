@@ -28,9 +28,6 @@
     // Check for IAP transactions
     [PIGIAPHelper sharedInstance];
     
-    // Enable shake gesture support
-    application.applicationSupportsShakeToEdit = YES;
-    
     return YES;
 }
 							
