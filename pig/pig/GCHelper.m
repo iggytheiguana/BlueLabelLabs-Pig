@@ -294,7 +294,21 @@ static GCHelper *sharedHelper = nil;
                            nextParticipants:nextParticipants
                                 turnTimeout:600
                                   matchData:match.matchData
-                          completionHandler:nil];
+                          completionHandler:^(NSError *error) {
+                              if (error) {
+                                  NSLog(@"Error Quiting Match %@", error);
+                              }
+                              else {
+                                  // delete the match from Game Center
+                                  [match removeWithCompletionHandler:^(NSError *error) {
+                                      if (error) {
+                                          NSLog(@"Error Removing Match %@", error.localizedDescription);
+                                      }
+                                      
+                                      [self.delegate sendNotice:@"Match removed" forMatch:match];
+                                  }];
+                              }
+                          }];
 }
 
 #pragma mark - GKLocalPlayerListener Protocol

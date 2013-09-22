@@ -22,6 +22,7 @@
 @implementation PIGMultiplayerViewController {
     NSArray *_existingMatches;
     UIActivityIndicatorView *m_ai_loadMatches;
+    GKTurnBasedMatch *_matchToDelete;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -173,9 +174,34 @@
 }
 
 - (IBAction)quitMatch:(GKTurnBasedMatch *)match {
+//    if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+//        [PIGGCHelper sharedInstance].delegate = self;
+//        [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil playerQuitForMatch:match];
+//    }
+//    else {
+//        [PIGGCHelper sharedInstance].delegate = self;
+//        [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
+//            if (error) {
+//                NSLog(@"%@", error.localizedDescription);
+//            }
+//        }];
+//    }
+//    
+//    [match removeWithCompletionHandler:^(NSError *error) {
+//        if (error) {
+//            NSLog(@"%@", error.localizedDescription);
+//        }
+//        else {
+//            _matchToDelete = nil;
+//            [self reloadTableView:nil];
+//        }
+//    }];
+    
     if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
         [PIGGCHelper sharedInstance].delegate = self;
         [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil playerQuitForMatch:match];
+        
+        _matchToDelete = nil;
     }
     else {
         [PIGGCHelper sharedInstance].delegate = self;
@@ -183,12 +209,19 @@
             if (error) {
                 NSLog(@"%@", error.localizedDescription);
             }
+            else {
+                [match removeWithCompletionHandler:^(NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error.localizedDescription);
+                    }
+                    
+                    _matchToDelete = nil;
+                }];
+            }
         }];
     }
     
-    [match removeWithCompletionHandler:^(NSError *error) {
-        [self reloadTableView:nil];
-    }];
+    [self reloadTableView:nil];
 }
 
 #pragma mark - Table view data source
@@ -403,8 +436,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Select the match associated with this row
+        _matchToDelete = [_existingMatches objectAtIndex:indexPath.row];
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game in Progress"
-                                                        message:@"Are you sure you want to remove this game?"
+                                                        message:@"Are you sure you want to remove and forfeit this game?"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Remove", nil];
@@ -543,9 +579,9 @@
 
 #pragma mark - UIAlert Delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex > 0 && buttonIndex < alertView.numberOfButtons) {
-        GKTurnBasedMatch *match = [_existingMatches objectAtIndex:[self.tableView indexPathForSelectedRow].row];
-        [self quitMatch:match];
+    if (buttonIndex == 1) {
+        // User confirmed "Delete" match
+        [self quitMatch:_matchToDelete];
     }
 }
 
