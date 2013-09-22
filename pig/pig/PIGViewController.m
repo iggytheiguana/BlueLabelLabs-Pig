@@ -223,9 +223,9 @@
     // Setup the start of the game
     [self reset];
     
-    // Used for testing
-    _score1 = 99;
-    _score2 = 99;
+//    // Used for testing
+//    _score1 = 99;
+//    _score2 = 99;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
