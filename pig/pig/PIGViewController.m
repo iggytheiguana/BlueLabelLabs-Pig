@@ -224,8 +224,8 @@
     [self reset];
     
     // Used for testing
-//    _score1 = 99;
-//    _score2 = 99;
+    _score1 = 99;
+    _score2 = 99;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1249,6 +1249,9 @@
             [self.btn_playerReady setEnabled:NO];
             [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\n%@", _namePlayer2] forState:UIControlStateNormal];
             
+            // We only report scores to Game Center for the logged in player.
+            // The only time the logged in player can be player 2 is in a Game Center multiplayer game.
+            // So whe check.
             if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
                 // Determine which player the current user is
                 NSString *player2ID = [_matchDataDict objectForKey:@"player2ID"];
@@ -1287,14 +1290,29 @@
             [self.btn_playerReady setEnabled:NO];
             [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Winner!\n%@", _namePlayer1] forState:UIControlStateNormal];
             
-            // Determine which player the current user is
-            NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
-            GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-            
-            if ([localPlayer.playerID isEqualToString:player1ID]) {
-                // Report the scores to Game Center and save in User Deafults
+            if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
+                // Determine which player the current user is
+                NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+                GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+                
+                if ([localPlayer.playerID isEqualToString:player1ID]) {
+                    // Report the scores to Game Center and save in User Deafults
+                    [self reportPlayerScore:_score1];
+                }
+            }
+            else {
+                // Report player 1's score to Game Center and save in User Deafults
                 [self reportPlayerScore:_score1];
             }
+            
+//            // Determine which player the current user is
+//            NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+//            GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+//            
+//            if ([localPlayer.playerID isEqualToString:player1ID]) {
+//                // Report the scores to Game Center and save in User Deafults
+//                [self reportPlayerScore:_score1];
+//            }
             
 //            int64_t totalScore = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
 //            totalScore = totalScore + _score1;
