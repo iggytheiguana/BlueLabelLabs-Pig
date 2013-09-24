@@ -209,6 +209,12 @@
         
         _matchDataDict = [[NSMutableDictionary alloc] init];
         
+        // For multiplayer games, we need to know when the app will go to the background to reach accordingly
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationWillResign)
+                                                     name:UIApplicationWillResignActiveNotification
+                                                   object:nil];
+        
 //        [self enterNewGame:nil];
     }
     
@@ -234,12 +240,22 @@
     [Flurry logEvent:@"GAMEPLAY_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
+        // For multiplayer games, we need to know when the app will go to the background to reach accordingly
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationWillResign)
+                                                     name:UIApplicationWillResignActiveNotification
+                                                   object:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [Flurry endTimedEvent:@"GAMEPLAY_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -796,6 +812,23 @@
     m_lbl_activePlayer = self.lbl_player2;
 }
 
+- (void)applicationWillResign {
+    NSLog(@"About to lose focus");
+    
+    // In a Game Center game, if the local player is not the current player of the match,
+    // we need to dismiss the game play view controller so that a reload is forced when the app reopens.
+    GKTurnBasedMatch *match = [[PIGGCHelper sharedInstance] currentMatch];
+    
+    if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+        // Local Player's turn
+        
+    }
+    else {
+        // Someone else's turn, we need to dismiss the this view controller
+        [self onQuitButtonPressed:nil];
+    }
+}
+
 #pragma mark - Phone Shake Handler
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
@@ -913,7 +946,7 @@
     
     int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
     
-    if ((int64_t)_score1 > highestGameScore) {
+    if ((int64_t)playerScore > highestGameScore) {
         [[PIGGCHelper sharedInstance] reportScore:(int64_t)playerScore forLeaderboardID:kLeaderboardIdentifierHighestGameScore];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New High Score!"

@@ -76,6 +76,12 @@
     
     [PIGGCHelper sharedInstance].delegate = self;
     
+    // We need to reload the tableview when the app resumes from background state
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
     [self reloadTableView:nil];
 }
 
@@ -83,6 +89,8 @@
     [super viewWillDisappear:animated];
     
     [Flurry endTimedEvent:@"MULTIPLAYER_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -221,6 +229,10 @@
         }];
     }
     
+    [self reloadTableView:nil];
+}
+
+- (void)applicationDidBecomeActive {
     [self reloadTableView:nil];
 }
 
