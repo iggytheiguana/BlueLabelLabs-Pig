@@ -222,9 +222,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2ww-4B-aIX">
-                                <rect key="frame" x="15" y="7" width="50" height="32"/>
+                                <rect key="frame" x="0.0" y="7" width="65" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Quit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -244,9 +245,10 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ag4-3Y-UmE">
-                                <rect key="frame" x="255" y="7" width="50" height="32"/>
+                                <rect key="frame" x="255" y="7" width="65" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                 <state key="normal" title="Rules">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -958,11 +960,21 @@
         <image name="button-buyTwoPlayer.png" width="284" height="126"/>
         <image name="buyTwoPlayer.png" width="111" height="105"/>
         <image name="dice-white-1.png" width="109" height="109"/>
+        <image name="dice-white-1.png" width="109" height="109"/>
+        <image name="pig-large-transparent.png" width="290" height="266"/>
         <image name="pig-large-transparent.png" width="290" height="266"/>
         <image name="pig-smiling.png" width="164" height="150"/>
         <image name="player-bg-blue-reverse.png" width="255" height="97"/>
+        <image name="player-bg-blue-reverse.png" width="255" height="97"/>
         <image name="player-bg-blue.png" width="255" height="97"/>
         <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="player-bg-pink.png" width="255" height="97"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="points-bg-white.png" width="79" height="79"/>
         <image name="points-bg-white.png" width="79" height="79"/>
         <image name="rabbit.png" width="35" height="25"/>
         <image name="rollTutorial.png" width="320" height="568"/>
