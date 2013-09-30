@@ -9,6 +9,7 @@
 #import "PIGRulesViewController.h"
 #import "UIColor+PIGCustomColors.h"
 #import "Flurry+PIGFlurry.h"
+#import "PIGGameConstants.h"
 
 @interface PIGRulesViewController ()
 
@@ -44,6 +45,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kRulesTutorialCompleted] == NO) {
+        // Save setting to user defaults so rules screen does not show automatically again
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kRulesTutorialCompleted];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     [Flurry endTimedEvent:@"RULES_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
 }

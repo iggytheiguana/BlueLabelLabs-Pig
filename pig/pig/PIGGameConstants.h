@@ -13,6 +13,7 @@
 #define kSettingsGameSpeed @"GameSpeedSetting"
 #define kSettingsVibrate @"settingsvibrate"
 #define kRollTutorialCompleted @"rolltutorialcompleted"
+#define kRulesTutorialCompleted @"rulestutorialcompleted"
 
 // Game Setup
 #define kTurnBasedGameMaxPlayers 2

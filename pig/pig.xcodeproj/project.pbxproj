@@ -814,7 +814,7 @@
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F89EFD27-8003-4C15-AA0E-740B18C7112A";
+				PROVISIONING_PROFILE = "418165CB-593C-4672-8350-5CEF68E6BDB4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

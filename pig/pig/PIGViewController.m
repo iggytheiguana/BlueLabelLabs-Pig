@@ -242,12 +242,16 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
+        [self.btn_quit setTitle:@"Back" forState:UIControlStateNormal];
+        
         // For multiplayer games, we need to know when the app will go to the background to reach accordingly
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(applicationWillResign)
                                                      name:UIApplicationWillResignActiveNotification
                                                    object:nil];
     }
+    
+    [self hideProgressView:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -398,6 +402,8 @@
     
     [self.btn_playerReady setHidden:NO];
     
+    _dice1 = 1;
+    _dice2 = 1;
     [self.btn_dice1 setImage:[_whiteDiceImages objectAtIndex:0] forState:UIControlStateNormal];
     [self.btn_dice2 setImage:[_whiteDiceImages objectAtIndex:0] forState:UIControlStateNormal];
 }
@@ -416,6 +422,10 @@
     else {
         [self.btn_dice1 setAdjustsImageWhenDisabled:YES];
         [self.btn_dice2 setAdjustsImageWhenDisabled:YES];
+        if (_dice1 == 0)
+            _dice1 = 1;
+        if (_dice2 == 0)
+            _dice2 = 1;
         [self.btn_dice1 setImage:[_whiteDiceImages objectAtIndex:_dice1-1] forState:UIControlStateNormal];
         [self.btn_dice2 setImage:[_whiteDiceImages objectAtIndex:_dice2-1] forState:UIControlStateNormal];
     }
@@ -445,6 +455,10 @@
     
     [self.btn_dice1 setEnabled:NO];
     [self.btn_dice2 setEnabled:NO];
+    
+    // Disable other navigation buttons so user cannot leave in the middle of a roll
+    [self.btn_quit setEnabled:NO];
+    [self.btn_rules setEnabled:NO];
     
     // Get the new roll value
     int rollValue = [self getRollValue];
@@ -656,6 +670,10 @@
                                                                                         
                                                                                         // Reset state properties
                                                                                         _canRollDice = YES;
+                                                                                        
+                                                                                        // Enable navigation buttons
+                                                                                        [self.btn_quit setEnabled:YES];
+                                                                                        [self.btn_rules setEnabled:YES];
                                                                                     }
                                                                     ];
                                                                }
@@ -826,6 +844,49 @@
     else {
         // Someone else's turn, we need to dismiss the this view controller
         [self onQuitButtonPressed:nil];
+    }
+}
+
+- (void)showProgressView:(BOOL)animated {
+    if (animated == YES) {
+        [self.v_progressView setAlpha:0.0];
+        [self.v_progressView setHidden:NO];
+        [self.ai_progress startAnimating];
+        [self.ai_progress setHidden:NO];
+        
+        [UIView animateWithDuration:0.35
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             [self.v_progressView setAlpha:0.2];
+                         }
+                         completion:nil];
+    }
+    else {
+        [self.v_progressView setHidden:NO];
+        [self.ai_progress startAnimating];
+        [self.ai_progress setHidden:NO];
+    }
+}
+
+- (void)hideProgressView:(BOOL)animated {
+    if (animated == YES) {
+        [UIView animateWithDuration:0.35
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             [self.v_progressView setAlpha:0.0];
+                         }
+                         completion:^(BOOL finished){
+                             [self.ai_progress stopAnimating];
+                             [self.ai_progress setHidden:YES];
+                             [self.v_progressView setHidden:YES];
+                         }];
+    }
+    else {
+        [self.ai_progress stopAnimating];
+        [self.ai_progress setHidden:YES];
+        [self.v_progressView setHidden:YES];
     }
 }
 
@@ -1011,6 +1072,9 @@
 }
 
 - (IBAction)sendTurn:(id)sender {
+    // Show the progress view until the turn is sent
+    [self showProgressView:YES];
+    
     GKTurnBasedMatch *currentMatch = [[PIGGCHelper sharedInstance] currentMatch];
     
     NSData *data = [self packupMatchState:currentMatch];
@@ -1036,6 +1100,8 @@
             if (error) {
                 NSLog(@"%@", error);
             }
+            
+            [self hideProgressView:YES];
         }];
         NSLog(@"Game has ended.");
     } else {
@@ -1065,6 +1131,8 @@
                 [self.btn_playerReady setBackgroundImage:[UIImage imageNamed:@"button-bg-large-grey.png"] forState:UIControlStateNormal];
                 [self.btn_playerReady setTitle:statusString forState:UIControlStateNormal];
             }
+            
+            [self hideProgressView:YES];
         }];
         
         [self.btn_playerReady setEnabled:NO];
@@ -1257,6 +1325,11 @@
     // Reset the dice
     [self.btn_dice1 setAdjustsImageWhenDisabled:YES];
     [self.btn_dice2 setAdjustsImageWhenDisabled:YES];
+    
+    if (_dice1 == 0)
+        _dice1 = 1;
+    if (_dice2 == 0)
+        _dice2 = 1;
     [self.btn_dice1 setImage:[_whiteDiceImages objectAtIndex:_dice1-1] forState:UIControlStateNormal];
     [self.btn_dice2 setImage:[_whiteDiceImages objectAtIndex:_dice2-1] forState:UIControlStateNormal];
     

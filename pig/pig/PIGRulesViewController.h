@@ -17,6 +17,7 @@
 @property (weak, nonatomic) id <PIGRulesViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIScrollView *sv_scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_lastRule;
+@property (weak, nonatomic) IBOutlet UIButton *btn_close;
 
 - (IBAction)onCloseButtonPressed:(id)sender;
 

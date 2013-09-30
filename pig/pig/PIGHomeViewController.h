@@ -11,8 +11,9 @@
 #import "PIGViewController.h"
 #import "PIGMoreViewController.h"
 #import "PIGMultiplayerViewController.h"
+#import "PIGRulesViewController.h"
 
-@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, PIGMultiplayerViewControllerDelegate, GCHelperDelegate >
+@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, PIGMultiplayerViewControllerDelegate, GCHelperDelegate, PIGRulesViewControllerDelegate >
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_onePlayer;
 @property (weak, nonatomic) IBOutlet UIButton *btn_twoPlayer;

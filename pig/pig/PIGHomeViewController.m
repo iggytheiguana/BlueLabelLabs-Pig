@@ -97,6 +97,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedTransaction:) name:IAPHelperFailedTransactionNotification object:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // Show the Rules screen is this is the first time launching the app
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kRulesTutorialCompleted] == NO) {
+        PIGRulesViewController *rulesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RulesIdentifier"];
+        rulesViewController.delegate = self;
+        [self.navigationController pushViewController:rulesViewController animated:YES];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -150,6 +161,11 @@
 #pragma mark - PIGMoreViewController Delegate
 - (void)pigMoreViewControllerDidClose {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - PIGRulesViewController Delegate
+- (void)pigRulesViewControllerDidClose {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - In App Purchase Methods

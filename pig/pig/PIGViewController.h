@@ -44,6 +44,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_winnerPlayer2;
 @property (weak, nonatomic) IBOutlet UIButton *btn_rollTutorial;
 @property (weak, nonatomic) IBOutlet UIButton *btn_quit;
+@property (weak, nonatomic) IBOutlet UIButton *btn_rules;
+@property (weak, nonatomic) IBOutlet UIView *v_progressView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ai_progress;
 
 - (IBAction)onQuitButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;
