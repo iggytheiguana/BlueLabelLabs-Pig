@@ -10,6 +10,7 @@
 #import "PIGIAPHelper.h"
 #import "PIGGCHelper.h"
 #import "Flurry+PIGFlurry.h"
+#import "PIGGameConstants.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation PIGAppDelegate
@@ -20,6 +21,9 @@
     
     // Start Crashlytics
     [Crashlytics startWithAPIKey:@"b53fcf08df9b183b382153735d57a10862fc5348"];
+    
+    // Update the app version in the User Defaults
+    [self updateAppVersionUserDefaultSetting];
     
     // Start Flurry
     [Flurry setCrashReportingEnabled:YES];
@@ -56,6 +60,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Instance Methods
+- (void)updateAppVersionUserDefaultSetting {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* appVersionCurrent = [infoDict objectForKey:@"CFBundleShortVersionString"];
+    
+    // Save the current app version
+    [userDefaults setObject:appVersionCurrent forKey:kAppVersion];
+    
+    [userDefaults synchronize];
 }
 
 @end

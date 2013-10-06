@@ -28,7 +28,7 @@
     int _turnScore;
     int _doubleCount;
     int _turnThreshold;
-    int _turnCountPlayer1;
+    int _turnCountPlayer1;  // Used for perfect game achievement tracking
     BOOL _canRollDice;
     BOOL _winner1;
     BOOL _winner2;
@@ -40,6 +40,9 @@
     NSString *_namePlayer2;
     NSArray *_whiteDiceImages;
     NSMutableDictionary *_matchDataDict;
+    
+    UIAlertView *_av_leaderboard;
+    UIAlertView *_av_turnReview;
 }
 
 @property (nonatomic) UIDynamicAnimator *animator;
@@ -83,6 +86,7 @@
         _namePlayer1 = @"Player 1";
     }
     [self.lbl_namePlayer1 setText:_namePlayer1];
+    [self.lbl_namePlayer1Small setText:_namePlayer1];
     
     if (self.gameType == kONEPLAYERGAME) {
         _namePlayer2 = @"Computer";
@@ -94,6 +98,7 @@
         _namePlayer2 = @"Player 2";
     }
     [self.lbl_namePlayer2 setText:_namePlayer2];
+    [self.lbl_namePlayer2Small setText:_namePlayer2];
     
     // Add dynamic animations to the player labels
     UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -173,6 +178,7 @@
 //    [self.v_containerPlayer1 addMotionEffect:motionEffect];
     
     // Setup game speed from user's last setting
+    [self.lbl_gameSpeed setHidden:YES];
     _gameSpeedMultiplier = [[NSUserDefaults standardUserDefaults] floatForKey:kSettingsGameSpeed];
     if (_gameSpeedMultiplier == 0) {
         // Default to slow game speed
@@ -207,7 +213,7 @@
 //        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:YES];
 //        [PIGGCHelper sharedInstance].delegate = self;
         
-        _matchDataDict = [[NSMutableDictionary alloc] init];
+//        _matchDataDict = [[NSMutableDictionary alloc] init];
         
         // For multiplayer games, we need to know when the app will go to the background to reach accordingly
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -366,7 +372,51 @@
     }
 }
 
+//- (void)reset {
+//    // Reset gameplay instance variables
+//    _score1 = 0;
+//    _score2 = 0;
+//    _turnScore = 0;
+//    _doubleCount = 0;
+//    _turnCountPlayer1 = 0;
+//    _winner1 = NO;
+//    _winner2 = NO;
+//    _gameOver = NO;
+//    _landedOn100 = NO;
+//    _perfectGamePlayer1 = YES;
+//    
+//    // Setup Player 1 to start the game
+//    [self playerOneActive];
+//    
+//    // Setup Button and Label states
+//    [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
+//    [self.lbl_player2 setText:[NSString stringWithFormat:@"%d", _score2]];
+//    [self.lbl_rollValue setHidden:YES];
+//    [self.iv_rollImage setHidden:YES];
+//    [self.iv_winImage setHidden:YES];
+//    [self.btn_dice1 setHidden:YES];
+//    [self.btn_dice2 setHidden:YES];
+//    [self.btn_playerReady setEnabled:YES];
+//    [self.btn_pass setHidden:YES];
+//    [self.btn_newGame setHidden:YES];
+//    [self.lbl_winnerPlayer1 setHidden:YES];
+//    [self.lbl_winnerPlayer2 setHidden:YES];
+//    
+//    [self.btn_playerReady setHidden:NO];
+//    
+//    _dice1 = 1;
+//    _dice2 = 1;
+//    [self.btn_dice1 setImage:[_whiteDiceImages objectAtIndex:0] forState:UIControlStateNormal];
+//    [self.btn_dice2 setImage:[_whiteDiceImages objectAtIndex:0] forState:UIControlStateNormal];
+//}
+
 - (void)reset {
+    // Defualt reset to Player One
+    [self resetToPlayer:kPLAYERONE];
+}
+
+
+- (void)resetToPlayer:(int)player {
     // Reset gameplay instance variables
     _score1 = 0;
     _score2 = 0;
@@ -379,16 +429,28 @@
     _landedOn100 = NO;
     _perfectGamePlayer1 = YES;
     
-    // Setup Player 1 to start the game
-    [self playerOneActive];
-    
-//    [self.btn_playerReady setBackgroundImage:[UIImage imageNamed:@"button-bg-large-pink.png"] forState:UIControlStateNormal];
-//    [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Player 1 Ready"] forState:UIControlStateNormal];
-    
-    [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
-    [self.lbl_player2 setText:[NSString stringWithFormat:@"%d", _score2]];
+    if (player == kPLAYERONE) {
+        // Setup Player 1 to start the game
+        [self playerOneActive];
+        
+        [self.lbl_namePlayer1 setHidden:NO];
+        [self.lbl_namePlayer1Small setHidden:YES];
+        [self.lbl_namePlayer2 setHidden:YES];
+        [self.lbl_namePlayer2Small setHidden:NO];
+    }
+    else {
+        // Setup Player 2 to start the game
+        [self playerTwoActive];
+        
+        [self.lbl_namePlayer1 setHidden:YES];
+        [self.lbl_namePlayer1Small setHidden:NO];
+        [self.lbl_namePlayer2 setHidden:NO];
+        [self.lbl_namePlayer2Small setHidden:YES];
+    }
     
     // Setup Button and Label states
+    [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
+    [self.lbl_player2 setText:[NSString stringWithFormat:@"%d", _score2]];
     [self.lbl_rollValue setHidden:YES];
     [self.iv_rollImage setHidden:YES];
     [self.iv_winImage setHidden:YES];
@@ -412,6 +474,11 @@
     _dice1 = arc4random_uniform(6) + 1;
     _dice2 = arc4random_uniform(6) + 1;
     
+    if (_dice1 == 0)
+        _dice1 = 1;
+    if (_dice2 == 0)
+        _dice2 = 1;
+    
     if (_dice1 == 1 && _dice2 == 1) {
         // Snake eyes rolled
         [self.btn_dice1 setAdjustsImageWhenDisabled:NO];
@@ -422,10 +489,6 @@
     else {
         [self.btn_dice1 setAdjustsImageWhenDisabled:YES];
         [self.btn_dice2 setAdjustsImageWhenDisabled:YES];
-        if (_dice1 == 0)
-            _dice1 = 1;
-        if (_dice2 == 0)
-            _dice2 = 1;
         [self.btn_dice1 setImage:[_whiteDiceImages objectAtIndex:_dice1-1] forState:UIControlStateNormal];
         [self.btn_dice2 setImage:[_whiteDiceImages objectAtIndex:_dice2-1] forState:UIControlStateNormal];
     }
@@ -780,6 +843,11 @@
         
         [self.animator addBehavior:self.player1SnapBehavior];
         [self.animator addBehavior:self.player2SnapBehavior];
+        
+        [self.lbl_namePlayer1 setHidden:NO];
+        [self.lbl_namePlayer1Small setHidden:YES];
+        [self.lbl_namePlayer2 setHidden:YES];
+        [self.lbl_namePlayer2Small setHidden:NO];
     }
     
     [self.iv_circlePlayer1 setHidden:NO];
@@ -811,6 +879,11 @@
         
         [self.animator addBehavior:self.player1SnapBehavior];
         [self.animator addBehavior:self.player2SnapBehavior];
+        
+        [self.lbl_namePlayer1 setHidden:YES];
+        [self.lbl_namePlayer1Small setHidden:NO];
+        [self.lbl_namePlayer2 setHidden:NO];
+        [self.lbl_namePlayer2Small setHidden:YES];
     }
     
     [self.iv_circlePlayer1 setHidden:YES];
@@ -1015,7 +1088,8 @@
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Leaderboard", nil];
-        [alert show];
+        _av_leaderboard = alert;
+        [_av_leaderboard show];
     }
     [[PIGGCHelper sharedInstance] reportScore:totalScore forLeaderboardID:kLeaderboardIdentifierTotalScore];
 }
@@ -1151,13 +1225,20 @@
     [_matchDataDict setObject:_namePlayer1 forKey:@"player1Name"];
     [_matchDataDict setObject:_namePlayer2 forKey:@"player2Name"];
     
-    NSData *data = [NSPropertyListSerialization dataFromPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+//    NSData *data = [NSPropertyListSerialization dataFromPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+//    NSData *data = [NSPropertyListSerialization dataWithPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_matchDataDict];
     
     return data;
 }
 
 - (void)unpackMatchState:(GKTurnBasedMatch *)match {
-    NSDictionary *gameDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+//    NSDictionary *gameDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+//    NSMutableDictionary *gameDict = [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:nil error:nil];
+    
+    NSMutableDictionary *gameDict = (NSMutableDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+    
     _matchDataDict = [NSMutableDictionary dictionaryWithDictionary:gameDict];
     
     // Update the game state
@@ -1176,36 +1257,97 @@
     // Update the player score labels
     [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
     [self.lbl_player2 setText:[NSString stringWithFormat:@"%d", _score2]];
+    
+    // Update the player name labels
+    [self.lbl_namePlayer1 setText:[NSString stringWithFormat:@"%@", _namePlayer1]];
+    [self.lbl_namePlayer1Small setText:[NSString stringWithFormat:@"%@", _namePlayer1]];
+    [self.lbl_namePlayer2 setText:[NSString stringWithFormat:@"%@", _namePlayer2]];
+    [self.lbl_namePlayer2Small setText:[NSString stringWithFormat:@"%@", _namePlayer2]];
 }
 
 #pragma mark - GCHelperDelegate Multiplayer Methods
 -(void)enterNewGame:(GKTurnBasedMatch *)match {
     NSLog(@"Entering new game...");
     
-    // Setup the match data dictionary
-    NSDictionary *gameDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:0], @"score1",
-                              [NSNumber numberWithInt:0], @"score2",
-                              [GKLocalPlayer localPlayer].playerID, @"player1ID",
-                              nil, @"player2ID",
-                              _namePlayer1, @"player1Name",
-                              _namePlayer2, @"player2Name",
-                              [NSNumber numberWithBool:_winner1], @"winner1",
-                              [NSNumber numberWithBool:_winner2], @"winner2",
-                              [NSNumber numberWithBool:_gameOver], @"gameOver",
-                      nil];
-    _matchDataDict = [NSMutableDictionary dictionaryWithDictionary:gameDict];
+//    // Setup the match data dictionary
+//    NSDictionary *gameDict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                              [NSNumber numberWithInt:0], @"score1",
+//                              [NSNumber numberWithInt:0], @"score2",
+//                              [GKLocalPlayer localPlayer].playerID, @"player1ID",
+//                              @"G:XXXXXXXXXX", @"player2ID",
+//                              _namePlayer1, @"player1Name",
+//                              _namePlayer2, @"player2Name",
+//                              [NSNumber numberWithBool:_winner1], @"winner1",
+//                              [NSNumber numberWithBool:_winner2], @"winner2",
+//                              [NSNumber numberWithBool:_gameOver], @"gameOver",
+//                      nil];
+//    _matchDataDict = [NSMutableDictionary dictionaryWithDictionary:gameDict];
+    
+    // If we have a match data dictionary, we are starting a rematch.
+    // Reset the game state data, but keep the player data.
+    if (_matchDataDict) {
+        // Update scores and game state in match data
+        [_matchDataDict setObject:[NSNumber numberWithInt:0] forKey:@"score1"];
+        [_matchDataDict setObject:[NSNumber numberWithInt:0] forKey:@"score2"];
+        [_matchDataDict setObject:[NSNumber numberWithBool:_winner1] forKey:@"winner1"];
+        [_matchDataDict setObject:[NSNumber numberWithBool:_winner2] forKey:@"winner2"];
+        [_matchDataDict setObject:[NSNumber numberWithBool:_gameOver] forKey:@"gameOver"];
+    }
+    // Else determine which player the current user is so we can setup the match data dictionary
+    else if (m_lbl_activePlayer == self.lbl_player1) {
+        // The current user is player 1
+        _matchDataDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithInt:0], @"score1",
+                          [NSNumber numberWithInt:0], @"score2",
+                          [GKLocalPlayer localPlayer].playerID, @"player1ID",
+                          @"G:XXXXXXXXXX", @"player2ID",
+                          _namePlayer1, @"player1Name",
+                          _namePlayer2, @"player2Name",
+                          [NSNumber numberWithBool:_winner1], @"winner1",
+                          [NSNumber numberWithBool:_winner2], @"winner2",
+                          [NSNumber numberWithBool:_gameOver], @"gameOver",
+                          nil];
+    }
+    else {
+        // The current user is player 2
+        _matchDataDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithInt:0], @"score1",
+                          [NSNumber numberWithInt:0], @"score2",
+                          @"G:XXXXXXXXXX", @"player1ID",
+                          [GKLocalPlayer localPlayer].playerID, @"player2ID",
+                          _namePlayer1, @"player1Name",
+                          _namePlayer2, @"player2Name",
+                          [NSNumber numberWithBool:_winner1], @"winner1",
+                          [NSNumber numberWithBool:_winner2], @"winner2",
+                          [NSNumber numberWithBool:_gameOver], @"gameOver",
+                          nil];
+    }
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
     NSLog(@"Taking turn for existing game...");
     
-    if ([match.matchData bytes]) {
-        // Update scores and game state from match data
-        [self unpackMatchState:match];
+    // Update scores and game state from match data
+    [self unpackMatchState:match];
+    
+    [self vibrate];
+    
+    if (match.status == GKTurnBasedMatchStatusEnded) {
+        [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Match Ended"] forState:UIControlStateNormal];
         
-        [self vibrate];
-        
+        if (_gameOver == YES) {
+            // Game has ended, advance play to show end state animations
+            [self onPassButtonPressed:nil];
+        }
+        else {
+            // Game ended because a player forfeited
+            [self tieGame];
+        }
+    }
+    else if (match.status == GKTurnBasedMatchOutcomeTied) {
+        [self tieGame];
+    }
+    else {
         // Determine which player the current user is
         NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
         GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
@@ -1214,6 +1356,10 @@
             // The current user is player 1
             _namePlayer1 = localPlayer.alias;
             _namePlayer2 = [_matchDataDict objectForKey:@"player2Name"];
+            
+            // Now that we know who Player 1 is we can update the ID in the match data
+            [_matchDataDict setObject:localPlayer.playerID forKey:@"player1ID"];
+            [_matchDataDict setObject:localPlayer.alias forKey:@"player1Name"];
             
             [self playerOneActive];
         }
@@ -1230,10 +1376,47 @@
         }
         
         [self.lbl_namePlayer1 setText:_namePlayer1];
+        [self.lbl_namePlayer1Small setText:_namePlayer1];
         [self.lbl_namePlayer2 setText:_namePlayer2];
+        [self.lbl_namePlayer2Small setText:_namePlayer2];
         
         [self.btn_playerReady setEnabled:YES];
     }
+    
+//    if ([match.matchData bytes]) {
+//        // Update scores and game state from match data
+//        [self unpackMatchState:match];
+//        
+//        [self vibrate];
+//        
+//        // Determine which player the current user is
+//        NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+//        GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+//        
+//        if ([localPlayer.playerID isEqualToString:player1ID]) {
+//            // The current user is player 1
+//            _namePlayer1 = localPlayer.alias;
+//            _namePlayer2 = [_matchDataDict objectForKey:@"player2Name"];
+//            
+//            [self playerOneActive];
+//        }
+//        else {
+//            // The current user is player 2
+//            _namePlayer1 = [_matchDataDict objectForKey:@"player1Name"];
+//            _namePlayer2 = localPlayer.alias;
+//            
+//            // Now that we know who Player 2 is we can update the ID in the match data
+//            [_matchDataDict setObject:localPlayer.playerID forKey:@"player2ID"];
+//            [_matchDataDict setObject:localPlayer.alias forKey:@"player2Name"];
+//            
+//            [self playerTwoActive];
+//        }
+//        
+//        [self.lbl_namePlayer1 setText:_namePlayer1];
+//        [self.lbl_namePlayer2 setText:_namePlayer2];
+//        
+//        [self.btn_playerReady setEnabled:YES];
+//    }
 }
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
@@ -1248,7 +1431,7 @@
         [self.btn_playerReady setTitle:[NSString stringWithFormat:@"Match Ended"] forState:UIControlStateNormal];
         
         if (_gameOver == YES) {
-            // Game has ended, andvance play to show end state animations
+            // Game has ended, advance play to show end state animations
             [self onPassButtonPressed:nil];
         }
         else {
@@ -1289,8 +1472,10 @@
 
 #pragma mark - UIAlert Delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex > 0 && buttonIndex < alertView.numberOfButtons) {
-        [self showLeaderboard:kLeaderboardIdentifierHighestGameScore];
+    if (alertView == _av_leaderboard) {
+        if (buttonIndex > 0 && buttonIndex < alertView.numberOfButtons) {
+            [self showLeaderboard:kLeaderboardIdentifierHighestGameScore];
+        }
     }
 }
 
@@ -1520,7 +1705,12 @@
                              }
              ];
             
-            if (self.gameType != kTWOPLAYERGAMEGAMECENTER) {
+            if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
+                [self.btn_newGame setTitle:@"REMATCH" forState:UIControlStateNormal];
+                [self.btn_newGame setHidden:NO];
+            }
+            else {
+                [self.btn_newGame setTitle:@"NEW GAME" forState:UIControlStateNormal];
                 [self.btn_newGame setHidden:NO];
             }
         }
@@ -1572,22 +1762,33 @@
 }
 
 - (IBAction)onNewGameButtonPressed:(id)sender {
-//    if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
-////        GKTurnBasedMatch *match = [PIGGCHelper sharedInstance].currentMatch;
-////        [match rematchWithCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
-////            if (error) {
-////                NSLog(@"%@", error);
-////            }
-////            else {
-////                // Start a new match
-////                [self reset];
-////                
-////                [PIGGCHelper sharedInstance].currentMatch = match;
-////                [PIGGCHelper sharedInstance].delegate = self;
-////                [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
-////            }
-////        }];
-//        
+    if (self.gameType == kTWOPLAYERGAMEGAMECENTER) {
+        GKTurnBasedMatch *match = [PIGGCHelper sharedInstance].currentMatch;
+        [match rematchWithCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
+            if (error) {
+                NSLog(@"%@", error);
+            }
+            else {
+                // Determine which player the current user is so we can reset the current match appropriately
+                NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+                GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+                
+                if ([localPlayer.playerID isEqualToString:player1ID]) {
+                    // The current user is player 1
+                    [self resetToPlayer:kPLAYERONE];
+                }
+                else {
+                    // The current user is player 2
+                    [self resetToPlayer:kPLAYERTWO];
+                }
+                
+                // Start a new match
+                [PIGGCHelper sharedInstance].currentMatch = match;
+                [PIGGCHelper sharedInstance].delegate = self;
+                [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
+            }
+        }];
+        
 //        // Start a new match
 //        [self reset];
 //        
@@ -1607,12 +1808,12 @@
 //        
 //        [PIGGCHelper sharedInstance].delegate = self;
 //        [[PIGGCHelper sharedInstance] player:localPlayer didRequestMatchWithPlayers:opponents];
-//    }
-//    else {
-//        [self reset];
-//    }
+    }
+    else {
+        [self reset];
+    }
     
-    [self reset];
+//    [self reset];
 }
 
 - (IBAction)onGameSpeedValueChanged:(id)sender {
@@ -1621,16 +1822,42 @@
         [Flurry logEvent:@"GAMEPLAY_SCREEN_SPEEDSLOW" withParameters:[Flurry flurryUserParams]];
         
         _gameSpeedMultiplier = kSLOWGAME;
+        
+        self.lbl_gameSpeed.text = @"Slow Animations";
     }
     else {
         [Flurry logEvent:@"GAMEPLAY_SCREEN_SPEEDFAST" withParameters:[Flurry flurryUserParams]];
         
         _gameSpeedMultiplier = kFASTGAME;
+        
+        self.lbl_gameSpeed.text = @"Fast Animations";
     }
 
     // Save setting to user defaults
     [[NSUserDefaults standardUserDefaults] setFloat:_gameSpeedMultiplier forKey:kSettingsGameSpeed];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // Show the new game speed label
+    [self.lbl_gameSpeed setAlpha:0.0];
+    [self.lbl_gameSpeed setHidden:NO];
+    
+    [UIView animateWithDuration:0.45
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [self.lbl_gameSpeed setAlpha:1.0];
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:0.35
+                                               delay:0.5
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              [self.lbl_gameSpeed setAlpha:0.0];
+                                          }
+                                          completion:^(BOOL finished){
+                                              [self.lbl_gameSpeed setHidden:YES];
+                                          }];
+                     }];
 }
 
 - (IBAction)onRollTutorialButtonPressed:(id)sender {

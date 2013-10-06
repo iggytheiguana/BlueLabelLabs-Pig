@@ -36,15 +36,42 @@ static PIGGCHelper *sharedHelper = nil;
     return self;
 }
 
+#pragma mark - Instance Methods
+//- (void)forceDeleteAllGames {
+//    // We need to force a reset of all Game Center two player games if launching for the first time into v1.0.2
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    
+//    // Get the app version from the User Defaults, and compare it to this version.
+//    NSString* appVersionUser = [userDefaults objectForKey:kAppVersion];
+//    
+//    // Check if we have already performed this delete
+//    BOOL deleteCompleted = [userDefaults boolForKey:kUpdatedToVersion1_0_2];
+//    
+//    if (deleteCompleted == NO &&
+//        (appVersionUser == nil || ([@"1.0.2" caseInsensitiveCompare:appVersionUser] == NSOrderedDescending))) {
+//        // This is the first run of the app since the update to v1.0.2.
+//        // We need to delete all active Game Center matches
+//        
+//        [self deleteAllMatches];
+//        
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUpdatedToVersion1_0_2];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//    }
+//}
+
 - (void)authenticationChanged {
     [super authenticationChanged];
     
     if ([GKLocalPlayer localPlayer].isAuthenticated && _playerAuthenticated) {
+//        // Due to change of MatchData format in v1.0.2 we need to delete all matches this user is a part of
+//        [self forceDeleteAllGames];
+        
+        // Player authenticated
         [self getHighestGameScore];
         [self getTotalScore];
     }
     else if (![GKLocalPlayer localPlayer].isAuthenticated && !_playerAuthenticated) {
-        
+        // Player NOT authenticated
     }
 }
 
@@ -134,6 +161,75 @@ static PIGGCHelper *sharedHelper = nil;
     
     // Do anything else
     
+}
+
+#pragma mark GKTurnBasedMatch Methods
+- (void)playerQuitOutOfTurnForMatch:(GKTurnBasedMatch *)match {
+    [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        else {
+            // delete the match from Game Center
+            [match removeWithCompletionHandler:^(NSError *error) {
+                if (error) {
+                    NSLog(@"Error Removing Match %@", error.localizedDescription);
+                }
+                
+                [self.delegate sendNotice:@"Match removed" forMatch:match];
+            }];
+        }
+    }];
+}
+
+#pragma mark GKTurnBasedMatchmakerViewControllerDelegate
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
+    NSLog(@"Player quit for Match, %@, %@", match, match.currentParticipant);
+    
+    NSUInteger currentIndex = [match.participants indexOfObject:match.currentParticipant];
+    GKTurnBasedParticipant *participant;
+    
+    NSMutableArray *nextParticipants = [NSMutableArray array];
+    for (int i = 0; i < [match.participants count]; i++) {
+        participant = [match.participants objectAtIndex:(currentIndex + 1 + i) % match.participants.count];
+        if (participant.matchOutcome == GKTurnBasedMatchOutcomeNone) {
+            participant.matchOutcome = GKTurnBasedMatchOutcomeTied;
+            [nextParticipants addObject:participant];
+        }
+    }
+    
+    if ([nextParticipants count] > 0) {
+        // Quit the player out of the game, then delete the match
+        [match participantQuitInTurnWithOutcome:GKTurnBasedMatchOutcomeQuit
+                               nextParticipants:nextParticipants
+                                    turnTimeout:600
+                                      matchData:match.matchData
+                              completionHandler:^(NSError *error) {
+                                  if (error) {
+                                      NSLog(@"Error Quiting Match %@", error);
+                                  }
+                                  else {
+                                      // delete the match from Game Center
+                                      [match removeWithCompletionHandler:^(NSError *error) {
+                                          if (error) {
+                                              NSLog(@"Error Removing Match %@", error.localizedDescription);
+                                          }
+                                          
+                                          [self.delegate sendNotice:@"Match removed" forMatch:match];
+                                      }];
+                                  }
+                              }];
+    }
+    else {
+        // No other participants, delete the match from Game Center
+        [match removeWithCompletionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"Error Removing Match %@", error.localizedDescription);
+            }
+            
+            [self.delegate sendNotice:@"Match removed" forMatch:match];
+        }];
+    }
 }
 
 

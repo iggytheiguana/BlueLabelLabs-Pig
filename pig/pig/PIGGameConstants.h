@@ -14,10 +14,12 @@
 #define kSettingsVibrate @"settingsvibrate"
 #define kRollTutorialCompleted @"rolltutorialcompleted"
 #define kRulesTutorialCompleted @"rulestutorialcompleted"
+#define kAppVersion @"AppVersion"
+#define kUpdatedToVersion1_0_2 @"UpdatedToVersion1_0_2"
 
 // Game Setup
-#define kTurnBasedGameMaxPlayers 2
 #define kTurnBasedGameMinPlayers 2
+#define kTurnBasedGameMaxPlayers 2
 
 // User Scores
 #define kTotalScorePlayer @"totalscoreplayer"
@@ -42,5 +44,10 @@ typedef enum {
     kTWOPLAYERGAMELOCAL,
     kTWOPLAYERGAMEGAMECENTER
 } GameType;
+
+typedef enum {
+    kPLAYERONE,
+    kPLAYERTWO
+} Player;
 
 #endif

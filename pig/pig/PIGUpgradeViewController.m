@@ -172,7 +172,7 @@
         [self loadIAPs];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot connect to iTunes Store"
-                                                        message:nil
+                                                        message:@"No internet connection available."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -181,10 +181,26 @@
 }
 
 - (void)onRestoreButtonPressed:(id)sender {
-    [self.navigationItem setTitleView:m_ai_RestorePurchases];
-    [m_ai_RestorePurchases startAnimating];
+    [Flurry logEvent:@"UPGRADE_SCREEN_RESTORE_PRESSED" withParameters:[Flurry flurryUserParams]];
     
-    [[PIGIAPHelper sharedInstance] restoreCompletedTransactions];
+    Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
+    
+    if (internetReachable.isReachable && [_products count] != 0) {
+        [self.navigationItem setTitleView:m_ai_RestorePurchases];
+        [m_ai_RestorePurchases startAnimating];
+        
+        [[PIGIAPHelper sharedInstance] restoreCompletedTransactions];
+    }
+    else {
+        [self loadIAPs];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot connect to iTunes Store"
+                                                        message:@"No internet connection available."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end

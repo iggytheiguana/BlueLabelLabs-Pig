@@ -14,4 +14,10 @@
 - (void)getHighestGameScore;
 - (void)getTotalScore;
 
+#pragma mark GKTurnBasedMatch Methods
+- (void)playerQuitOutOfTurnForMatch:(GKTurnBasedMatch *)match;
+
+#pragma mark GKTurnBasedMatchmakerViewControllerDelegate
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match;
+
 @end

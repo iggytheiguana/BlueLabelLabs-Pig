@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_playerReady;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_namePlayer1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_namePlayer2;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_namePlayer1Small;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_namePlayer2Small;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_player1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_player2;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_rollValue;
@@ -47,6 +49,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_rules;
 @property (weak, nonatomic) IBOutlet UIView *v_progressView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ai_progress;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_gameSpeed;
 
 - (IBAction)onQuitButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;

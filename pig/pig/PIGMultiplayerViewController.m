@@ -14,6 +14,7 @@
 #import "PIGIAPHelper.h"
 #import "PIGMultiplayerCell.h"
 #import "Flurry+PIGFlurry.h"
+#import "Reachability.h"
 
 @interface PIGMultiplayerViewController ()
 
@@ -23,6 +24,10 @@
     NSArray *_existingMatches;
     UIActivityIndicatorView *m_ai_loadMatches;
     GKTurnBasedMatch *_matchToDelete;
+    
+    UIActionSheet *_as_newGame;
+    UIAlertView *_av_noInternet;
+    UIAlertView *_av_deleteMatch;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -101,11 +106,30 @@
 
 #pragma mark - Instance Methods
 -(void)reloadTableView:(id)sender {
-//    [self.refreshControl beginRefreshing];
+    Reachability *internetReachable = [Reachability reachabilityWithHostname:@"www.itunes.com"];
     
-//    if (self.tableView.contentOffset.y == 0.0) {
-//        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-//    }
+    if (internetReachable.isReachable == NO) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No internet connection available"
+                                                        message:@"Game Center matches cannot be loaded. Do you want to start a Local Two Player Match?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Local Match", nil];
+        _av_noInternet = alert;
+        [_av_noInternet show];
+        
+        if ([sender isKindOfClass:[UIRefreshControl class]] == NO) {
+            [m_ai_loadMatches stopAnimating];
+            [self.navigationItem setTitleView:nil];
+        }
+        else {
+            [self.refreshControl endRefreshing];
+        }
+        
+        // Enable the New Game button
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        
+        return;
+    }
     
     if ([sender isKindOfClass:[UIRefreshControl class]] == NO) {
         [self.navigationItem setTitleView:m_ai_loadMatches];
@@ -148,22 +172,37 @@
 //            [self.tableView reloadData];
 //        }
         else {
-            NSMutableArray *allMatches = [NSMutableArray array];
+//            NSMutableArray *allMatches = [NSMutableArray array];
+//            
+//            for (GKTurnBasedMatch *match in matches) {
+//                GKTurnBasedMatchOutcome yourOutcome;
+//                for (GKTurnBasedParticipant *participant in match.participants) {
+//                    if ([participant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+//                        yourOutcome = participant.matchOutcome;
+//                    }
+//                }
+//                
+//                if (match.status != GKTurnBasedMatchStatusEnded && yourOutcome != GKTurnBasedMatchOutcomeQuit) {
+//                    [allMatches addObject:match];
+//                }
+//            }
+//
+//            _existingMatches = [[NSArray alloc] initWithArray:allMatches];
             
             for (GKTurnBasedMatch *match in matches) {
-                GKTurnBasedMatchOutcome yourOutcome;
-                for (GKTurnBasedParticipant *participant in match.participants) {
-                    if ([participant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-                        yourOutcome = participant.matchOutcome;
+                // We need to update the match data for all matches downloaded
+                [match loadMatchDataWithCompletionHandler:^(NSData *matchData, NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error.localizedDescription);
                     }
-                }
-                
-                if (match.status != GKTurnBasedMatchStatusEnded && yourOutcome != GKTurnBasedMatchOutcomeQuit) {
-                    [allMatches addObject:match];
-                }
+                    else {
+                        
+                    }
+                }];
             }
             
-            _existingMatches = [[NSArray alloc] initWithArray:allMatches];
+            _existingMatches = [[NSArray alloc] initWithArray:matches];
+            
             NSLog(@"Matches: %@", _existingMatches);
             [self.tableView reloadData];
         }
@@ -205,35 +244,68 @@
 //        }
 //    }];
     
+//    // Remove this row from the tableview
+//    int row = [_existingMatches indexOfObject:match];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+//    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    
+    // Quit and remove the match from Game Center
     if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
         [PIGGCHelper sharedInstance].delegate = self;
         [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil playerQuitForMatch:match];
         
         _matchToDelete = nil;
+        
+//        [self reloadTableView:nil];
     }
     else {
+//        [PIGGCHelper sharedInstance].delegate = self;
+//        [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
+//            if (error) {
+//                NSLog(@"%@", error.localizedDescription);
+//            }
+//            else {
+//                [match removeWithCompletionHandler:^(NSError *error) {
+//                    if (error) {
+//                        NSLog(@"%@", error.localizedDescription);
+//                    }
+//                    
+//                    _matchToDelete = nil;
+//                    
+//                    [self reloadTableView:nil];
+//                }];
+//            }
+//        }];
+        
         [PIGGCHelper sharedInstance].delegate = self;
-        [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
-            if (error) {
-                NSLog(@"%@", error.localizedDescription);
-            }
-            else {
-                [match removeWithCompletionHandler:^(NSError *error) {
-                    if (error) {
-                        NSLog(@"%@", error.localizedDescription);
-                    }
-                    
-                    _matchToDelete = nil;
-                }];
-            }
-        }];
+        [[PIGGCHelper sharedInstance] playerQuitOutOfTurnForMatch:match];
+        
+        _matchToDelete = nil;
     }
-    
-    [self reloadTableView:nil];
 }
 
 - (void)applicationDidBecomeActive {
     [self reloadTableView:nil];
+}
+
+- (void)startLocalMatch {
+    [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWLOCALGAME" withParameters:[Flurry flurryUserParams]];
+    
+    PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
+    gameplayViewController.delegate = self;
+    gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
+    [navigationController applyCustomStyle];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)startGameCenterMatch {
+    [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWMATCHMAKERGAME" withParameters:[Flurry flurryUserParams]];
+    
+    [PIGGCHelper sharedInstance].delegate = self;
+    [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];
 }
 
 #pragma mark - Table view data source
@@ -339,7 +411,9 @@
     GKTurnBasedMatch *match = [_existingMatches objectAtIndex:indexPath.row];
     
     if ([match.matchData length] > 0) {
-        NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+//        NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:nil error:nil];
+        
+        NSDictionary *matchDataDict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
         
         // Determine which player the current user is
         NSString *player1ID = [matchDataDict objectForKey:@"player1ID"];
@@ -371,19 +445,39 @@
         cell.lbl_pointsOpponent.text = [NSString stringWithFormat:@"%d", opponentScore];
         cell.lbl_pointsPlayer.text = [NSString stringWithFormat:@"%d", playerScore];
         
-        // Determine whose turn it is
-        if ([match.currentParticipant.playerID isEqualToString:localPlayer.playerID]) {
-            // It is the local player's turn
-            cell.lbl_turn.text = @"Your turn";
-            [cell.contentView setAlpha:1.0];
+        // Determine the state of the match and whose turn it is
+        GKTurnBasedMatchOutcome yourOutcome;
+        for (GKTurnBasedParticipant *participant in match.participants) {
+            if ([participant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+                yourOutcome = participant.matchOutcome;
+            }
         }
-        else if ([opponentName isEqualToString:@"Opponent"]) {
-            cell.lbl_turn.text = @"Waiting for match";
-            [cell.contentView setAlpha:0.4];
+        
+        if (match.status != GKTurnBasedMatchStatusEnded && yourOutcome != GKTurnBasedMatchOutcomeQuit) {
+            if ([match.currentParticipant.playerID isEqualToString:localPlayer.playerID]) {
+                // It is the local player's turn
+                cell.lbl_turn.text = @"Your turn";
+                [cell.contentView setAlpha:1.0];
+                [cell.contentView setBackgroundColor:[UIColor clearColor]];
+            }
+            else if ([opponentName isEqualToString:@"Opponent"]) {
+                // No opponent has joined the game yet
+                cell.lbl_turn.text = @"Waiting for match";
+                [cell.contentView setAlpha:0.4];
+                [cell.contentView setBackgroundColor:[UIColor clearColor]];
+            }
+            else {
+                // It is the other player's turn
+                cell.lbl_turn.text = @"Their turn";
+                [cell.contentView setAlpha:0.4];
+                [cell.contentView setBackgroundColor:[UIColor clearColor]];
+            }
         }
         else {
-            cell.lbl_turn.text = @"Their turn";
-            [cell.contentView setAlpha:0.4];
+            // The match has ended
+            cell.lbl_turn.text = @"Game Over";
+            [cell.contentView setAlpha:1.0];
+            [cell.contentView setBackgroundColor:[UIColor pigLightGray]];
         }
     }
     
@@ -456,7 +550,8 @@
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Remove", nil];
-        [alert show];
+        _av_deleteMatch = alert;
+        [_av_deleteMatch show];
     }
 }
 
@@ -569,31 +664,27 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         // Gamecenter Matchmaker game
-        [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWMATCHMAKERGAME" withParameters:[Flurry flurryUserParams]];
-         
-        [PIGGCHelper sharedInstance].delegate = self;
-        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];
+        [self startGameCenterMatch];
     }
     else if (buttonIndex == 1) {
         // Local Game
-        [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWLOCALGAME" withParameters:[Flurry flurryUserParams]];
-        
-        PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
-        gameplayViewController.delegate = self;
-        gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
-        
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gameplayViewController];
-        [navigationController applyCustomStyle];
-        
-        [self presentViewController:navigationController animated:YES completion:nil];
+        [self startLocalMatch];
     }
 }
 
 #pragma mark - UIAlert Delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        // User confirmed "Delete" match
-        [self quitMatch:_matchToDelete];
+    if (alertView == _av_noInternet) {
+        if (buttonIndex == 1) {
+            // Start Local Match
+            [self startLocalMatch];
+        }
+    }
+    else if (alertView == _av_deleteMatch) {
+        if (buttonIndex == 1) {
+            // User confirmed "Delete" match
+            [self quitMatch:_matchToDelete];
+        }
     }
 }
 
@@ -602,7 +693,15 @@
     // Check if two-palyer game has been unlocked already
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
     
-    if (twoPlayerProductPurchased == NO && [_existingMatches count] > 1) {
+    // Check number of active games
+    int activeMatches = 0;
+    for (GKTurnBasedMatch *match in _existingMatches) {
+        if (match.status != GKTurnBasedMatchStatusEnded && match.status != GKTurnBasedMatchStatusUnknown) {
+            activeMatches++;
+        }
+    }
+    
+    if (twoPlayerProductPurchased == NO && activeMatches >= 2) {
         PIGViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
         upgradeViewController.delegate = self;
         [self.navigationController pushViewController:upgradeViewController animated:YES];

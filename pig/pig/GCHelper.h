@@ -25,22 +25,22 @@
     UIViewController *_presentingViewController;
 }
 
+@property (nonatomic, assign) id <GCHelperDelegate> delegate;
 @property (assign, readonly) BOOL gameCenterAvailable;
 @property (assign, readonly) BOOL playerAuthenticated;
+@property (strong) GKTurnBasedMatch * currentMatch;
 
 // This property holds the last known error
 // that occured while using the Game Center API's
 @property (nonatomic, readonly) NSError* lastError;
 
-@property (strong) GKTurnBasedMatch * currentMatch;
-
-@property (nonatomic, assign) id <GCHelperDelegate> delegate;
-
 + (GCHelper *)sharedInstance;
 - (BOOL)isGameCenterAvailable;
 - (void)authenticationChanged;
 - (void)authenticateLocalUserFromViewController:(UIViewController *)authenticationPresentingViewController;
+- (void)deleteAllMatches;
 - (void)reportScore:(int64_t)score forLeaderboardID:(NSString*)identifier;
+
 // Report a single achievement
 - (void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float)percent;
 // Report multiple achievements

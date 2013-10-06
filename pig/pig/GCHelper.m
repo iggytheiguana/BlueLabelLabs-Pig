@@ -139,7 +139,7 @@ static GCHelper *sharedHelper = nil;
 }
 
 // Used for cleaning out matches when in development
--(void)deleteAllMatches {
+- (void)deleteAllMatches {
     [GKTurnBasedMatch loadMatchesWithCompletionHandler:
      ^(NSArray *matches, NSError *error) {
          for (GKTurnBasedMatch *match in matches) {
@@ -185,23 +185,31 @@ static GCHelper *sharedHelper = nil;
     
     self.currentMatch = match;
     
-    GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
-    if (firstParticipant.lastTurnDate == NULL) {
-        NSLog(@"New match");
+    // Update the match data for this match
+    [match loadMatchDataWithCompletionHandler:^(NSData *matchData, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
         
-        [self.delegate enterNewGame:match];
-    }
-    else {
-        NSLog(@"Existing match");
-        if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-            // Local Player's turn
-            [self.delegate takeTurn:match];
+        GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
+        if (firstParticipant.lastTurnDate == NULL) {
+            NSLog(@"New match");
+            
+            [self.delegate enterNewGame:match];
         }
         else {
-            // Someone else's turn
-            [self.delegate layoutMatch:match];
+            NSLog(@"Existing match");
+            if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+                // Local Player's turn
+                // We need to update the match data for all matches downloaded
+                [self.delegate takeTurn:match];
+            }
+            else {
+                // Someone else's turn
+                [self.delegate layoutMatch:match];
+            }
         }
-    }
+    }];
 }
 
 - (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match {
@@ -236,6 +244,8 @@ static GCHelper *sharedHelper = nil;
     NSUInteger currentIndex = [match.participants indexOfObject:match.currentParticipant];
     GKTurnBasedParticipant *participant;
     
+    int count = [match.participants count];
+    
     NSMutableArray *nextParticipants = [NSMutableArray array];
     for (int i = 0; i < [match.participants count]; i++) {
         participant = [match.participants objectAtIndex:(currentIndex + 1 + i) % match.participants.count];
@@ -269,60 +279,67 @@ static GCHelper *sharedHelper = nil;
 - (void)player:(GKPlayer *)player receivedTurnEventForMatch:(GKTurnBasedMatch *)match didBecomeActive:(BOOL)didBecomeActive {
     NSLog(@"Turn has happened");
     
-    // Check to see if all players are still within the match
-    NSMutableArray *stillPlaying = [NSMutableArray array];
-    for (GKTurnBasedParticipant *p in match.participants) {
-        if (p.matchOutcome == GKTurnBasedMatchOutcomeNone) {
-            [stillPlaying addObject:p];
+    // Update the match data for this match
+    [match loadMatchDataWithCompletionHandler:^(NSData *matchData, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
         }
-    }
-    if ([stillPlaying count] < kTurnBasedGameMinPlayers && [match.participants count] >= kTurnBasedGameMaxPlayers) {
-        // There's only one player left
-        for (GKTurnBasedParticipant *part in stillPlaying) {
-            part.matchOutcome = GKTurnBasedMatchOutcomeTied;
-        }
-        [match endMatchInTurnWithMatchData:match.matchData completionHandler:^(NSError *error) {
-            if (error) {
-                NSLog(@"Error Ending Match %@", error);
+        
+        // Check to see if all players are still within the match
+        NSMutableArray *stillPlaying = [NSMutableArray array];
+        for (GKTurnBasedParticipant *p in match.participants) {
+            if (p.matchOutcome == GKTurnBasedMatchOutcomeNone) {
+                [stillPlaying addObject:p];
             }
-            
-            if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
-                self.currentMatch = match;
-                [self.delegate layoutMatch:match];
-            }
-            else {
-                [self.delegate sendNotice:@"Match forfieted" forMatch:match];
-            }
-        }];
-    }
-    
-    if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
-        if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-            // It's the current match and it's our turn now
-            self.currentMatch = match;
-            [self.delegate takeTurn:match];
         }
-        else {
-            // It's the current match, but it's someone else's turn
-            self.currentMatch = match;
-            [self.delegate layoutMatch:match];
+        if ([stillPlaying count] < kTurnBasedGameMinPlayers && [match.participants count] >= kTurnBasedGameMaxPlayers) {
+            // There's only one player left
+            for (GKTurnBasedParticipant *part in stillPlaying) {
+                part.matchOutcome = GKTurnBasedMatchOutcomeTied;
+            }
+            [match endMatchInTurnWithMatchData:match.matchData completionHandler:^(NSError *error) {
+                if (error) {
+                    NSLog(@"Error Ending Match %@", error);
+                }
+                
+                if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
+                    self.currentMatch = match;
+                    [self.delegate layoutMatch:match];
+                }
+                else {
+                    [self.delegate sendNotice:@"Match forfieted" forMatch:match];
+                }
+            }];
         }
-    }
-    else {
-        if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-            // It's not the current match, but it is our turn now
-            if (didBecomeActive == YES) {
+        
+        if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
+            if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+                // It's the current match and it's our turn now
                 self.currentMatch = match;
                 [self.delegate takeTurn:match];
             }
             else {
-                [self.delegate sendNotice:@"It's your turn for another match" forMatch:match];
+                // It's the current match, but it's someone else's turn
+                self.currentMatch = match;
+                [self.delegate layoutMatch:match];
             }
         }
         else {
-            // It's the not current match, and it's someone else's turn
+            if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+                // It's not the current match, but it is our turn now
+                if (didBecomeActive == YES) {
+                    self.currentMatch = match;
+                    [self.delegate takeTurn:match];
+                }
+                else {
+                    [self.delegate sendNotice:@"It's your turn for another match" forMatch:match];
+                }
+            }
+            else {
+                // It's the not current match, and it's someone else's turn
+            }
         }
-    }
+    }];
 }
 
 - (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite {
@@ -346,12 +363,19 @@ static GCHelper *sharedHelper = nil;
 - (void)player:(GKPlayer *)player matchEnded:(GKTurnBasedMatch *)match {
     NSLog(@"Game has ended");
     
-    if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
-        [self.delegate recieveEndGame:match];
-    }
-    else {
-        [self.delegate sendNotice:@"Another Game Ended!" forMatch:match];
-    }
+    // Update the match data for this match
+    [match loadMatchDataWithCompletionHandler:^(NSData *matchData, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        
+        if ([match.matchID isEqualToString:self.currentMatch.matchID]) {
+            [self.delegate recieveEndGame:match];
+        }
+        else {
+            [self.delegate sendNotice:@"Another Game Ended!" forMatch:match];
+        }
+    }];
 }
 
 #pragma mark - UIViewController Methods

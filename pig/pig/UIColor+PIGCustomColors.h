@@ -14,5 +14,6 @@
 + (UIColor *)pigLightBlueColor;
 + (UIColor *)pigLightPinkColor;
 + (UIColor *)pigRedColor;
++ (UIColor *)pigLightGray;
 
 @end
