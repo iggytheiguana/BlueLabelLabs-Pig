@@ -50,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UIView *v_progressView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ai_progress;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_gameSpeed;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_turnSummaryPlayer1;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_turnSummaryPlayer2;
 
 - (IBAction)onQuitButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;

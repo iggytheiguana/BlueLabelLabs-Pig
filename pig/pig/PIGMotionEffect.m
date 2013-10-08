@@ -11,7 +11,7 @@
 @implementation PIGMotionEffect
 
 - (NSDictionary *)keyPathsAndRelativeValuesForViewerOffset:(UIOffset)viewerOffset {
-    float radiusOffset = radiusOffset = fmaxf(fabsf(viewerOffset.vertical), fabsf(viewerOffset.horizontal))*10.0f;
+    float radiusOffset = fmaxf(fabsf(viewerOffset.vertical), fabsf(viewerOffset.horizontal))*10.0f;
     
     NSDictionary* dict = @{
                            @"layer.shadowOffset" : [NSValue valueWithCGSize:CGSizeMake(-20.0*viewerOffset.horizontal, -20.0*viewerOffset.vertical)],

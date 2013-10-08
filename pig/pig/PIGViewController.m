@@ -36,10 +36,13 @@
     BOOL _landedOn100;
     BOOL _perfectGamePlayer1;
     BOOL _vibrateOn;
+    BOOL _summaryAnimating;
     NSString *_namePlayer1;
     NSString *_namePlayer2;
     NSArray *_whiteDiceImages;
     NSMutableDictionary *_matchDataDict;
+    NSString *_turnSummaryPlayer1;
+    NSString *_turnSummaryPlayer2;
     
     UIAlertView *_av_leaderboard;
     UIAlertView *_av_turnReview;
@@ -232,6 +235,15 @@
         [self.view bringSubviewToFront:self.btn_rollTutorial];
     }
     
+    // Setup a tap gesture recognizer to show the turn summary for each player
+    UITapGestureRecognizer *playerOneTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTurnSummaryForPlayerOne)];
+    playerOneTapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.v_containerPlayer1 addGestureRecognizer:playerOneTapGestureRecognizer];
+    
+    UITapGestureRecognizer *playerTwoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTurnSummaryForPlayerTwo)];
+    playerTwoTapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.v_containerPlayer2 addGestureRecognizer:playerTwoTapGestureRecognizer];
+    
     // Setup the start of the game
     [self reset];
     
@@ -297,6 +309,17 @@
 - (void)dragBegan:(UIControl *)control withEvent:event {
     UIButton *diceButton = (UIButton *)control;
     
+    // Give the dice a shadow that will add to the motion effect
+    self.btn_dice1.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btn_dice1.layer.shadowOpacity = 0.5f;
+    self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.btn_dice1.layer.shadowRadius = 3.0f;
+    
+    self.btn_dice2.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btn_dice2.layer.shadowOpacity = 0.5f;
+    self.btn_dice2.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.btn_dice2.layer.shadowRadius = 3.0f;
+    
     UIAttachmentBehavior *touchAttachmentBehavior;
     UIAttachmentBehavior *touchAttachmentBehavior2;
     
@@ -341,7 +364,7 @@
 
 - (void)diceShadows:(BOOL)showShadow {
     if (showShadow == YES) {
-        // Give the dice, roll label, and roll images a shadow that will add to the motion effect
+        // Give the dice a shadow that will add to the motion effect
         self.btn_dice1.layer.shadowColor = [UIColor blackColor].CGColor;
         self.btn_dice1.layer.shadowOpacity = 0.3f;
         self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
@@ -353,7 +376,7 @@
         self.btn_dice2.layer.shadowRadius = 0.0f;
     }
     else {
-        // Give the dice, roll label, and roll images a shadow that will add to the motion effect
+        // Remove the dice a shadow
         self.btn_dice1.layer.shadowColor = [UIColor clearColor].CGColor;
         self.btn_dice1.layer.shadowOpacity = 0.0f;
         self.btn_dice1.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
@@ -428,6 +451,8 @@
     _gameOver = NO;
     _landedOn100 = NO;
     _perfectGamePlayer1 = YES;
+    _turnSummaryPlayer1 = @" ";
+    _turnSummaryPlayer2 = @" ";
     
     if (player == kPLAYERONE) {
         // Setup Player 1 to start the game
@@ -461,8 +486,11 @@
     [self.btn_newGame setHidden:YES];
     [self.lbl_winnerPlayer1 setHidden:YES];
     [self.lbl_winnerPlayer2 setHidden:YES];
-    
     [self.btn_playerReady setHidden:NO];
+    [self.lbl_turnSummaryPlayer1 setHidden:YES];
+    [self.lbl_turnSummaryPlayer2 setHidden:YES];
+    [self.lbl_turnSummaryPlayer1 setText:_turnSummaryPlayer1];
+    [self.lbl_turnSummaryPlayer2 setText:_turnSummaryPlayer2];
     
     _dice1 = 1;
     _dice2 = 1;
@@ -528,11 +556,15 @@
     
     // Determine which player score to update based on which player is active
     int currentPlayerScore = 0;
+    NSString *currentPlayerName = @"";
+    NSString *turnSummary = @" ";
     if (m_lbl_activePlayer == self.lbl_player1) {
         currentPlayerScore = _score1;
+        currentPlayerName = _namePlayer1;
     }
     else {
         currentPlayerScore = _score2;
+        currentPlayerName = _namePlayer2;
     }
     
     // Prepare the result of the roll to present to the user
@@ -551,6 +583,9 @@
         
         [self.btn_pass setTitleColor:[UIColor pigRedColor] forState:UIControlStateNormal];
         [self.btn_pass setTitle:[NSString stringWithFormat:@"Double 1's rolled!"] forState:UIControlStateNormal];
+        
+        // Record the summary of the turn
+        turnSummary = [NSString stringWithFormat:@"%@ rolled Snake Eyes and went back to zero!", currentPlayerName];
     }
     else if (_doubleCount >= 3) {
         // 3 doubles rolled in a row, PIG
@@ -563,6 +598,9 @@
         
         [self.btn_pass setTitleColor:[UIColor pigRedColor] forState:UIControlStateNormal];
         [self.btn_pass setTitle:[NSString stringWithFormat:@"%d Doubles!!!", _doubleCount] forState:UIControlStateNormal];
+        
+        // Record the summary of the turn
+        turnSummary = [NSString stringWithFormat:@"%@ rolled 3 Doubles in a row and went back to zero!", currentPlayerName];
     }
     else if (rollValue == 7) {
         // 7 rolled, PIG
@@ -575,6 +613,9 @@
         
         [self.btn_pass setTitleColor:[UIColor pigRedColor] forState:UIControlStateNormal];
         [self.btn_pass setTitle:[NSString stringWithFormat:@"7 rolled!"] forState:UIControlStateNormal];
+        
+        // Record the summary of the turn
+        turnSummary = [NSString stringWithFormat:@"%@ rolled a 7 and lost %d points last turn", currentPlayerName, _turnScore];
     }
     else {
         // Safe roll
@@ -594,6 +635,9 @@
             
             [self.btn_pass setTitleColor:[UIColor pigRedColor] forState:UIControlStateNormal];
             [self.btn_pass setTitle:[NSString stringWithFormat:@"Landed on 100!"] forState:UIControlStateNormal];
+            
+            // Record the summary of the turn
+            turnSummary = [NSString stringWithFormat:@"%@ landed on 100 and went back to zero!", currentPlayerName];
         }
         else {
             // Everything is OK. Player can roll again
@@ -619,6 +663,9 @@
             else {
                 [self.btn_pass setTitle:[NSString stringWithFormat:@"Roll again or HOLD"] forState:UIControlStateNormal];
             }
+            
+            // Record the summary of the turn
+            turnSummary = [NSString stringWithFormat:@"%@ held +%d points last turn", currentPlayerName, _turnScore];
         }
     }
     
@@ -632,15 +679,19 @@
         }
     }
     
-    // Now, update the active player's global score variable
+    // Now, update the active player's global score variable and turn summary
     if (m_lbl_activePlayer == self.lbl_player1) {
         _score1 = currentPlayerScore;
+        
+        _turnSummaryPlayer1 = turnSummary;
         
         // Check if any achievements were earned on this roll
         [self checkAchievements];
     }
     else {
         _score2 = currentPlayerScore;
+        
+        _turnSummaryPlayer2 = turnSummary;
     }
     
     // Animate the showing of the make word container views
@@ -963,6 +1014,96 @@
     }
 }
 
+- (void)showTurnSummaryForPlayerOne {
+    if (m_lbl_activePlayer != self.lbl_player1)
+        [self showTurnSummaryForPlayer:kPLAYERONE];
+}
+
+- (void)showTurnSummaryForPlayerTwo {
+    if (m_lbl_activePlayer != self.lbl_player2)
+        [self showTurnSummaryForPlayer:kPLAYERTWO];
+}
+
+- (void)showTurnSummaryForPlayer:(int)player {
+    if (_summaryAnimating)
+        return;
+    
+    // Flag to prevent user touches while an animation is already happening
+    _summaryAnimating = YES;
+    
+    UILabel *lbl_turnSummary;
+    if (player == kPLAYERONE) {
+        [self.lbl_turnSummaryPlayer1 setText:_turnSummaryPlayer1];
+        
+        lbl_turnSummary = self.lbl_turnSummaryPlayer1;
+    }
+    else {
+        [self.lbl_turnSummaryPlayer2 setText:_turnSummaryPlayer2];
+        
+        lbl_turnSummary = self.lbl_turnSummaryPlayer2;
+    }
+    
+    [lbl_turnSummary setAlpha:0.0];
+    [lbl_turnSummary setHidden:NO];
+    lbl_turnSummary.transform = CGAffineTransformMakeScale(0.3, 0.3);
+    
+    [UIView animateWithDuration:0.45
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         lbl_turnSummary.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                         lbl_turnSummary.alpha = 0.8;
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:0.25
+                                               delay:0.0
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              lbl_turnSummary.transform = CGAffineTransformMakeScale(0.9, 0.9);
+                                              lbl_turnSummary.alpha = 0.9;
+                                          }
+                                          completion:^(BOOL finished){
+                                              [UIView animateWithDuration:0.25
+                                                                    delay:0.0
+                                                                  options:UIViewAnimationOptionCurveEaseInOut
+                                                               animations:^{
+                                                                   lbl_turnSummary.transform = CGAffineTransformIdentity;
+                                                                   lbl_turnSummary.alpha = 1.0;
+                                                               }
+                                                               completion:^(BOOL finished){
+                                                                   [UIView animateWithDuration:0.25
+                                                                                         delay:5.0
+                                                                                       options:UIViewAnimationOptionCurveEaseInOut
+                                                                                    animations:^{
+                                                                                        lbl_turnSummary.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                                                                                        lbl_turnSummary.alpha = 0.8;
+                                                                                    }
+                                                                                    completion:^(BOOL finished){
+                                                                                        [UIView animateWithDuration:0.35
+                                                                                                              delay:0.0
+                                                                                                            options:UIViewAnimationOptionCurveEaseInOut
+                                                                                                         animations:^{
+                                                                                                             lbl_turnSummary.transform = CGAffineTransformMakeScale(0.1, 0.1);
+                                                                                                             lbl_turnSummary.alpha = 0.0;
+                                                                                                         }
+                                                                                                         completion:^(BOOL finished){
+                                                                                                             [lbl_turnSummary setAlpha:0.0];
+                                                                                                             [lbl_turnSummary setHidden:YES];
+                                                                                                             lbl_turnSummary.transform = CGAffineTransformIdentity;
+                                                                                                             
+                                                                                                             _summaryAnimating = NO;
+                                                                                                         }
+                                                                                         ];
+                                                                                    }
+                                                                    ];
+                                                               }
+                                               ];
+                                          }
+                          ];
+                     }
+     ];
+}
+
 #pragma mark - Phone Shake Handler
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
@@ -1224,20 +1365,16 @@
     [_matchDataDict setObject:[NSNumber numberWithBool:_gameOver] forKey:@"gameOver"];
     [_matchDataDict setObject:_namePlayer1 forKey:@"player1Name"];
     [_matchDataDict setObject:_namePlayer2 forKey:@"player2Name"];
+    [_matchDataDict setObject:_turnSummaryPlayer1 forKey:@"turnSummaryPlayer1"];
+    [_matchDataDict setObject:_turnSummaryPlayer2 forKey:@"turnSummaryPlayer2"];
     
-//    NSData *data = [NSPropertyListSerialization dataFromPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
-//    NSData *data = [NSPropertyListSerialization dataWithPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
-    
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_matchDataDict];
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:_matchDataDict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
     
     return data;
 }
 
 - (void)unpackMatchState:(GKTurnBasedMatch *)match {
-//    NSDictionary *gameDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
-//    NSMutableDictionary *gameDict = [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:nil error:nil];
-    
-    NSMutableDictionary *gameDict = (NSMutableDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+    NSMutableDictionary *gameDict = [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:nil error:nil];
     
     _matchDataDict = [NSMutableDictionary dictionaryWithDictionary:gameDict];
     
@@ -1253,6 +1390,14 @@
     // Update the player names
     _namePlayer1 = [_matchDataDict objectForKey:@"player1Name"];
     _namePlayer2 = [_matchDataDict objectForKey:@"player2Name"];
+    
+    // Update the turn summary
+    _turnSummaryPlayer1 = [_matchDataDict objectForKey:@"turnSummaryPlayer1"];
+    _turnSummaryPlayer2 = [_matchDataDict objectForKey:@"turnSummaryPlayer2"];
+    if (_turnSummaryPlayer1 == nil)
+        _turnSummaryPlayer1 = @" ";
+    if (_turnSummaryPlayer2 == nil)
+        _turnSummaryPlayer2 = @" ";
     
     // Update the player score labels
     [self.lbl_player1 setText:[NSString stringWithFormat:@"%d", _score1]];
@@ -1292,6 +1437,7 @@
         [_matchDataDict setObject:[NSNumber numberWithBool:_winner1] forKey:@"winner1"];
         [_matchDataDict setObject:[NSNumber numberWithBool:_winner2] forKey:@"winner2"];
         [_matchDataDict setObject:[NSNumber numberWithBool:_gameOver] forKey:@"gameOver"];
+        [_matchDataDict setObject:@" " forKey:@"turnSummary"];
     }
     // Else determine which player the current user is so we can setup the match data dictionary
     else if (m_lbl_activePlayer == self.lbl_player1) {
@@ -1306,6 +1452,7 @@
                           [NSNumber numberWithBool:_winner1], @"winner1",
                           [NSNumber numberWithBool:_winner2], @"winner2",
                           [NSNumber numberWithBool:_gameOver], @"gameOver",
+                          @" ", @"turnSummary",
                           nil];
     }
     else {
@@ -1320,6 +1467,7 @@
                           [NSNumber numberWithBool:_winner1], @"winner1",
                           [NSNumber numberWithBool:_winner2], @"winner2",
                           [NSNumber numberWithBool:_gameOver], @"gameOver",
+                          @" ", @"turnSummary",
                           nil];
     }
 }
@@ -1338,6 +1486,17 @@
         if (_gameOver == YES) {
             // Game has ended, advance play to show end state animations
             [self onPassButtonPressed:nil];
+            
+            // Determine which player the current user is
+            NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+            GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+            
+            if ([localPlayer.playerID isEqualToString:player1ID]) {
+                [self showTurnSummaryForPlayerTwo];
+            }
+            else {
+                [self showTurnSummaryForPlayerOne];
+            }
         }
         else {
             // Game ended because a player forfeited
@@ -1381,6 +1540,13 @@
         [self.lbl_namePlayer2Small setText:_namePlayer2];
         
         [self.btn_playerReady setEnabled:YES];
+        
+        if ([localPlayer.playerID isEqualToString:player1ID]) {
+            [self showTurnSummaryForPlayerTwo];
+        }
+        else {
+            [self showTurnSummaryForPlayerOne];
+        }
     }
     
 //    if ([match.matchData bytes]) {
@@ -1433,6 +1599,17 @@
         if (_gameOver == YES) {
             // Game has ended, advance play to show end state animations
             [self onPassButtonPressed:nil];
+            
+            // Determine which player the current user is
+            NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
+            GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+            
+            if ([localPlayer.playerID isEqualToString:player1ID]) {
+                [self showTurnSummaryForPlayerTwo];
+            }
+            else {
+                [self showTurnSummaryForPlayerOne];
+            }
         }
         else {
             // Game ended because a player forfeited
@@ -1510,6 +1687,10 @@
     // Reset the dice
     [self.btn_dice1 setAdjustsImageWhenDisabled:YES];
     [self.btn_dice2 setAdjustsImageWhenDisabled:YES];
+    
+    // Hide the turn summary
+    [self.lbl_turnSummaryPlayer1 setHidden:YES];
+    [self.lbl_turnSummaryPlayer2 setHidden:YES];
     
     if (_dice1 == 0)
         _dice1 = 1;

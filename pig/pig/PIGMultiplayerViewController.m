@@ -411,9 +411,7 @@
     GKTurnBasedMatch *match = [_existingMatches objectAtIndex:indexPath.row];
     
     if ([match.matchData length] > 0) {
-//        NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:nil error:nil];
-        
-        NSDictionary *matchDataDict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+        NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:nil error:nil];
         
         // Determine which player the current user is
         NSString *player1ID = [matchDataDict objectForKey:@"player1ID"];

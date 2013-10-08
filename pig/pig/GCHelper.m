@@ -244,8 +244,6 @@ static GCHelper *sharedHelper = nil;
     NSUInteger currentIndex = [match.participants indexOfObject:match.currentParticipant];
     GKTurnBasedParticipant *participant;
     
-    int count = [match.participants count];
-    
     NSMutableArray *nextParticipants = [NSMutableArray array];
     for (int i = 0; i < [match.participants count]; i++) {
         participant = [match.participants objectAtIndex:(currentIndex + 1 + i) % match.participants.count];
