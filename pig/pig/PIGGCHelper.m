@@ -202,7 +202,7 @@ static PIGGCHelper *sharedHelper = nil;
         // Quit the player out of the game, then delete the match
         [match participantQuitInTurnWithOutcome:GKTurnBasedMatchOutcomeQuit
                                nextParticipants:nextParticipants
-                                    turnTimeout:600
+                                    turnTimeout:GKTurnTimeoutDefault
                                       matchData:match.matchData
                               completionHandler:^(NSError *error) {
                                   if (error) {

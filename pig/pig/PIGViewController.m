@@ -1320,7 +1320,7 @@
         }];
         NSLog(@"Game has ended.");
     } else {
-        [currentMatch endTurnWithNextParticipants:nextParticipants turnTimeout:36000 matchData:data completionHandler:^(NSError *error) {
+        [currentMatch endTurnWithNextParticipants:nextParticipants turnTimeout:kTurnTimeout matchData:data completionHandler:^(NSError *error) {
             if (error) {
                 NSLog(@"%@", error);
                 
@@ -1390,6 +1390,10 @@
     // Update the player names
     _namePlayer1 = [_matchDataDict objectForKey:@"player1Name"];
     _namePlayer2 = [_matchDataDict objectForKey:@"player2Name"];
+    if (_namePlayer1 == nil)
+        _namePlayer1 = self.lbl_namePlayer1.text;
+    if (_namePlayer2 == nil)
+        _namePlayer2 = self.lbl_namePlayer2.text;
     
     // Update the turn summary
     _turnSummaryPlayer1 = [_matchDataDict objectForKey:@"turnSummaryPlayer1"];

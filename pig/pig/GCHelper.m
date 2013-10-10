@@ -7,9 +7,7 @@
 //
 
 #import "GCHelper.h"
-
-#define kTurnBasedGameMaxPlayers 2
-#define kTurnBasedGameMinPlayers 2
+#import "PIGGameConstants.h"
 
 @implementation GCHelper
 
@@ -159,7 +157,7 @@ static GCHelper *sharedHelper = nil;
                  
                  [match participantQuitInTurnWithOutcome:GKTurnBasedMatchOutcomeQuit
                                         nextParticipants:nextParticipants
-                                             turnTimeout:600
+                                             turnTimeout:kTurnTimeout
                                                matchData:match.matchData
                                        completionHandler:^(NSError *error) {
                      NSLog(@"%@", error);
@@ -254,7 +252,7 @@ static GCHelper *sharedHelper = nil;
     
     [match participantQuitInTurnWithOutcome:GKTurnBasedMatchOutcomeQuit
                            nextParticipants:nextParticipants
-                                turnTimeout:600
+                                turnTimeout:kTurnTimeout
                                   matchData:match.matchData
                           completionHandler:^(NSError *error) {
                               if (error) {

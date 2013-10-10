@@ -20,6 +20,7 @@
 // Game Setup
 #define kTurnBasedGameMinPlayers 2
 #define kTurnBasedGameMaxPlayers 2
+#define kTurnTimeout 259200     // 3 days
 
 // User Scores
 #define kTotalScorePlayer @"totalscoreplayer"
