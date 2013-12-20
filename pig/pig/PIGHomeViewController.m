@@ -15,6 +15,8 @@
 #import "UINavigationController+PIGCustomNavigationController.h"
 #import "Flurry+PIGFlurry.h"
 
+#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+
 @interface PIGHomeViewController () {
     NSArray *_products;
 }
@@ -71,6 +73,15 @@
     // Add motion effects to dice
     PIGMotionEffect *motionEffect = [[PIGMotionEffect alloc] init];
     [self.iv_pigLogo addMotionEffect:motionEffect];
+    
+    if (IS_IPHONE5) {
+        self.v_progressContainer.center = CGPointMake(self.v_progressContainer.center.x, self.v_progressContainer.center.y + 50.0);
+    }
+    else {
+        self.v_mainContainer.center = CGPointMake(self.v_mainContainer.center.x, self.v_mainContainer.center.y - 20.0);
+    }
+    
+    [self updateScoresAndAchievements];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -106,6 +117,8 @@
         rulesViewController.delegate = self;
         [self.navigationController pushViewController:rulesViewController animated:YES];
     }
+    
+    [self updateScoresAndAchievements];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -120,6 +133,17 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Instance Methods
+- (void)updateScoresAndAchievements {
+    int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
+    self.lbl_highScore.text = [NSString stringWithFormat:@"%lld", highestGameScore];
+    
+    int achievementCountPlayer = [[NSUserDefaults standardUserDefaults] integerForKey:kAchievementCountPlayer];
+    int achievementCountTotal = [[NSUserDefaults standardUserDefaults] integerForKey:kAchievementCountTotal];
+    
+    self.lbl_achievements.text = [NSString stringWithFormat:@"%d of %d", achievementCountPlayer, achievementCountTotal];
 }
 
 #pragma mark - Storyboard Methods
@@ -271,6 +295,34 @@
     }];
 }
 
+#pragma mark - Game Center Methods
+- (void)showLeaderboard:(NSString*)leaderboardID {
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gameCenterController.leaderboardIdentifier = leaderboardID;
+        
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
+}
+
+- (void)showAchievements {
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateAchievements;
+        
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UIAlert Delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
@@ -309,5 +361,19 @@
 //    gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
 //    [self.navigationController pushViewController:gameplayViewController animated:YES];
 //}
+
+- (IBAction)onHighScoreButtonPressed:(id)sender {
+    // Leaderboards selected
+    [Flurry logEvent:@"HOME_SCREEN_LEADERBOARDS_PRESSED" withParameters:[Flurry flurryUserParams]];
+    
+    [self showLeaderboard:kLeaderboardIdentifierHighestGameScore];
+}
+
+- (IBAction)onAchievementsButtonPressed:(id)sender {
+    // Achievements selected
+    [Flurry logEvent:@"HOME_SCREEN_ACHIEVEMENTS_PRESSED" withParameters:[Flurry flurryUserParams]];
+    
+    [self showAchievements];
+}
 
 @end

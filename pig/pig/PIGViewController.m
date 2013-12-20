@@ -341,7 +341,7 @@
     [touchAttachmentBehavior setFrequency:5.0];
     [touchAttachmentBehavior setDamping:0.1];
     
-    [touchAttachmentBehavior setFrequency:5.0];
+    [touchAttachmentBehavior2 setFrequency:5.0];
     [touchAttachmentBehavior2 setDamping:0.1];
     [self.animator addBehavior:touchAttachmentBehavior2];
     

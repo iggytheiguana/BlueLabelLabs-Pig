@@ -26,6 +26,10 @@
 #define kTotalScorePlayer @"totalscoreplayer"
 #define kHighestGameScorePlayer @"highestgamescoreplayer"
 
+// Achievement Counts
+#define kAchievementCountPlayer @"achievementcountplayer"
+#define kAchievementCountTotal @"achievementcounttotal"
+
 // Leaderboard Category IDs
 #define kLeaderboardIdentifierTotalScore @"com.bluelabellabs.pig.totalscore"
 #define kLeaderboardIdentifierHighestGameScore @"com.bluelabellabs.pig.highestgamescore"

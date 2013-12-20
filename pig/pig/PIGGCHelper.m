@@ -69,6 +69,9 @@ static PIGGCHelper *sharedHelper = nil;
         // Player authenticated
         [self getHighestGameScore];
         [self getTotalScore];
+        [self retrieveAchievmentMetadata];
+        [self loadPlayerAchievements];
+        
     }
     else if (![GKLocalPlayer localPlayer].isAuthenticated && !_playerAuthenticated) {
         // Player NOT authenticated
@@ -161,6 +164,49 @@ static PIGGCHelper *sharedHelper = nil;
     
     // Do anything else
     
+}
+
+- (void)retrieveAchievmentMetadata
+{
+    [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:
+     ^(NSArray *descriptions, NSError *error) {
+         if (error != nil)
+         {
+             // Process the error.
+         }
+         if (descriptions != nil)
+         {
+             int achievementCountTotal = [descriptions count];
+             
+             // Save the total number of achievements to the user defaults
+             [[NSUserDefaults standardUserDefaults] setInteger:achievementCountTotal forKey:kAchievementCountTotal];
+         }
+     }];
+}
+
+- (void)loadPlayerAchievements
+{
+    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+        if (error != nil)
+        {
+            // Handle the error.
+        }
+        if (achievements != nil)
+        {
+            // Process the array of achievements.
+            int achievementCountPlayer = 0;
+            for (GKAchievement *achievement in achievements) {
+                if (achievement.completed) {
+                    achievementCountPlayer++;
+                }
+            }
+            
+            // Save the number of achievements earned by the player to the user defaults
+            [[NSUserDefaults standardUserDefaults] setInteger:achievementCountPlayer forKey:kAchievementCountPlayer];
+            
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }];
 }
 
 #pragma mark GKTurnBasedMatch Methods

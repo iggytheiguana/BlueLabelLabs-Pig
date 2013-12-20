@@ -13,7 +13,7 @@
 #import "PIGMultiplayerViewController.h"
 #import "PIGRulesViewController.h"
 
-@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, PIGMultiplayerViewControllerDelegate, GCHelperDelegate, PIGRulesViewControllerDelegate >
+@interface PIGHomeViewController : UIViewController < UIAlertViewDelegate, GKGameCenterControllerDelegate, PIGViewControllerDelegate, PIGMoreViewControllerDelegate, PIGMultiplayerViewControllerDelegate, GCHelperDelegate, PIGRulesViewControllerDelegate >
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_onePlayer;
 @property (weak, nonatomic) IBOutlet UIButton *btn_twoPlayer;
@@ -22,8 +22,17 @@
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerOne;
 @property (weak, nonatomic) IBOutlet UIView *v_containerPlayerTwo;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_pigLogo;
+@property (weak, nonatomic) IBOutlet UIView *v_mainContainer;
+@property (weak, nonatomic) IBOutlet UIView *v_progressContainer;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_highScore;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_achievements;
+@property (weak, nonatomic) IBOutlet UIButton *btn_highScore;
+@property (weak, nonatomic) IBOutlet UIButton *btn_achievements;
 
 //- (IBAction)onTwoPlayerButtonPressed:(id)sender;
 //- (IBAction)onBuyTwoPlayerButtonPressed:(id)sender;
+- (IBAction)onHighScoreButtonPressed:(id)sender;
+- (IBAction)onAchievementsButtonPressed:(id)sender;
+
 
 @end
