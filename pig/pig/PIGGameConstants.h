@@ -38,6 +38,7 @@
 #define kAchievementIdentifierLandOn100 @"com.bluelabellabs.pig.achievement_landon100"
 #define kAchievementIdentifierHighScore @"com.bluelabellabs.pig.achievement_highscore"
 #define kAchievementIdentifierMassiveScore @"com.bluelabellabs.pig.achievement_massivescore"
+#define kAchievementIdentifierHumongousScore @"com.bluelabellabs.pig.achievement_humongousscore"
 #define kAchievementIdentifierStreak50 @"com.bluelabellabs.pig.achievement_streak50"
 #define kAchievementIdentifierStreak75 @"com.bluelabellabs.pig.achievement_streak75"
 #define kAchievementIdentifierPerfectRoll @"com.bluelabellabs.pig.achievement_perfectroll"

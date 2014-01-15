@@ -14,6 +14,8 @@
 #import "PIGGCHelper.h"
 #import "PIGGameConstants.h"
 #import "Flurry+PIGFlurry.h"
+#import <RevMobAds/RevMobAds.h>
+#import "PIGIAPHelper.h"
 
 #define kFASTGAME 1
 #define kSLOWGAME 1.5
@@ -247,7 +249,7 @@
     // Setup the start of the game
     [self reset];
     
-//    // Used for testing
+//    //TODO: Used for testing
 //    _score1 = 99;
 //    _score2 = 99;
 }
@@ -1161,6 +1163,15 @@
         [achievements addObject:achievement];
     }
     
+    // Humongous Score - Earn 350 or more points in a single game
+    if (_gameOver == YES && _score1 >= 350 && _winner1 == YES) {
+        GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierHumongousScore];
+        achievement.percentComplete = 100.0;
+        achievement.showsCompletionBanner = YES;
+        
+        [achievements addObject:achievement];
+    }
+    
     // Streak 50 - Earn 50 or more points in one turn
     if (_turnScore >= 50) {
         GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:kAchievementIdentifierStreak50];
@@ -1780,32 +1791,6 @@
                 // Report player 1's score to Game Center and save in User Deafults
                 [self reportPlayerScore:_score1];
             }
-            
-//            // Determine which player the current user is
-//            NSString *player1ID = [_matchDataDict objectForKey:@"player1ID"];
-//            GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-//            
-//            if ([localPlayer.playerID isEqualToString:player1ID]) {
-//                // Report the scores to Game Center and save in User Deafults
-//                [self reportPlayerScore:_score1];
-//            }
-            
-//            int64_t totalScore = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
-//            totalScore = totalScore + _score1;
-//            
-//            int64_t highestGameScore = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
-//            
-//            if ((int64_t)_score1 > highestGameScore) {
-//                [[PIGGCHelper sharedInstance] reportScore:(int64_t)_score1 forLeaderboardID:kLeaderboardIdentifierHighestGameScore];
-//                
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New High Score!"
-//                                                                message:@"You beat your highest single game score. View your rank in the Leaderboard?"
-//                                                               delegate:self
-//                                                      cancelButtonTitle:@"Cancel"
-//                                                      otherButtonTitles:@"Leaderboard", nil];
-//                [alert show];
-//            }
-//            [[PIGGCHelper sharedInstance] reportScore:totalScore forLeaderboardID:kLeaderboardIdentifierTotalScore];
         }
         else if (_score2 >= 101 && _score2 > _score1) {
             _winner2 = YES;
@@ -1882,7 +1867,12 @@
                                                                            self.iv_winImage.alpha = 1.0;
                                                                        }
                                                                        completion:^(BOOL finished){
+                                                                           BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
                                                                            
+                                                                           if (twoPlayerProductPurchased == NO) {
+                                                                               // Show RevMob Fullscreen ad module.
+                                                                               [[RevMobAds session] showFullscreen];
+                                                                           }
                                                                        }
                                                        ];
                                                   }

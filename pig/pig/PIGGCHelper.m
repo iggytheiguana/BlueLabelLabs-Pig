@@ -97,9 +97,23 @@ static PIGGCHelper *sharedHelper = nil;
             }
             if (scores != nil)
             {
-                // Save the score to the user defaults
-                [[NSUserDefaults standardUserDefaults] setInteger:((GKScore*)[scores objectAtIndex:0]).value forKey:kHighestGameScorePlayer];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+//                // Save the score to the user defaults
+//                [[NSUserDefaults standardUserDefaults] setInteger:((GKScore*)[scores objectAtIndex:0]).value forKey:kHighestGameScorePlayer];
+//                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                // Check if the score on Game Center is higher than the score stored locally.
+                NSInteger highestGameScoreGC = ((GKScore*)[scores objectAtIndex:0]).value;
+                NSInteger highestGameScoreLocal = [[NSUserDefaults standardUserDefaults] integerForKey:kHighestGameScorePlayer];
+                
+                if (highestGameScoreGC >= highestGameScoreLocal) {
+                    // The Game Center score is newer. Save the score to the user defaults.
+                    [[NSUserDefaults standardUserDefaults] setInteger:((GKScore*)[scores objectAtIndex:0]).value forKey:kHighestGameScorePlayer];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+                else {
+                    // The local score is newer. Update the score on Game Center.
+                    [self reportScore:(int64_t)highestGameScoreLocal forLeaderboardID:kLeaderboardIdentifierHighestGameScore];
+                }
             }
         }];
     }
@@ -122,9 +136,23 @@ static PIGGCHelper *sharedHelper = nil;
             }
             if (scores != nil)
             {
-                // Save the score to the user defaults
-                [[NSUserDefaults standardUserDefaults] setInteger:((GKScore*)[scores objectAtIndex:0]).value forKey:kTotalScorePlayer];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+//                // Save the score to the user defaults
+//                [[NSUserDefaults standardUserDefaults] setInteger:((GKScore*)[scores objectAtIndex:0]).value forKey:kTotalScorePlayer];
+//                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                // Check if the score on Game Center is higher than the score stored locally.
+                NSInteger highestTotalScoreGC = ((GKScore*)[scores objectAtIndex:0]).value;
+                NSInteger highestTotalScoreLocal = [[NSUserDefaults standardUserDefaults] integerForKey:kTotalScorePlayer];
+                
+                if (highestTotalScoreGC >= highestTotalScoreLocal) {
+                    // The Game Center score is newer. Save the score to the user defaults.
+                    [[NSUserDefaults standardUserDefaults] setInteger:((GKScore*)[scores objectAtIndex:0]).value forKey:kTotalScorePlayer];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+                else {
+                    // The local score is newer. Update the score on Game Center.
+                    [self reportScore:(int64_t)highestTotalScoreLocal forLeaderboardID:kLeaderboardIdentifierTotalScore];
+                }
             }
         }];
     }

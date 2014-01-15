@@ -11,10 +11,13 @@
 		5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335D17D864DB009679F0 /* dice-red-1@2x.png */; };
 		5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5209E37817EAEFF00081CED0 /* Crashlytics.framework */; };
 		5209E37C17EB75830081CED0 /* Flurry+PIGFlurry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */; };
+		521808831885DE2D005881D5 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808821885DE2D005881D5 /* RevMobAds.framework */; };
+		521808851885DE58005881D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808841885DE58005881D5 /* SystemConfiguration.framework */; };
+		521808871885DE62005881D5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808861885DE62005881D5 /* AdSupport.framework */; };
+		5218088A1886EAD1005881D5 /* libFlurry_4.3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808891886EAD1005881D5 /* libFlurry_4.3.1.a */; };
 		5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162817D3BEF200F495E6 /* PIGMotionEffect.m */; };
 		5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */; };
 		5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5245623A17E0510E00F73533 /* PIGMoreTableViewController.m */; };
-		5250787E17EA2A070010CD1D /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5250787D17EA2A070010CD1D /* libFlurry_4.2.3.a */; };
 		5250788117EA2E5C0010CD1D /* button-buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 5250787F17EA2E5C0010CD1D /* button-buyTwoPlayer.png */; };
 		5250788217EA2E5C0010CD1D /* button-buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5250788017EA2E5C0010CD1D /* button-buyTwoPlayer@2x.png */; };
 		525FD63717CC726000BE7E07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63617CC726000BE7E07 /* Foundation.framework */; };
@@ -108,14 +111,17 @@
 		5209E37817EAEFF00081CED0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5209E37A17EB75830081CED0 /* Flurry+PIGFlurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Flurry+PIGFlurry.h"; sourceTree = "<group>"; };
 		5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Flurry+PIGFlurry.m"; sourceTree = "<group>"; };
+		521808821885DE2D005881D5 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevMobAds.framework; sourceTree = "<group>"; };
+		521808841885DE58005881D5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		521808861885DE62005881D5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		521808881886EAD1005881D5 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		521808891886EAD1005881D5 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		5223162717D3BEF200F495E6 /* PIGMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMotionEffect.h; sourceTree = "<group>"; };
 		5223162817D3BEF200F495E6 /* PIGMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMotionEffect.m; sourceTree = "<group>"; };
 		5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PIGCustomColors.h"; sourceTree = "<group>"; };
 		5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PIGCustomColors.m"; sourceTree = "<group>"; };
 		5245623917E0510E00F73533 /* PIGMoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMoreTableViewController.h; sourceTree = "<group>"; };
 		5245623A17E0510E00F73533 /* PIGMoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMoreTableViewController.m; sourceTree = "<group>"; };
-		5250787C17EA2A070010CD1D /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		5250787D17EA2A070010CD1D /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		5250787F17EA2E5C0010CD1D /* button-buyTwoPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-buyTwoPlayer.png"; sourceTree = "<group>"; };
 		5250788017EA2E5C0010CD1D /* button-buyTwoPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-buyTwoPlayer@2x.png"; sourceTree = "<group>"; };
 		525FD63317CC726000BE7E07 /* pig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pig.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,11 +222,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521808871885DE62005881D5 /* AdSupport.framework in Frameworks */,
+				521808851885DE58005881D5 /* SystemConfiguration.framework in Frameworks */,
 				52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */,
 				525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */,
 				5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */,
-				5250787E17EA2A070010CD1D /* libFlurry_4.2.3.a in Frameworks */,
 				525FD63917CC726000BE7E07 /* CoreGraphics.framework in Frameworks */,
+				5218088A1886EAD1005881D5 /* libFlurry_4.3.1.a in Frameworks */,
+				521808831885DE2D005881D5 /* RevMobAds.framework in Frameworks */,
 				5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */,
 				525FD63B17CC726000BE7E07 /* UIKit.framework in Frameworks */,
 				525FD63717CC726000BE7E07 /* Foundation.framework in Frameworks */,
@@ -256,8 +265,8 @@
 		5250787B17EA2A070010CD1D /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
-				5250787C17EA2A070010CD1D /* Flurry.h */,
-				5250787D17EA2A070010CD1D /* libFlurry_4.2.3.a */,
+				521808881886EAD1005881D5 /* Flurry.h */,
+				521808891886EAD1005881D5 /* libFlurry_4.3.1.a */,
 			);
 			path = Flurry;
 			sourceTree = "<group>";
@@ -285,6 +294,8 @@
 		525FD63517CC726000BE7E07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				521808861885DE62005881D5 /* AdSupport.framework */,
+				521808841885DE58005881D5 /* SystemConfiguration.framework */,
 				5280427B17DA67B00093C4AB /* GameKit.framework */,
 				52E4126617D00DC200F75335 /* StoreKit.framework */,
 				525FD68F17CC908D00BE7E07 /* AudioToolbox.framework */,
@@ -448,6 +459,7 @@
 		52E4126817D0122300F75335 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				521808821885DE2D005881D5 /* RevMobAds.framework */,
 				5209E37817EAEFF00081CED0 /* Crashlytics.framework */,
 				5250787B17EA2A070010CD1D /* Flurry */,
 				52E4126917D0124000F75335 /* Reachability */,
@@ -778,8 +790,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jordan Gurrieri (3U758YF3ZS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jordan Gurrieri (3U758YF3ZS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
@@ -792,7 +804,7 @@
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1B8EEC7F-342D-4C53-82AE-3DF5906D0901";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -802,8 +814,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Blue Label Solutions LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Blue Label Solutions LLC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
@@ -816,7 +828,7 @@
 					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "418165CB-593C-4672-8350-5CEF68E6BDB4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

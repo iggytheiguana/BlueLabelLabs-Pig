@@ -12,6 +12,7 @@
 #import "Flurry+PIGFlurry.h"
 #import "PIGGameConstants.h"
 #import <Crashlytics/Crashlytics.h>
+#import <RevMobAds/RevMobAds.h>
 
 @implementation PIGAppDelegate
 
@@ -28,6 +29,11 @@
     // Start Flurry
     [Flurry setCrashReportingEnabled:YES];
     [Flurry startSession:@"F8KVX5H9N2RCP6RD6VXH"];
+    
+    // Start RevMobAds Session
+    [RevMobAds startSessionWithAppID:@"52d5a5f85d1d553d6d000066"];
+    [RevMobAds session].parallaxMode = RevMobParallaxModeDefault;
+//    [RevMobAds session].testingMode = RevMobAdsTestingModeWithAds;
     
     // Check for IAP transactions
     [PIGIAPHelper sharedInstance];
