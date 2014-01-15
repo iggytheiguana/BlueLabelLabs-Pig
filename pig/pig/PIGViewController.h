@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "PIGGCHelper.h"
 #import "PIGRulesViewController.h"
+#import "PIGUpgradeViewController.h"
 
 @protocol PIGViewControllerDelegate <NSObject>
 - (void)pigViewControllerDidClose;
 @end
 
-@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate, GCHelperDelegate >
+@interface PIGViewController : UIViewController < UIDynamicAnimatorDelegate, UIAlertViewDelegate, GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate, GCHelperDelegate, PIGUpgradeViewControllerDelegate >
 
 @property (weak, nonatomic) id <PIGViewControllerDelegate> delegate;
 
@@ -52,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_gameSpeed;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_turnSummaryPlayer1;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_turnSummaryPlayer2;
+@property (weak, nonatomic) IBOutlet UIButton *btn_removeAds;
 
 - (IBAction)onQuitButtonPressed:(id)sender;
 - (IBAction)onPassButtonPressed:(id)sender;
@@ -60,5 +62,6 @@
 - (IBAction)onNewGameButtonPressed:(id)sender;
 - (IBAction)onGameSpeedValueChanged:(id)sender;
 - (IBAction)onRollTutorialButtonPressed:(id)sender;
+- (IBAction)onRemoveAdsButtonPressed:(id)sender;
 
 @end

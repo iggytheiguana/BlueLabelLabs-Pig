@@ -20,6 +20,8 @@
 #define kFASTGAME 1
 #define kSLOWGAME 1.5
 
+#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+
 @interface PIGViewController () {
     UILabel *m_lbl_activePlayer;
     float _gameSpeedMultiplier;
@@ -272,6 +274,18 @@
     }
     
     [self hideProgressView:NO];
+    
+    BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
+    
+    if (IS_IPHONE5 && twoPlayerProductPurchased == NO) {
+        // Show RevMob Fullscreen ad banner.
+        [[RevMobAds session] showBanner];
+        
+        [self.btn_removeAds setHidden:NO];
+    }
+    else {
+        [self.btn_removeAds setHidden:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -280,6 +294,8 @@
     [Flurry endTimedEvent:@"GAMEPLAY_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[RevMobAds session] hideBanner];
 }
 
 - (void)didReceiveMemoryWarning
@@ -1671,6 +1687,11 @@
     }
 }
 
+#pragma mark - PIGUpgradeViewController Delegate
+- (void)pigUpgradeViewControllerDidClose {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - UIAction Methods
 - (IBAction)onQuitButtonPressed:(id)sender {
 //    // Move the player 2 label into the center
@@ -1871,7 +1892,11 @@
                                                                            
                                                                            if (twoPlayerProductPurchased == NO) {
                                                                                // Show RevMob Fullscreen ad module.
-                                                                               [[RevMobAds session] showFullscreen];
+                                                                               int random = arc4random_uniform(100);
+                                                                               
+                                                                               if (random >= 70) {
+                                                                                   [[RevMobAds session] showFullscreen];
+                                                                               }
                                                                            }
                                                                        }
                                                        ];
@@ -2041,6 +2066,12 @@
     // Save setting to user defaults so this tutorial view does not show again
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kRollTutorialCompleted];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)onRemoveAdsButtonPressed:(id)sender {
+    PIGUpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
+    upgradeViewController.delegate = self;
+    [self.navigationController pushViewController:upgradeViewController animated:YES];
 }
 
 @end

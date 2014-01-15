@@ -425,6 +425,17 @@
                                     <action selector="onDiceButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="HCM-pU-ahH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ABr-PZ-iwt">
+                                <rect key="frame" x="116" y="493" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Remove Ads">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRemoveAdsButtonPressed:" destination="hEz-FG-OA1" eventType="touchUpInside" id="yBY-mn-Y3z"/>
+                                </connections>
+                            </button>
                             <view alpha="0.20000000000000001" contentMode="scaleToFill" id="Pmr-M6-9xM" userLabel="View - Loading Background">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -486,6 +497,7 @@
                         <outlet property="btn_pass" destination="Wzx-js-n5O" id="bt3-t2-mbq"/>
                         <outlet property="btn_playerReady" destination="vIi-Oj-nyP" id="ACm-jC-3FR"/>
                         <outlet property="btn_quit" destination="2ww-4B-aIX" id="1Fs-QW-PqP"/>
+                        <outlet property="btn_removeAds" destination="ABr-PZ-iwt" id="3Jc-rS-1N1"/>
                         <outlet property="btn_rollTutorial" destination="vYI-VH-lCa" id="ia3-yh-Ibh"/>
                         <outlet property="btn_rules" destination="ag4-3Y-UmE" id="Bad-dq-aSb"/>
                         <outlet property="iv_circlePlayer1" destination="dUJ-1X-ifq" id="7V3-if-UQU"/>
@@ -837,8 +849,25 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="SETTINGS" id="eoR-ov-LHo">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zTJ-1F-HyK" style="IBUITableViewCellStyleDefault" id="Tkr-mV-WLF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LeX-e9-fis" style="IBUITableViewCellStyleDefault" id="OVN-8e-F56">
                                         <rect key="frame" x="0.0" y="215" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OVN-8e-F56" id="fr6-yq-Ljq">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Remove Ads" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LeX-e9-fis">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zTJ-1F-HyK" style="IBUITableViewCellStyleDefault" id="Tkr-mV-WLF">
+                                        <rect key="frame" x="0.0" y="259" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tkr-mV-WLF" id="dUI-Xb-fhC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -855,7 +884,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="I1K-xf-AOG">
-                                        <rect key="frame" x="0.0" y="259" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="303" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1K-xf-AOG" id="eoH-x7-utZ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>

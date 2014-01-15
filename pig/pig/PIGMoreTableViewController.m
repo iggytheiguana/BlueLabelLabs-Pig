@@ -70,16 +70,25 @@
     
     // Check if two-palyer game has been unlocked already
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    UITableViewCell *removeAdsCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    UITableViewCell *restorePurchasesCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
     if (twoPlayerProductPurchased == YES) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.textLabel.textColor = [UIColor lightGrayColor];
-        [cell setUserInteractionEnabled:NO];
+        removeAdsCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        removeAdsCell.textLabel.textColor = [UIColor lightGrayColor];
+        [removeAdsCell setUserInteractionEnabled:NO];
+        
+        restorePurchasesCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        restorePurchasesCell.textLabel.textColor = [UIColor lightGrayColor];
+        [restorePurchasesCell setUserInteractionEnabled:NO];
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        [cell setUserInteractionEnabled:YES];
+        removeAdsCell.accessoryType = UITableViewCellAccessoryNone;
+        removeAdsCell.textLabel.textColor = [UIColor darkGrayColor];
+        [removeAdsCell setUserInteractionEnabled:YES];
+        
+        restorePurchasesCell.accessoryType = UITableViewCellAccessoryNone;
+        restorePurchasesCell.textLabel.textColor = [UIColor darkGrayColor];
+        [restorePurchasesCell setUserInteractionEnabled:YES];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
@@ -172,6 +181,11 @@
         [self showAchievements];
     }
     else if (indexPath.section == 1 && indexPath.row == 0) {
+        PIGUpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
+        upgradeViewController.delegate = self;
+        [self.navigationController pushViewController:upgradeViewController animated:YES];
+    }
+    else if (indexPath.section == 1 && indexPath.row == 1) {
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [activityIndicator startAnimating];
         m_ai_RestorePurchases = activityIndicator;
@@ -212,6 +226,11 @@
 
 #pragma mark - PIGRulesViewController Delegate
 - (void)pigRulesViewControllerDidClose {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - PIGUpgradeViewController Delegate
+- (void)pigUpgradeViewControllerDidClose {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

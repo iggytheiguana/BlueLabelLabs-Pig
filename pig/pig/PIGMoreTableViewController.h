@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PIGRulesViewController.h"
 #import <GameKit/GameKit.h>
+#import "PIGUpgradeViewController.h"
 
-@interface PIGMoreTableViewController : UITableViewController < GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate >
+@interface PIGMoreTableViewController : UITableViewController < GKGameCenterControllerDelegate, PIGRulesViewControllerDelegate, PIGUpgradeViewControllerDelegate >
 
 @property (weak, nonatomic) IBOutlet UISwitch *sw_vibrate;
 

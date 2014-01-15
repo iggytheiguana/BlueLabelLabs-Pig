@@ -700,7 +700,7 @@
     }
     
     if (twoPlayerProductPurchased == NO && activeMatches >= 2) {
-        PIGViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
+        PIGUpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeIdentifier"];
         upgradeViewController.delegate = self;
         [self.navigationController pushViewController:upgradeViewController animated:YES];
     }
