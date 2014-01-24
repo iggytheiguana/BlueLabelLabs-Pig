@@ -27,7 +27,7 @@
     [self updateAppVersionUserDefaultSetting];
     
     // Start Flurry
-    [Flurry setCrashReportingEnabled:YES];
+    [Flurry setCrashReportingEnabled:NO];
     [Flurry startSession:@"F8KVX5H9N2RCP6RD6VXH"];
     
     // Start RevMobAds Session
