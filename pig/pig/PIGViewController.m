@@ -13,9 +13,9 @@
 #import "UIColor+PIGCustomColors.h"
 #import "PIGGCHelper.h"
 #import "PIGGameConstants.h"
-#import "Flurry+PIGFlurry.h"
-#import <RevMobAds/RevMobAds.h>
+//#import <RevMobAds/RevMobAds.h>
 #import "PIGIAPHelper.h"
+#import <Crashlytics/Crashlytics.h>
 
 #define kFASTGAME 1
 #define kSLOWGAME 1.5
@@ -259,7 +259,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [Flurry logEvent:@"GAMEPLAY_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
@@ -279,7 +278,7 @@
     
     if (IS_IPHONE5 && twoPlayerProductPurchased == NO) {
         // Show RevMob Fullscreen ad banner.
-        [[RevMobAds session] showBanner];
+//        [[RevMobAds session] showBanner];
         
         [self.btn_removeAds setHidden:NO];
     }
@@ -291,11 +290,10 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [Flurry endTimedEvent:@"GAMEPLAY_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [[RevMobAds session] hideBanner];
+//    [[RevMobAds session] hideBanner];
 }
 
 - (void)didReceiveMemoryWarning
@@ -374,7 +372,6 @@
 }
 
 - (void)dragEnded:(UIControl *)control withEvent:event {
-    [Flurry logEvent:@"GAMEPLAY_SCREEN_DRAG" withParameters:[Flurry flurryUserParams]];
     
     [self.animator removeBehavior:self.touchAttachmentBehavior];
     [self.animator removeBehavior:self.touchAttachmentBehavior2];
@@ -1128,7 +1125,6 @@
     if (event.subtype == UIEventSubtypeMotionShake )
     {
         // User shook the device, we roll only if player is active and state is ready.
-        [Flurry logEvent:@"GAMEPLAY_SCREEN_SHAKE" withParameters:[Flurry flurryUserParams]];
         
         if (self.gameType == kONEPLAYERGAME && m_lbl_activePlayer == self.lbl_player2) {
             // Do nothing, it is the computer's turn
@@ -1895,7 +1891,7 @@
                                                                                int random = arc4random_uniform(100);
                                                                                
                                                                                if (random >= 70) {
-                                                                                   [[RevMobAds session] showFullscreen];
+//                                                                                   [[RevMobAds session] showFullscreen];
                                                                                }
                                                                            }
                                                                        }
@@ -2019,14 +2015,12 @@
 - (IBAction)onGameSpeedValueChanged:(id)sender {
     // Change the game speed
     if (self.sgmt_gameSpeed.selectedSegmentIndex == 0) {
-        [Flurry logEvent:@"GAMEPLAY_SCREEN_SPEEDSLOW" withParameters:[Flurry flurryUserParams]];
         
         _gameSpeedMultiplier = kSLOWGAME;
         
         self.lbl_gameSpeed.text = @"Slow Animations";
     }
     else {
-        [Flurry logEvent:@"GAMEPLAY_SCREEN_SPEEDFAST" withParameters:[Flurry flurryUserParams]];
         
         _gameSpeedMultiplier = kFASTGAME;
         

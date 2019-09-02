@@ -13,7 +13,6 @@
 #import "UINavigationController+PIGCustomNavigationController.h"
 #import "PIGIAPHelper.h"
 #import "PIGMultiplayerCell.h"
-#import "Flurry+PIGFlurry.h"
 #import "Reachability.h"
 
 @interface PIGMultiplayerViewController ()
@@ -72,7 +71,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [Flurry logEvent:@"MULTIPLAYER_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -93,7 +91,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [Flurry endTimedEvent:@"MULTIPLAYER_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -289,7 +286,6 @@
 }
 
 - (void)startLocalMatch {
-    [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWLOCALGAME" withParameters:[Flurry flurryUserParams]];
     
     PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
     gameplayViewController.delegate = self;
@@ -302,7 +298,6 @@
 }
 
 - (void)startGameCenterMatch {
-    [Flurry logEvent:@"MULTIPLAYER_SCREEN_NEWMATCHMAKERGAME" withParameters:[Flurry flurryUserParams]];
     
     [PIGGCHelper sharedInstance].delegate = self;
     [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];

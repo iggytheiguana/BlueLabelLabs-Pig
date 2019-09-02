@@ -9,10 +9,10 @@
 #import "PIGAppDelegate.h"
 #import "PIGIAPHelper.h"
 #import "PIGGCHelper.h"
-#import "Flurry+PIGFlurry.h"
 #import "PIGGameConstants.h"
 #import <Crashlytics/Crashlytics.h>
-#import <RevMobAds/RevMobAds.h>
+//#import <RevMobAds/RevMobAds.h>
+@import Firebase;
 
 @implementation PIGAppDelegate
 
@@ -20,19 +20,18 @@
 {
     // Override point for customization after application launch.
     
+    //Firebase
+    [FIRApp configure];
+    
     // Start Crashlytics
     [Crashlytics startWithAPIKey:@"b53fcf08df9b183b382153735d57a10862fc5348"];
     
     // Update the app version in the User Defaults
     [self updateAppVersionUserDefaultSetting];
     
-    // Start Flurry
-    [Flurry setCrashReportingEnabled:NO];
-    [Flurry startSession:@"F8KVX5H9N2RCP6RD6VXH"];
-    
     // Start RevMobAds Session
-    [RevMobAds startSessionWithAppID:@"52d5a5f85d1d553d6d000066"];
-    [RevMobAds session].parallaxMode = RevMobParallaxModeDefault;
+//    [RevMobAds startSessionWithAppID:@"52d5a5f85d1d553d6d000066"];
+//    [RevMobAds session].parallaxMode = RevMobParallaxModeDefault;
 //    [RevMobAds session].testingMode = RevMobAdsTestingModeWithAds;
     
     // Check for IAP transactions

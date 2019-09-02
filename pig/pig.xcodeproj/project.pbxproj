@@ -7,19 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5201335E17D864DB009679F0 /* dice-red-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335C17D864DB009679F0 /* dice-red-1.png */; };
-		5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5201335D17D864DB009679F0 /* dice-red-1@2x.png */; };
-		5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5209E37817EAEFF00081CED0 /* Crashlytics.framework */; };
-		5209E37C17EB75830081CED0 /* Flurry+PIGFlurry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */; };
-		521808831885DE2D005881D5 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808821885DE2D005881D5 /* RevMobAds.framework */; };
+		1FC680BA231DA0F000F6F5F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FC680B9231DA0EF00F6F5F3 /* GoogleService-Info.plist */; };
+		3E170DE8B54C46387AB47537 /* libPods-pig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802887CD27DA4D870A3FE602 /* libPods-pig.a */; };
 		521808851885DE58005881D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808841885DE58005881D5 /* SystemConfiguration.framework */; };
 		521808871885DE62005881D5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808861885DE62005881D5 /* AdSupport.framework */; };
-		5218088A1886EAD1005881D5 /* libFlurry_4.3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521808891886EAD1005881D5 /* libFlurry_4.3.1.a */; };
 		5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162817D3BEF200F495E6 /* PIGMotionEffect.m */; };
 		5223162D17D56E7A00F495E6 /* UIColor+PIGCustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */; };
 		5245623B17E0510E00F73533 /* PIGMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5245623A17E0510E00F73533 /* PIGMoreTableViewController.m */; };
-		5250788117EA2E5C0010CD1D /* button-buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 5250787F17EA2E5C0010CD1D /* button-buyTwoPlayer.png */; };
-		5250788217EA2E5C0010CD1D /* button-buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5250788017EA2E5C0010CD1D /* button-buyTwoPlayer@2x.png */; };
 		525FD63717CC726000BE7E07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63617CC726000BE7E07 /* Foundation.framework */; };
 		525FD63917CC726000BE7E07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63817CC726000BE7E07 /* CoreGraphics.framework */; };
 		525FD63B17CC726000BE7E07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525FD63A17CC726000BE7E07 /* UIKit.framework */; };
@@ -42,57 +36,13 @@
 		5280427A17DA66070093C4AB /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280427917DA66070093C4AB /* GCHelper.m */; };
 		5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5280427B17DA67B00093C4AB /* GameKit.framework */; };
 		5280428117DA976E0093C4AB /* PIGGCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280428017DA976E0093C4AB /* PIGGCHelper.m */; };
-		52A8B86B17FE165E00F0479E /* rollTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A8B86917FE165E00F0479E /* rollTutorial.png */; };
-		52A8B86C17FE165E00F0479E /* rollTutorial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A8B86A17FE165E00F0479E /* rollTutorial@2x.png */; };
-		52B3E2E417E018CD009C72DC /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3E2E017E018CD009C72DC /* rabbit.png */; };
-		52B3E2E517E018CD009C72DC /* rabbit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3E2E117E018CD009C72DC /* rabbit@2x.png */; };
-		52B3E2E617E018CD009C72DC /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3E2E217E018CD009C72DC /* turtle.png */; };
-		52B3E2E717E018CD009C72DC /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3E2E317E018CD009C72DC /* turtle@2x.png */; };
 		52B3E2EF17E03C81009C72DC /* PIGMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3E2EE17E03C81009C72DC /* PIGMoreViewController.m */; };
-		52BFB9F617E45C3E00757BBE /* button-bg-large-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F417E45C3E00757BBE /* button-bg-large-grey.png */; };
-		52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BFB9F517E45C3E00757BBE /* button-bg-large-grey@2x.png */; };
 		52D0CBF417E5201B003E46A2 /* PIGMultiplayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D0CBF317E5201B003E46A2 /* PIGMultiplayerViewController.m */; };
-		52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA817D7B98E009AD64E /* dice-white-1.png */; };
-		52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDA917D7B98E009AD64E /* dice-white-1@2x.png */; };
-		52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAA17D7B98E009AD64E /* dice-white-2.png */; };
-		52E1FDCD17D7B98E009AD64E /* dice-white-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAB17D7B98E009AD64E /* dice-white-2@2x.png */; };
-		52E1FDCE17D7B98E009AD64E /* dice-white-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAC17D7B98E009AD64E /* dice-white-3.png */; };
-		52E1FDCF17D7B98E009AD64E /* dice-white-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAD17D7B98E009AD64E /* dice-white-3@2x.png */; };
-		52E1FDD017D7B98E009AD64E /* dice-white-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAE17D7B98E009AD64E /* dice-white-4.png */; };
-		52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDAF17D7B98E009AD64E /* dice-white-4@2x.png */; };
-		52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB017D7B98E009AD64E /* dice-white-5.png */; };
-		52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB117D7B98E009AD64E /* dice-white-5@2x.png */; };
-		52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB217D7B98E009AD64E /* dice-white-6.png */; };
-		52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDB317D7B98E009AD64E /* dice-white-6@2x.png */; };
-		52E1FDE617D7B98E009AD64E /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC417D7B98E009AD64E /* snake.png */; };
-		52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E1FDC517D7B98E009AD64E /* snake@2x.png */; };
 		52E4126217D00CF400F75335 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126117D00CF400F75335 /* IAPHelper.m */; };
 		52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126417D00D8700F75335 /* PIGIAPHelper.m */; };
-		52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E4126617D00DC200F75335 /* StoreKit.framework */; };
 		52E4126C17D0125E00F75335 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126B17D0125E00F75335 /* Reachability.m */; };
 		52E4126F17D0132E00F75335 /* PIGRulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E4126E17D0132E00F75335 /* PIGRulesViewController.m */; };
-		52FFF70D17DE4B3E00F259E7 /* PIG-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF70B17DE4B3E00F259E7 /* PIG-logo.png */; };
-		52FFF70E17DE4B3E00F259E7 /* PIG-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF70C17DE4B3E00F259E7 /* PIG-logo@2x.png */; };
-		52FFF71917DE4E2B00F259E7 /* pig-large-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71717DE4E2B00F259E7 /* pig-large-transparent.png */; };
-		52FFF71A17DE4E2B00F259E7 /* pig-large-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71817DE4E2B00F259E7 /* pig-large-transparent@2x.png */; };
-		52FFF71F17DE509400F259E7 /* player-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71B17DE509300F259E7 /* player-bg-blue.png */; };
-		52FFF72017DE509400F259E7 /* player-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71C17DE509300F259E7 /* player-bg-blue@2x.png */; };
-		52FFF72117DE509400F259E7 /* player-bg-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71D17DE509300F259E7 /* player-bg-pink.png */; };
-		52FFF72217DE509400F259E7 /* player-bg-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF71E17DE509300F259E7 /* player-bg-pink@2x.png */; };
-		52FFF72517DE519800F259E7 /* points-bg-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72317DE519800F259E7 /* points-bg-white.png */; };
-		52FFF72617DE519800F259E7 /* points-bg-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72417DE519800F259E7 /* points-bg-white@2x.png */; };
-		52FFF72917DE57E700F259E7 /* player-bg-blue-reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72717DE57E700F259E7 /* player-bg-blue-reverse.png */; };
-		52FFF72A17DE57E700F259E7 /* player-bg-blue-reverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72817DE57E700F259E7 /* player-bg-blue-reverse@2x.png */; };
-		52FFF72F17DE61A600F259E7 /* button-bg-large-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72B17DE61A600F259E7 /* button-bg-large-blue.png */; };
-		52FFF73017DE61A600F259E7 /* button-bg-large-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72C17DE61A600F259E7 /* button-bg-large-blue@2x.png */; };
-		52FFF73117DE61A600F259E7 /* button-bg-large-pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72D17DE61A600F259E7 /* button-bg-large-pink.png */; };
-		52FFF73217DE61A600F259E7 /* button-bg-large-pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF72E17DE61A600F259E7 /* button-bg-large-pink@2x.png */; };
-		52FFF73917DE7A9A00F259E7 /* pig-smiling.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73717DE7A9A00F259E7 /* pig-smiling.png */; };
-		52FFF73A17DE7A9A00F259E7 /* pig-smiling@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73817DE7A9A00F259E7 /* pig-smiling@2x.png */; };
-		52FFF73D17DE7B1300F259E7 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73B17DE7B1300F259E7 /* pig.png */; };
-		52FFF73E17DE7B1300F259E7 /* pig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73C17DE7B1300F259E7 /* pig@2x.png */; };
-		52FFF74117DE7DD700F259E7 /* buyTwoPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF73F17DE7DD700F259E7 /* buyTwoPlayer.png */; };
-		52FFF74217DE7DD700F259E7 /* buyTwoPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52FFF74017DE7DD700F259E7 /* buyTwoPlayer@2x.png */; };
+		EA59AB30ED4CB65118041AE2 /* libPods-pigTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B17A6E08DD19503ABD28DC5 /* libPods-pigTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,16 +56,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FC680B9231DA0EF00F6F5F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1FC680BB231DAC4C00F6F5F3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1FC680BD231DAC5A00F6F5F3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		1FC680BF231DAC6900F6F5F3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		5201335C17D864DB009679F0 /* dice-red-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1.png"; sourceTree = "<group>"; };
 		5201335D17D864DB009679F0 /* dice-red-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice-red-1@2x.png"; sourceTree = "<group>"; };
 		5209E37817EAEFF00081CED0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		5209E37A17EB75830081CED0 /* Flurry+PIGFlurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Flurry+PIGFlurry.h"; sourceTree = "<group>"; };
-		5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Flurry+PIGFlurry.m"; sourceTree = "<group>"; };
 		521808821885DE2D005881D5 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevMobAds.framework; sourceTree = "<group>"; };
 		521808841885DE58005881D5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		521808861885DE62005881D5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		521808881886EAD1005881D5 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		521808891886EAD1005881D5 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		5223162717D3BEF200F495E6 /* PIGMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIGMotionEffect.h; sourceTree = "<group>"; };
 		5223162817D3BEF200F495E6 /* PIGMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIGMotionEffect.m; sourceTree = "<group>"; };
 		5223162B17D56E7A00F495E6 /* UIColor+PIGCustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PIGCustomColors.h"; sourceTree = "<group>"; };
@@ -215,6 +165,12 @@
 		52FFF73C17DE7B1300F259E7 /* pig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pig@2x.png"; sourceTree = "<group>"; };
 		52FFF73F17DE7DD700F259E7 /* buyTwoPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyTwoPlayer.png; sourceTree = "<group>"; };
 		52FFF74017DE7DD700F259E7 /* buyTwoPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buyTwoPlayer@2x.png"; sourceTree = "<group>"; };
+		6A0863355B4FC6D6074AE36F /* Pods-pigTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pigTests.debug.xcconfig"; path = "Target Support Files/Pods-pigTests/Pods-pigTests.debug.xcconfig"; sourceTree = "<group>"; };
+		802887CD27DA4D870A3FE602 /* libPods-pig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B17A6E08DD19503ABD28DC5 /* libPods-pigTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pigTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0687A214974F1321C92D7DD /* Pods-pig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pig.debug.xcconfig"; path = "Target Support Files/Pods-pig/Pods-pig.debug.xcconfig"; sourceTree = "<group>"; };
+		B2F7403102004881C78F5B16 /* Pods-pigTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pigTests.release.xcconfig"; path = "Target Support Files/Pods-pigTests/Pods-pigTests.release.xcconfig"; sourceTree = "<group>"; };
+		D60CEFDC0F5AA5939E85AE49 /* Pods-pig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pig.release.xcconfig"; path = "Target Support Files/Pods-pig/Pods-pig.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,15 +180,12 @@
 			files = (
 				521808871885DE62005881D5 /* AdSupport.framework in Frameworks */,
 				521808851885DE58005881D5 /* SystemConfiguration.framework in Frameworks */,
-				52E4126717D00DC200F75335 /* StoreKit.framework in Frameworks */,
 				525FD69017CC908D00BE7E07 /* AudioToolbox.framework in Frameworks */,
-				5209E37917EAEFF00081CED0 /* Crashlytics.framework in Frameworks */,
 				525FD63917CC726000BE7E07 /* CoreGraphics.framework in Frameworks */,
-				5218088A1886EAD1005881D5 /* libFlurry_4.3.1.a in Frameworks */,
-				521808831885DE2D005881D5 /* RevMobAds.framework in Frameworks */,
 				5280427C17DA67B00093C4AB /* GameKit.framework in Frameworks */,
 				525FD63B17CC726000BE7E07 /* UIKit.framework in Frameworks */,
 				525FD63717CC726000BE7E07 /* Foundation.framework in Frameworks */,
+				3E170DE8B54C46387AB47537 /* libPods-pig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +196,7 @@
 				525FD65617CC726000BE7E07 /* XCTest.framework in Frameworks */,
 				525FD65817CC726000BE7E07 /* UIKit.framework in Frameworks */,
 				525FD65717CC726000BE7E07 /* Foundation.framework in Frameworks */,
+				EA59AB30ED4CB65118041AE2 /* libPods-pigTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,19 +210,8 @@
 				5223162C17D56E7A00F495E6 /* UIColor+PIGCustomColors.m */,
 				52640E9217E984B600A64624 /* UINavigationController+PIGCustomNavigationController.h */,
 				52640E9317E984B600A64624 /* UINavigationController+PIGCustomNavigationController.m */,
-				5209E37A17EB75830081CED0 /* Flurry+PIGFlurry.h */,
-				5209E37B17EB75830081CED0 /* Flurry+PIGFlurry.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		5250787B17EA2A070010CD1D /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				521808881886EAD1005881D5 /* Flurry.h */,
-				521808891886EAD1005881D5 /* libFlurry_4.3.1.a */,
-			);
-			path = Flurry;
 			sourceTree = "<group>";
 		};
 		525FD62A17CC726000BE7E07 = {
@@ -279,6 +222,7 @@
 				525FD65B17CC726000BE7E07 /* pigTests */,
 				525FD63517CC726000BE7E07 /* Frameworks */,
 				525FD63417CC726000BE7E07 /* Products */,
+				54D785C3DA17A041C8D8F5B0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +238,9 @@
 		525FD63517CC726000BE7E07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FC680BF231DAC6900F6F5F3 /* libc++.tbd */,
+				1FC680BD231DAC5A00F6F5F3 /* libz.tbd */,
+				1FC680BB231DAC4C00F6F5F3 /* libsqlite3.tbd */,
 				521808861885DE62005881D5 /* AdSupport.framework */,
 				521808841885DE58005881D5 /* SystemConfiguration.framework */,
 				5280427B17DA67B00093C4AB /* GameKit.framework */,
@@ -303,6 +250,8 @@
 				525FD63817CC726000BE7E07 /* CoreGraphics.framework */,
 				525FD63A17CC726000BE7E07 /* UIKit.framework */,
 				525FD65517CC726000BE7E07 /* XCTest.framework */,
+				802887CD27DA4D870A3FE602 /* libPods-pig.a */,
+				9B17A6E08DD19503ABD28DC5 /* libPods-pigTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,6 +292,7 @@
 		525FD63D17CC726000BE7E07 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1FC680B9231DA0EF00F6F5F3 /* GoogleService-Info.plist */,
 				525FD63E17CC726000BE7E07 /* pig-Info.plist */,
 				525FD63F17CC726000BE7E07 /* InfoPlist.strings */,
 				525FD64217CC726000BE7E07 /* main.m */,
@@ -461,7 +411,6 @@
 			children = (
 				521808821885DE2D005881D5 /* RevMobAds.framework */,
 				5209E37817EAEFF00081CED0 /* Crashlytics.framework */,
-				5250787B17EA2A070010CD1D /* Flurry */,
 				52E4126917D0124000F75335 /* Reachability */,
 			);
 			name = Externals;
@@ -476,6 +425,17 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		54D785C3DA17A041C8D8F5B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0687A214974F1321C92D7DD /* Pods-pig.debug.xcconfig */,
+				D60CEFDC0F5AA5939E85AE49 /* Pods-pig.release.xcconfig */,
+				6A0863355B4FC6D6074AE36F /* Pods-pigTests.debug.xcconfig */,
+				B2F7403102004881C78F5B16 /* Pods-pigTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -483,10 +443,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 525FD66517CC726000BE7E07 /* Build configuration list for PBXNativeTarget "pig" */;
 			buildPhases = (
+				04695712BF7CB3B701C378B9 /* [CP] Check Pods Manifest.lock */,
 				525FD62F17CC726000BE7E07 /* Sources */,
 				525FD63017CC726000BE7E07 /* Frameworks */,
 				525FD63117CC726000BE7E07 /* Resources */,
 				5209E37717EAEEE90081CED0 /* ShellScript */,
+				1F4BFD79231DC0580029BD11 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -501,6 +463,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 525FD66817CC726000BE7E07 /* Build configuration list for PBXNativeTarget "pigTests" */;
 			buildPhases = (
+				88C3F48C3661C82B08B2AFE5 /* [CP] Check Pods Manifest.lock */,
 				525FD65017CC726000BE7E07 /* Sources */,
 				525FD65117CC726000BE7E07 /* Frameworks */,
 				525FD65217CC726000BE7E07 /* Resources */,
@@ -522,11 +485,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PIG;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = bluelabellabs;
 				TargetAttributes = {
 					525FD63217CC726000BE7E07 = {
 						DevelopmentTeam = 6NWNVVFK58;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
@@ -540,7 +504,7 @@
 			};
 			buildConfigurationList = 525FD62E17CC726000BE7E07 /* Build configuration list for PBXProject "pig" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -562,57 +526,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52FFF73E17DE7B1300F259E7 /* pig@2x.png in Resources */,
 				525FD64F17CC726000BE7E07 /* Images.xcassets in Resources */,
-				52FFF71F17DE509400F259E7 /* player-bg-blue.png in Resources */,
-				52FFF70D17DE4B3E00F259E7 /* PIG-logo.png in Resources */,
-				52FFF73017DE61A600F259E7 /* button-bg-large-blue@2x.png in Resources */,
-				52FFF72517DE519800F259E7 /* points-bg-white.png in Resources */,
-				52FFF72617DE519800F259E7 /* points-bg-white@2x.png in Resources */,
-				52E1FDD417D7B98E009AD64E /* dice-white-6.png in Resources */,
-				52E1FDD017D7B98E009AD64E /* dice-white-4.png in Resources */,
-				52FFF73D17DE7B1300F259E7 /* pig.png in Resources */,
-				52E1FDCB17D7B98E009AD64E /* dice-white-1@2x.png in Resources */,
 				525FD64117CC726000BE7E07 /* InfoPlist.strings in Resources */,
-				5250788217EA2E5C0010CD1D /* button-buyTwoPlayer@2x.png in Resources */,
-				52E1FDCC17D7B98E009AD64E /* dice-white-2.png in Resources */,
-				52A8B86B17FE165E00F0479E /* rollTutorial.png in Resources */,
-				52FFF72217DE509400F259E7 /* player-bg-pink@2x.png in Resources */,
-				52FFF73217DE61A600F259E7 /* button-bg-large-pink@2x.png in Resources */,
-				52BFB9F617E45C3E00757BBE /* button-bg-large-grey.png in Resources */,
-				52E1FDE617D7B98E009AD64E /* snake.png in Resources */,
-				52E1FDD317D7B98E009AD64E /* dice-white-5@2x.png in Resources */,
-				52E1FDD117D7B98E009AD64E /* dice-white-4@2x.png in Resources */,
-				52E1FDCF17D7B98E009AD64E /* dice-white-3@2x.png in Resources */,
-				52A8B86C17FE165E00F0479E /* rollTutorial@2x.png in Resources */,
-				52E1FDCD17D7B98E009AD64E /* dice-white-2@2x.png in Resources */,
-				52FFF72017DE509400F259E7 /* player-bg-blue@2x.png in Resources */,
-				52FFF73917DE7A9A00F259E7 /* pig-smiling.png in Resources */,
-				52FFF74117DE7DD700F259E7 /* buyTwoPlayer.png in Resources */,
-				52E1FDD217D7B98E009AD64E /* dice-white-5.png in Resources */,
-				52FFF71A17DE4E2B00F259E7 /* pig-large-transparent@2x.png in Resources */,
-				5201335E17D864DB009679F0 /* dice-red-1.png in Resources */,
-				52BFB9F717E45C3E00757BBE /* button-bg-large-grey@2x.png in Resources */,
-				52B3E2E717E018CD009C72DC /* turtle@2x.png in Resources */,
-				5250788117EA2E5C0010CD1D /* button-buyTwoPlayer.png in Resources */,
-				52FFF74217DE7DD700F259E7 /* buyTwoPlayer@2x.png in Resources */,
-				52FFF72A17DE57E700F259E7 /* player-bg-blue-reverse@2x.png in Resources */,
-				52FFF73A17DE7A9A00F259E7 /* pig-smiling@2x.png in Resources */,
-				52FFF71917DE4E2B00F259E7 /* pig-large-transparent.png in Resources */,
-				52E1FDCA17D7B98E009AD64E /* dice-white-1.png in Resources */,
-				52B3E2E617E018CD009C72DC /* turtle.png in Resources */,
-				52FFF72F17DE61A600F259E7 /* button-bg-large-blue.png in Resources */,
-				5201335F17D864DB009679F0 /* dice-red-1@2x.png in Resources */,
-				52FFF70E17DE4B3E00F259E7 /* PIG-logo@2x.png in Resources */,
-				52B3E2E417E018CD009C72DC /* rabbit.png in Resources */,
-				52E1FDCE17D7B98E009AD64E /* dice-white-3.png in Resources */,
-				52FFF72917DE57E700F259E7 /* player-bg-blue-reverse.png in Resources */,
-				52E1FDE717D7B98E009AD64E /* snake@2x.png in Resources */,
-				52FFF72117DE509400F259E7 /* player-bg-pink.png in Resources */,
+				1FC680BA231DA0F000F6F5F3 /* GoogleService-Info.plist in Resources */,
 				525FD64A17CC726000BE7E07 /* Main.storyboard in Resources */,
-				52FFF73117DE61A600F259E7 /* button-bg-large-pink.png in Resources */,
-				52B3E2E517E018CD009C72DC /* rabbit@2x.png in Resources */,
-				52E1FDD517D7B98E009AD64E /* dice-white-6@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +544,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04695712BF7CB3B701C378B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pig-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F4BFD79231DC0580029BD11 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 		5209E37717EAEEE90081CED0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -638,7 +595,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nbuildPlist=${INFOPLIST_FILE}\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" $buildPlist\n\n#Crashlytics\n./Crashlytics.framework/run b53fcf08df9b183b382153735d57a10862fc5348";
+			shellScript = "#!/bin/bash\n\nbuildPlist=${INFOPLIST_FILE}\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" $buildPlist\n";
+		};
+		88C3F48C3661C82B08B2AFE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pigTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -658,7 +637,6 @@
 				52E4126517D00D8700F75335 /* PIGIAPHelper.m in Sources */,
 				5223162917D3BEF200F495E6 /* PIGMotionEffect.m in Sources */,
 				52B3E2EF17E03C81009C72DC /* PIGMoreViewController.m in Sources */,
-				5209E37C17EB75830081CED0 /* Flurry+PIGFlurry.m in Sources */,
 				52D0CBF417E5201B003E46A2 /* PIGMultiplayerViewController.m in Sources */,
 				52E4126217D00CF400F75335 /* IAPHelper.m in Sources */,
 				52640E9117E84AAD00A64624 /* PIGUpgradeViewController.m in Sources */,
@@ -723,30 +701,45 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jordan Gurrieri (3U758YF3ZS)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "1B8EEC7F-342D-4C53-82AE-3DF5906D0901";
 				SDKROOT = iphoneos;
@@ -761,24 +754,38 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Blue Label Solutions LLC";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PROVISIONING_PROFILE = "418165CB-593C-4672-8350-5CEF68E6BDB4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -787,54 +794,59 @@
 		};
 		525FD66617CC726000BE7E07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0687A214974F1321C92D7DD /* Pods-pig.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jordan Gurrieri (3U758YF3ZS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jordan Gurrieri (3U758YF3ZS)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6NWNVVFK58;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
 				INFOPLIST_FILE = "pig/pig-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bluelabellabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1B8EEC7F-342D-4C53-82AE-3DF5906D0901";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		525FD66717CC726000BE7E07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D60CEFDC0F5AA5939E85AE49 /* Pods-pig.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Blue Label Solutions LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Blue Label Solutions LLC";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig",
-				);
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6NWNVVFK58;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
 				INFOPLIST_FILE = "pig/pig-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/MacbookPro/Dropbox/Documents/2.\\ Work/Apple/Projects/Pig/BlueLabelLabs-Pig/pig/pig/Flurry",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bluelabellabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "418165CB-593C-4672-8350-5CEF68E6BDB4";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		525FD66917CC726000BE7E07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A0863355B4FC6D6074AE36F /* Pods-pigTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/pig.app/pig";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -849,6 +861,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "pigTests/pigTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bluelabellabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -857,6 +870,7 @@
 		};
 		525FD66A17CC726000BE7E07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2F7403102004881C78F5B16 /* Pods-pigTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/pig.app/pig";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -867,6 +881,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pig/pig-Prefix.pch";
 				INFOPLIST_FILE = "pigTests/pigTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bluelabellabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

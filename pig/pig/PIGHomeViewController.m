@@ -13,7 +13,6 @@
 #import "PIGMotionEffect.h"
 #import "PIGGameConstants.h"
 #import "UINavigationController+PIGCustomNavigationController.h"
-#import "Flurry+PIGFlurry.h"
 
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 
@@ -87,7 +86,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [Flurry logEvent:@"HOME_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
@@ -124,7 +122,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [Flurry endTimedEvent:@"HOME_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -210,7 +207,6 @@
 //                [self.btn_buyTwoPlayer setHidden:NO];
 //            }
         }
-        [Flurry logEvent:@"SESSION_START" withParameters:[Flurry flurryUserParams]];
     }];
 }
 
@@ -364,14 +360,12 @@
 
 - (IBAction)onHighScoreButtonPressed:(id)sender {
     // Leaderboards selected
-    [Flurry logEvent:@"HOME_SCREEN_LEADERBOARDS_PRESSED" withParameters:[Flurry flurryUserParams]];
     
     [self showLeaderboard:kLeaderboardIdentifierHighestGameScore];
 }
 
 - (IBAction)onAchievementsButtonPressed:(id)sender {
     // Achievements selected
-    [Flurry logEvent:@"HOME_SCREEN_ACHIEVEMENTS_PRESSED" withParameters:[Flurry flurryUserParams]];
     
     [self showAchievements];
 }

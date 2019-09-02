@@ -8,7 +8,6 @@
 
 #import "PIGRulesViewController.h"
 #import "UIColor+PIGCustomColors.h"
-#import "Flurry+PIGFlurry.h"
 #import "PIGGameConstants.h"
 
 @interface PIGRulesViewController ()
@@ -38,7 +37,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [Flurry logEvent:@"RULES_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams] timed:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -52,7 +50,6 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    [Flurry endTimedEvent:@"RULES_SCREEN_VIEWING" withParameters:[Flurry flurryUserParams]];
 }
 
 - (void)didReceiveMemoryWarning
