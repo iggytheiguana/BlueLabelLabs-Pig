@@ -574,7 +574,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"$(SRCROOT)/pig/pig-Info.plist",
 			);
 			outputFileListPaths = (
 			);
@@ -586,7 +586,7 @@
 		};
 		5209E37717EAEEE90081CED0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

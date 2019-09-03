@@ -8,9 +8,9 @@ target 'pig' do
   # Pods for pig
   pod 'Firebase/Analytics'
   pod 'Fabric', '~> 1.10.2'
+  pod 'Google-Mobile-Ads-SDK'
   pod 'Crashlytics', '~> 3.13.4' 
-
-
+  
   target 'pigTests' do
     inherit! :search_paths
    

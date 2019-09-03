@@ -11,8 +11,8 @@
 #import "PIGGCHelper.h"
 #import "PIGGameConstants.h"
 #import <Crashlytics/Crashlytics.h>
-//#import <RevMobAds/RevMobAds.h>
 @import Firebase;
+@import GoogleMobileAds;
 
 @implementation PIGAppDelegate
 
@@ -23,23 +23,18 @@
     //Firebase
     [FIRApp configure];
     
-    // Start Crashlytics
-    [Crashlytics startWithAPIKey:@"b53fcf08df9b183b382153735d57a10862fc5348"];
-    
     // Update the app version in the User Defaults
     [self updateAppVersionUserDefaultSetting];
-    
-    // Start RevMobAds Session
-//    [RevMobAds startSessionWithAppID:@"52d5a5f85d1d553d6d000066"];
-//    [RevMobAds session].parallaxMode = RevMobParallaxModeDefault;
-//    [RevMobAds session].testingMode = RevMobAdsTestingModeWithAds;
     
     // Check for IAP transactions
     [PIGIAPHelper sharedInstance];
     
+    //Mobile Ads
+    [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
+      
     return YES;
 }
-							
+		
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

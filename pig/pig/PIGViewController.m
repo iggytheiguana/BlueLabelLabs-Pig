@@ -13,14 +13,15 @@
 #import "UIColor+PIGCustomColors.h"
 #import "PIGGCHelper.h"
 #import "PIGGameConstants.h"
-//#import <RevMobAds/RevMobAds.h>
 #import "PIGIAPHelper.h"
+
 #import <Crashlytics/Crashlytics.h>
 
 #define kFASTGAME 1
 #define kSLOWGAME 1.5
 
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+@import GoogleMobileAds;
 
 @interface PIGViewController () {
     UILabel *m_lbl_activePlayer;
@@ -57,7 +58,9 @@
 @property (nonatomic) UISnapBehavior *player2SnapBehavior;
 @property (nonatomic) UIAttachmentBehavior *touchAttachmentBehavior;
 @property (nonatomic) UIAttachmentBehavior *touchAttachmentBehavior2;
-
+@property(nonatomic, strong) GADBannerView *bannerViewAd;
+@property(nonatomic, strong) GADInterstitial *interstitialAd;
+    
 @end
 
 @implementation PIGViewController
@@ -66,8 +69,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(20, 50, 100, 30);
+    [button setTitle:@"Crash" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(crashButtonTapped:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
+    
+    //Google Ads Banner
+    self.bannerViewAd = [[GADBannerView alloc]
+                       initWithAdSize:kGADAdSizeBanner];
+    [self addBannerViewToView:self.bannerViewAd];
+    self.bannerViewAd.adUnitID = @"ca-app-pub-5188835958267952/5106584389";
+    self.bannerViewAd.rootViewController = self;
+    
+    //Google Ads Interstitial
+    self.interstitialAd = [[GADInterstitial alloc]
+    initWithAdUnitID:@"ca-app-pub-5188835958267952/1107629625"];
+    [self.interstitialAd loadRequest: [GADRequest request]];
+
     // Setup the Player Ready button
     [self.btn_playerReady.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.btn_playerReady.titleLabel setMinimumScaleFactor:0.5];
@@ -256,9 +278,40 @@
 //    _score2 = 99;
 }
 
+// Google Ads Banner
+- (void)addBannerViewToView:(UIView *)bannerView {
+    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:bannerView];
+    [self.view addConstraints:@[
+                                [NSLayoutConstraint constraintWithItem:bannerView
+                                                             attribute:NSLayoutAttributeBottom
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.bottomLayoutGuide
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1
+                                                              constant:0],
+                                [NSLayoutConstraint constraintWithItem:bannerView
+                                                             attribute:NSLayoutAttributeCenterX
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeCenterX
+                                                            multiplier:1
+                                                              constant:0]
+                                ]];
+}
+    
+    
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+     //Google Ads Banner
+    self.bannerViewAd = [[GADBannerView alloc]
+                         initWithAdSize:kGADAdSizeBanner];
+    [self addBannerViewToView:self.bannerViewAd];
+    self.bannerViewAd.adUnitID = @"ca-app-pub-5188835958267952/5106584389";
+    self.bannerViewAd.rootViewController = self;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HIDEBANNER" object:nil];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
@@ -277,23 +330,24 @@
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
     
     if (IS_IPHONE5 && twoPlayerProductPurchased == NO) {
-        // Show RevMob Fullscreen ad banner.
-//        [[RevMobAds session] showBanner];
-        
+        // Show AdMob ad banner.
+        [self.bannerViewAd loadRequest:[GADRequest request]];
         [self.btn_removeAds setHidden:NO];
     }
     else {
         [self.btn_removeAds setHidden:YES];
     }
 }
-
+    
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+//    [[AdMob session] hideBanner];
+    NSLog(@"Admob: Turning Off");
+    [_bannerViewAd removeFromSuperview];
     
-//    [[RevMobAds session] hideBanner];
 }
 
 - (void)didReceiveMemoryWarning
@@ -319,6 +373,7 @@
 #pragma mark - PIGRulesViewController Delegate
 - (void)pigRulesViewControllerDidClose {
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 #pragma mark - Instance Methods
@@ -1887,16 +1942,22 @@
                                                                            BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
                                                                            
                                                                            if (twoPlayerProductPurchased == NO) {
-                                                                               // Show RevMob Fullscreen ad module.
+                                                                               // Show AdMob Fullscreen ad module.
                                                                                int random = arc4random_uniform(100);
                                                                                
-                                                                               if (random >= 70) {
-//                                                                                   [[RevMobAds session] showFullscreen];
+                                                                               if (random >= 1) {
+//                                                                                   if (random >= 70) {
+//                                                                                   [[AdMob session] showFullscreen];
+                                                                                   
+                                                                                   if (self.interstitialAd.isReady) {
+                                                                                       [self.interstitialAd presentFromRootViewController:self];
+                                                                                   }
                                                                                }
                                                                            }
                                                                        }
                                                        ];
                                                   }
+                                  
                                   ];
                              }
              ];
@@ -1982,6 +2043,8 @@
                 [PIGGCHelper sharedInstance].currentMatch = match;
                 [PIGGCHelper sharedInstance].delegate = self;
                 [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
+            
+                [self.bannerViewAd loadRequest:[GADRequest request]];
             }
         }];
         
@@ -2068,4 +2131,9 @@
     [self.navigationController pushViewController:upgradeViewController animated:YES];
 }
 
+    - (IBAction)crashButtonTapped:(id)sender {
+        [[Crashlytics sharedInstance] crash];
+    }
+    
+    
 @end
