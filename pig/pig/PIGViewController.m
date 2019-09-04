@@ -1944,14 +1944,9 @@
                                                                            if (twoPlayerProductPurchased == NO) {
                                                                                // Show AdMob Fullscreen ad module.
                                                                                int random = arc4random_uniform(100);
-                                                                               
-                                                                               if (random >= 1) {
-//                                                                                   if (random >= 70) {
-//                                                                                   [[AdMob session] showFullscreen];
                                                                                    
-                                                                                   if (self.interstitialAd.isReady) {
-                                                                                       [self.interstitialAd presentFromRootViewController:self];
-                                                                                   }
+                                                                               if (random >= 70 && self.interstitialAd.isReady) {
+                                                                                   [self.interstitialAd presentFromRootViewController:self];
                                                                                }
                                                                            }
                                                                        }

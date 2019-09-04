@@ -105,16 +105,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedTransaction:) name:IAPHelperFailedTransactionNotification object:nil];
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(20, 50, 100, 30);
-    [button setTitle:@"Crash" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(crashButtonTapped:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-}
-    
-- (IBAction)crashButtonTapped:(id)sender {
-    [[Crashlytics sharedInstance] crash];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>494089285641-0sp792v8jj4uv318kiml234ipevsv5or.apps.googleusercontent.com</string>
+	<string>776726844786-movh3705rf3m50o2u9ij07cbggaf4o7o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.494089285641-0sp792v8jj4uv318kiml234ipevsv5or</string>
+	<string>com.googleusercontent.apps.776726844786-movh3705rf3m50o2u9ij07cbggaf4o7o</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDxUtnIPTA3eXTurXw0z9fHqzlBoOeFzVY</string>
+	<string>AIzaSyDdndAEeh1oRYMI1oRPIJv__pdLXtu-THY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>494089285641</string>
+	<string>776726844786</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.bluelabellabs.pig</string>
 	<key>PROJECT_ID</key>
-	<string>pig-ios</string>
+	<string>pig-dice-game-86245</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pig-ios.appspot.com</string>
+	<string>pig-dice-game-86245.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:494089285641:ios:a1b6debcba43b744</string>
+	<string>1:776726844786:ios:a1b6debcba43b744</string>
 	<key>DATABASE_URL</key>
-	<string>https://pig-ios.firebaseio.com</string>
+	<string>https://pig-dice-game-86245.firebaseio.com</string>
 </dict>
 </plist>
