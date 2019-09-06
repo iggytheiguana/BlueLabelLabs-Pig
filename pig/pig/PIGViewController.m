@@ -70,14 +70,6 @@
 {
     [super viewDidLoad];
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(20, 50, 100, 30);
-    [button setTitle:@"Crash" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(crashButtonTapped:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    
-    
     //Google Ads Banner
     self.bannerViewAd = [[GADBannerView alloc]
                        initWithAdSize:kGADAdSizeBanner];
@@ -2126,9 +2118,4 @@
     [self.navigationController pushViewController:upgradeViewController animated:YES];
 }
 
-    - (IBAction)crashButtonTapped:(id)sender {
-        [[Crashlytics sharedInstance] crash];
-    }
-    
-    
 @end
