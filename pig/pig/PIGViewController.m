@@ -2030,7 +2030,8 @@
                 [PIGGCHelper sharedInstance].currentMatch = match;
                 [PIGGCHelper sharedInstance].delegate = self;
                 [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
-            
+    
+                
                 [self.bannerViewAd loadRequest:[GADRequest request]];
             }
         }];
