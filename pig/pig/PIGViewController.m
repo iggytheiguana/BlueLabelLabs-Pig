@@ -20,7 +20,8 @@
 #define kFASTGAME 1
 #define kSLOWGAME 1.5
 
-#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+#define IS_IPHONE6 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+#define IS_IPHONEX (([[UIScreen mainScreen] bounds].size.height-812)?NO:YES)
 @import GoogleMobileAds;
 
 @interface PIGViewController () {
@@ -69,6 +70,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    print([UIScreen mainScreen].bounds.size.height;)
     
     //Google Ads Banner
     self.bannerViewAd = [[GADBannerView alloc]
@@ -128,20 +130,36 @@
     self.v_containerPlayer1.center = CGPointMake(self.v_containerPlayer1.center.x+101, self.v_containerPlayer1.center.y);
     
     // Add Snap Behaviors to the labels
-    UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x-101, self.v_containerPlayer1.center.y)];
-    self.player1SnapBehavior = player1Snap;
-    UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x-101, self.v_containerPlayer2.center.y)];
-    self.player2SnapBehavior = player2Snap;
+    
+    if (IS_IPHONE6) {
+        UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x-140, self.v_containerPlayer1.center.y-100)];
+        self.player1SnapBehavior = player1Snap;
+        UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x-50, self.v_containerPlayer2.center.y-100)];
+        self.player2SnapBehavior = player2Snap;
+    } else {
+        UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x-101, self.v_containerPlayer1.center.y+110)];
+        self.player1SnapBehavior = player1Snap;
+        UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x-50, self.v_containerPlayer2.center.y+110)];
+        self.player2SnapBehavior = player2Snap;
+    }
     
     [animator addBehavior:self.player1SnapBehavior];
     [animator addBehavior:self.player2SnapBehavior];
     
     // Add Snap Behaviors to the dice
-    UISnapBehavior *dice1Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice1 snapToPoint:CGPointMake(self.btn_dice1.center.x, self.btn_dice1.center.y)];
-    UISnapBehavior *dice2Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice2 snapToPoint:CGPointMake(self.btn_dice2.center.x, self.btn_dice2.center.y)];
-    
-    [animator addBehavior:dice1Snap];
-    [animator addBehavior:dice2Snap];
+    if (IS_IPHONE6) {
+        UISnapBehavior *dice1Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice1 snapToPoint:CGPointMake(self.btn_dice1.center.x-27, self.btn_dice1.center.y-90)];
+        UISnapBehavior *dice2Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice2 snapToPoint:CGPointMake(self.btn_dice2.center.x-27, self.btn_dice2.center.y-90)];
+        
+        [animator addBehavior:dice1Snap];
+        [animator addBehavior:dice2Snap];
+    } else {
+        UISnapBehavior *dice1Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice1 snapToPoint:CGPointMake(self.btn_dice1.center.x, self.btn_dice1.center.y+120)];
+        UISnapBehavior *dice2Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice2 snapToPoint:CGPointMake(self.btn_dice2.center.x, self.btn_dice2.center.y+120)];
+        
+        [animator addBehavior:dice1Snap];
+        [animator addBehavior:dice2Snap];
+    }
     
 //    // Add Collision Behavior to the dice
 //    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems:[NSArray arrayWithObjects:self.btn_dice1, self.btn_dice2, nil]];
@@ -321,7 +339,7 @@
     
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
     
-    if (IS_IPHONE5 && twoPlayerProductPurchased == NO) {
+    if ((IS_IPHONE6 || IS_IPHONEX) && twoPlayerProductPurchased == NO) {
         // Show AdMob ad banner.
         [self.bannerViewAd loadRequest:[GADRequest request]];
         [self.btn_removeAds setHidden:NO];
@@ -949,9 +967,9 @@
         [self.animator removeBehavior:self.player1SnapBehavior];
         [self.animator removeBehavior:self.player2SnapBehavior];
         
-        UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x-101, self.v_containerPlayer1.center.y)];
+        UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x-10, self.v_containerPlayer1.center.y)];
         self.player1SnapBehavior = player1Snap;
-        UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x-101, self.v_containerPlayer2.center.y)];
+        UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x-80, self.v_containerPlayer2.center.y)];
         self.player2SnapBehavior = player2Snap;
         
         [self.animator addBehavior:self.player1SnapBehavior];
@@ -985,9 +1003,9 @@
         [self.animator removeBehavior:self.player1SnapBehavior];
         [self.animator removeBehavior:self.player2SnapBehavior];
         
-        UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x+101, self.v_containerPlayer1.center.y)];
+        UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x+60, self.v_containerPlayer1.center.y)];
         self.player1SnapBehavior = player1Snap;
-        UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x+101, self.v_containerPlayer2.center.y)];
+        UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x, self.v_containerPlayer2.center.y)];
         self.player2SnapBehavior = player2Snap;
         
         [self.animator addBehavior:self.player1SnapBehavior];
@@ -1857,7 +1875,8 @@
             }
         }
         else if (_score2 >= 101 && _score2 > _score1) {
-            _winner2 = YES;
+
+        _winner2 = YES;
             
             [self playerOneActive];
             
@@ -1938,6 +1957,7 @@
                                                                                int random = arc4random_uniform(100);
                                                                                    
                                                                                if (random >= 70 && self.interstitialAd.isReady) {
+                                                                              
                                                                                    [self.interstitialAd presentFromRootViewController:self];
                                                                                }
                                                                            }

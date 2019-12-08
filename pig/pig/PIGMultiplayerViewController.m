@@ -15,6 +15,9 @@
 #import "PIGMultiplayerCell.h"
 #import "Reachability.h"
 
+#define IS_IPHONE6 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+#define IS_IPHONEX (([[UIScreen mainScreen] bounds].size.height-812)?NO:YES)
+
 @interface PIGMultiplayerViewController ()
 
 @end
@@ -43,20 +46,37 @@
     [super viewDidLoad];
     
     // Add title view
-    CGRect viewFrame = CGRectMake(0.0, 0.0, 320.0, 66.0);
-    UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
-    [titleView setContentMode:UIViewContentModeCenter];
-    
-    CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    [titleLabel setBackgroundColor:[UIColor whiteColor]];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
-    [titleLabel setTextColor:[UIColor pigBlueColor]];
-    [titleLabel setText:@"Two Player Games"];
-    
-    [titleView addSubview:titleLabel];
-    [self.tableView setTableHeaderView:titleView];
+    if (IS_IPHONE6) {
+        CGRect viewFrame = CGRectMake(0.0, 0.0, 320.0, 66.0);
+        UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+        [titleView setContentMode:UIViewContentModeCenter];
+        
+        CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [titleLabel setBackgroundColor:[UIColor whiteColor]];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
+        [titleLabel setTextColor:[UIColor pigBlueColor]];
+        [titleLabel setText:@"Two Player Games"];
+        
+        [titleView addSubview:titleLabel];
+        [self.tableView setTableHeaderView:titleView];
+    } else {
+        CGRect viewFrame = CGRectMake(0.0, 0.0, 375.0, 66.0);
+        UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+        [titleView setContentMode:UIViewContentModeCenter];
+        
+        CGRect labelFrame = CGRectMake(0.0, 4.0, 375, 36.0);
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [titleLabel setBackgroundColor:[UIColor whiteColor]];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
+        [titleLabel setTextColor:[UIColor pigBlueColor]];
+        [titleLabel setText:@"Two Player Games"];
+        
+        [titleView addSubview:titleLabel];
+        [self.tableView setTableHeaderView:titleView];
+    }
     
     // Initialize Refresh Control
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];

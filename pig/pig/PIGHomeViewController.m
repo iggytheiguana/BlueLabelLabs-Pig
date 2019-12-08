@@ -76,9 +76,10 @@
     
     if (IS_IPHONE5) {
         self.v_progressContainer.center = CGPointMake(self.v_progressContainer.center.x, self.v_progressContainer.center.y + 50.0);
-    }
-    else {
-        self.v_mainContainer.center = CGPointMake(self.v_mainContainer.center.x, self.v_mainContainer.center.y - 20.0);
+
+    } else {
+        self.v_mainContainer.center = CGPointMake(self.v_mainContainer.center.x,
+            self.v_mainContainer.center.y-20);
     }
     
     [self updateScoresAndAchievements];

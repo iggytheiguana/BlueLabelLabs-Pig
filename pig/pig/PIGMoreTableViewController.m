@@ -11,6 +11,7 @@
 #import "PIGGameConstants.h"
 #import "UIColor+PIGCustomColors.h"
 
+#define IS_IPHONE6 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 @interface PIGMoreTableViewController () {
     NSArray *_products;
     UIActivityIndicatorView *m_ai_RestorePurchases;
@@ -35,20 +36,37 @@
     [super viewDidLoad];
     
     // Add title view
-    CGRect viewFrame = CGRectMake(0.0, 0.0, 320.0, 66.0);
-    UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
-    [titleView setContentMode:UIViewContentModeCenter];
-    
-    CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
-    [titleLabel setTextColor:[UIColor pigBlueColor]];
-    [titleLabel setText:@"More"];
-    
-    [titleView addSubview:titleLabel];
-    [self.tableView setTableHeaderView:titleView];
+    if (IS_IPHONE6) {
+        CGRect viewFrame = CGRectMake(0.0, 0.0, 320.0, 36.0);
+        UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+        [titleView setContentMode:UIViewContentModeCenter];
+        
+        CGRect labelFrame = CGRectMake(0.0, 4.0, 320.0, 36.0);
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:25.0]];
+        [titleLabel setTextColor:[UIColor pigBlueColor]];
+        [titleLabel setText:@"More"];
+        
+        [titleView addSubview:titleLabel];
+        [self.tableView setTableHeaderView:titleView];
+    } else {
+        CGRect viewFrame = CGRectMake(0.0, 0.0, 375.0, 45);
+        UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+        [titleView setContentMode:UIViewContentModeCenter];
+        
+        CGRect labelFrame = CGRectMake(0.0, 5.0, 375.0, 25.0);
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
+        [titleLabel setTextColor:[UIColor pigBlueColor]];
+        [titleLabel setText:@"More"];
+        
+        [titleView addSubview:titleLabel];
+        [self.tableView setTableHeaderView:titleView];
+    }
     
     // Setup vibrate setting from user defaults
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kSettingsVibrate]) {

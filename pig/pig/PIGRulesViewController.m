@@ -30,7 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    CGSize contentSize = CGSizeMake(320.0, self.lbl_lastRule.frame.origin.y + self.lbl_lastRule.frame.size.height + 20.0);
+   CGSize contentSize = CGSizeMake(320.0, self.lbl_lastRule.frame.origin.y + self.lbl_lastRule.frame.size.height);
     [self.sv_scrollView setContentSize:contentSize];
 }
 
