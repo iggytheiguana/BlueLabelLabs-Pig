@@ -390,11 +390,11 @@
                                     <constraint firstAttribute="bottom" secondItem="wes-D0-qFJ" secondAttribute="bottom" id="peL-D1-whx"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chazzwozzer rolled a 7 and lost 24 points last turn" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNT-Jl-og1">
-                                <rect key="frame" x="0.0" y="158" width="170" height="97"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chazzwozzer rolled a 7 and lost 24 points last turn" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNT-Jl-og1">
+                                <rect key="frame" x="5" y="158" width="164" height="97"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="97" id="YxC-0e-z6S"/>
-                                    <constraint firstAttribute="width" constant="170" id="pyB-UX-5hD"/>
+                                    <constraint firstAttribute="width" constant="164" id="pyB-UX-5hD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -526,10 +526,10 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chazzwozzer rolled a 7 and lost 24 points last turn" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mno-Xm-pr0">
-                                <rect key="frame" x="205" y="464" width="170" height="19"/>
+                                <rect key="frame" x="206" y="464" width="164" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="IU1-7J-8uD"/>
-                                    <constraint firstAttribute="width" constant="170" id="lb2-Du-UZW"/>
+                                    <constraint firstAttribute="width" constant="164" id="lb2-Du-UZW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -611,7 +611,7 @@
                             <constraint firstItem="kDG-Il-nnX" firstAttribute="leading" secondItem="Nck-bL-O2X" secondAttribute="leading" constant="-50" id="LMN-br-kdg"/>
                             <constraint firstItem="Ppp-Ui-rgo" firstAttribute="top" secondItem="Pmr-M6-9xM" secondAttribute="bottom" id="MdG-yf-nPf"/>
                             <constraint firstItem="ag4-3Y-UmE" firstAttribute="top" secondItem="84p-RO-O9l" secondAttribute="bottom" constant="15" id="MsC-XL-rbJ"/>
-                            <constraint firstItem="QNT-Jl-og1" firstAttribute="leading" secondItem="Nck-bL-O2X" secondAttribute="leading" id="OeL-R4-nSp"/>
+                            <constraint firstItem="QNT-Jl-og1" firstAttribute="leading" secondItem="Nck-bL-O2X" secondAttribute="leading" constant="5" id="OeL-R4-nSp"/>
                             <constraint firstItem="ag4-3Y-UmE" firstAttribute="leading" secondItem="AGF-DN-Ll4" secondAttribute="trailing" constant="10" id="S6V-SR-Akh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YGJ-KV-U3f" secondAttribute="trailing" constant="5" id="T1t-ag-rWW"/>
                             <constraint firstItem="Ppp-Ui-rgo" firstAttribute="top" secondItem="vYI-VH-lCa" secondAttribute="bottom" id="UTo-Zf-dp0"/>
@@ -619,7 +619,7 @@
                             <constraint firstItem="Ppp-Ui-rgo" firstAttribute="top" secondItem="ABr-PZ-iwt" secondAttribute="bottom" constant="50" id="Yiz-0Y-o14"/>
                             <constraint firstItem="wyM-Ym-Un9" firstAttribute="top" secondItem="nEq-U1-5Ps" secondAttribute="bottom" constant="-119" id="Zju-u6-GYT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nEq-U1-5Ps" secondAttribute="trailing" constant="50" id="bZA-9z-TLo"/>
-                            <constraint firstAttribute="trailing" secondItem="mno-Xm-pr0" secondAttribute="trailing" id="bjo-MM-9aP"/>
+                            <constraint firstAttribute="trailing" secondItem="mno-Xm-pr0" secondAttribute="trailing" constant="5" id="bjo-MM-9aP"/>
                             <constraint firstItem="AGF-DN-Ll4" firstAttribute="leading" secondItem="2ww-4B-aIX" secondAttribute="trailing" constant="10" id="coM-Wf-9Tn"/>
                             <constraint firstAttribute="trailing" secondItem="vYI-VH-lCa" secondAttribute="trailing" id="dQY-E1-z6v"/>
                             <constraint firstItem="vYI-VH-lCa" firstAttribute="leading" secondItem="Nck-bL-O2X" secondAttribute="leading" id="fYr-lD-tli"/>
@@ -769,7 +769,7 @@
                             <outlet property="delegate" destination="L0X-xr-kQ1" id="l3u-TC-rtQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3eY-SE-H1O">
+                    <navigationItem key="navigationItem" prompt=" " id="3eY-SE-H1O">
                         <barButtonItem key="rightBarButtonItem" title="＋ New Game" id="AlF-50-TUJ">
                             <connections>
                                 <action selector="onNewTwoPlayerGameButtonPressed:" destination="L0X-xr-kQ1" id="the-dS-bnT"/>
@@ -906,6 +906,7 @@
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-V2-dwn">
                                         <rect key="frame" x="10" y="14" width="46" height="32"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="v8e-oD-otO"/>
                                         </constraints>
@@ -1071,7 +1072,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Vibrate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPz-2Q-7vW">
-                                                    <rect key="frame" x="19" y="0.0" width="150" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="150" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="yL5-ZB-vAZ"/>
                                                     </constraints>
@@ -1080,7 +1081,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqB-Hl-4xt">
-                                                    <rect key="frame" x="349" y="6.5" width="51" height="31"/>
+                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="FcZ-FD-kor"/>
                                                         <constraint firstAttribute="width" constant="49" id="WJu-Lh-9Ml"/>
@@ -1435,6 +1436,6 @@
         <image name="turtle.png" width="47" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3EQ-Iu-zDi"/>
+        <segue reference="jA2-CX-F2u"/>
     </inferredMetricsTieBreakers>
 </document>

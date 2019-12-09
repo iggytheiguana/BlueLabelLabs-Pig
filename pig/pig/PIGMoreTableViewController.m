@@ -12,6 +12,7 @@
 #import "UIColor+PIGCustomColors.h"
 
 #define IS_IPHONE6 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+#define IS_IPHONE_X_MAX (([[UIScreen mainScreen] bounds].size.height-812)?NO:YES)
 @interface PIGMoreTableViewController () {
     NSArray *_products;
     UIActivityIndicatorView *m_ai_RestorePurchases;
@@ -51,6 +52,21 @@
         
         [titleView addSubview:titleLabel];
         [self.tableView setTableHeaderView:titleView];
+    } else if IS_IPHONE_X_MAX {
+        CGRect viewFrame = CGRectMake(0, 0.0, 375.0, 30);
+        UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+        [titleView setContentMode:UIViewContentModeCenter];
+        
+        CGRect labelFrame = CGRectMake(0.0, 0.0, 375.0, 25.0);
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
+        [titleLabel setTextColor:[UIColor pigBlueColor]];
+        [titleLabel setText:@"More"];
+        
+        [titleView addSubview:titleLabel];
+        [self.tableView setTableHeaderView:titleView];
     } else {
         CGRect viewFrame = CGRectMake(0.0, 0.0, 375.0, 45);
         UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
@@ -85,6 +101,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if IS_IPHONE_X_MAX {
+        [self.navigationController.navigationBar setFrame:CGRectMake(0, 30, self.view.frame.size.width,80.0)];
+    }
     // Check if two-palyer game has been unlocked already
     BOOL twoPlayerProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:IAPUnlockTwoPlayerGameProductIdentifier];
     UITableViewCell *removeAdsCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];

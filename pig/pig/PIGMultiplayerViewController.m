@@ -16,7 +16,8 @@
 #import "Reachability.h"
 
 #define IS_IPHONE6 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
-#define IS_IPHONEX (([[UIScreen mainScreen] bounds].size.height-812)?NO:YES)
+#define IS_IPHONE_X_MAX (([[UIScreen mainScreen] bounds].size.height-812)?NO:YES)
+
 
 @interface PIGMultiplayerViewController ()
 
@@ -61,6 +62,23 @@
         
         [titleView addSubview:titleLabel];
         [self.tableView setTableHeaderView:titleView];
+        
+    } else if IS_IPHONE_X_MAX {
+        CGRect viewFrame = CGRectMake(100.0, 100.0, 375.0, 25);
+        UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
+        [titleView setContentMode:UIViewContentModeCenter];
+        
+        CGRect labelFrame = CGRectMake(0, -35, 375, 35);
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [titleLabel setBackgroundColor:[UIColor whiteColor]];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:30.0]];
+        [titleLabel setTextColor:[UIColor pigBlueColor]];
+        [titleLabel setText:@"Two Player Games"];
+        
+        [titleView addSubview:titleLabel];
+        [self.tableView setTableHeaderView:titleView];
+  
     } else {
         CGRect viewFrame = CGRectMake(0.0, 0.0, 375.0, 66.0);
         UIView *titleView = [[UIView alloc] initWithFrame:viewFrame];
@@ -91,6 +109,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if IS_IPHONE_X_MAX {
+        for (UIView *subview in self.navigationController.navigationBar.subviews) {
+            if ([NSStringFromClass([subview class]) containsString:@"BarBackground"]) {
+                CGRect subViewFrame = subview.frame;
+                // subViewFrame.origin.y = -20;
+                subViewFrame.size.height = 100;
+                [subview setFrame: subViewFrame];
+            }
+        }
+    }
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
