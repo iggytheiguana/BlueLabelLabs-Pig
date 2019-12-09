@@ -1772,6 +1772,7 @@
         
         [self.delegate pigViewControllerDidClose];
     }
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)onPassButtonPressed:(id)sender {
