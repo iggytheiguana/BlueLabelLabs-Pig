@@ -113,7 +113,7 @@
         for (UIView *subview in self.navigationController.navigationBar.subviews) {
             if ([NSStringFromClass([subview class]) containsString:@"BarBackground"]) {
                 CGRect subViewFrame = subview.frame;
-                // subViewFrame.origin.y = -20;
+                subViewFrame.origin.y = -20;
                 subViewFrame.size.height = 100;
                 [subview setFrame: subViewFrame];
             }
@@ -186,54 +186,7 @@
         if (error) {
             NSLog(@"%@", error.localizedDescription);
         }
-//        else {
-//            NSMutableArray *yourTurnMatches = [NSMutableArray array];
-//            NSMutableArray *theirTurnMatches = [NSMutableArray array];
-//            NSMutableArray *completedMatches = [NSMutableArray array];
-//            
-//            for (GKTurnBasedMatch *match in matches) {
-//                GKTurnBasedMatchOutcome yourOutcome;
-//                for (GKTurnBasedParticipant *participant in match.participants) {
-//                    if ([participant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-//                        yourOutcome = participant.matchOutcome;
-//                    }
-//                }
-//                
-//                if (match.status != GKTurnBasedMatchStatusEnded && yourOutcome != GKTurnBasedMatchOutcomeQuit) {
-//                    if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-//                        [yourTurnMatches addObject:match];
-//                    }
-//                    else {
-//                        [theirTurnMatches addObject:match];
-//                    }
-//                }
-//                else {
-//                    [completedMatches addObject:match];
-//                }
-//            }
-//            
-//            _existingMatches = [[NSArray alloc] initWithObjects:yourTurnMatches, theirTurnMatches, completedMatches, nil];
-//            NSLog(@"Matches: %@", _existingMatches);
-//            [self.tableView reloadData];
-//        }
         else {
-//            NSMutableArray *allMatches = [NSMutableArray array];
-//            
-//            for (GKTurnBasedMatch *match in matches) {
-//                GKTurnBasedMatchOutcome yourOutcome;
-//                for (GKTurnBasedParticipant *participant in match.participants) {
-//                    if ([participant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-//                        yourOutcome = participant.matchOutcome;
-//                    }
-//                }
-//                
-//                if (match.status != GKTurnBasedMatchStatusEnded && yourOutcome != GKTurnBasedMatchOutcomeQuit) {
-//                    [allMatches addObject:match];
-//                }
-//            }
-//
-//            _existingMatches = [[NSArray alloc] initWithArray:allMatches];
-            
             for (GKTurnBasedMatch *match in matches) {
                 // We need to update the match data for all matches downloaded
                 [match loadMatchDataWithCompletionHandler:^(NSData *matchData, NSError *error) {
@@ -266,61 +219,14 @@
 }
 
 - (IBAction)quitMatch:(GKTurnBasedMatch *)match {
-//    if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-//        [PIGGCHelper sharedInstance].delegate = self;
-//        [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil playerQuitForMatch:match];
-//    }
-//    else {
-//        [PIGGCHelper sharedInstance].delegate = self;
-//        [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
-//            if (error) {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//        }];
-//    }
-//    
-//    [match removeWithCompletionHandler:^(NSError *error) {
-//        if (error) {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//        else {
-//            _matchToDelete = nil;
-//            [self reloadTableView:nil];
-//        }
-//    }];
-    
-//    // Remove this row from the tableview
-//    int row = [_existingMatches indexOfObject:match];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-//    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    
     // Quit and remove the match from Game Center
     if ([match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
         [PIGGCHelper sharedInstance].delegate = self;
         [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil playerQuitForMatch:match];
         
         _matchToDelete = nil;
-        
-//        [self reloadTableView:nil];
     }
     else {
-//        [PIGGCHelper sharedInstance].delegate = self;
-//        [match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
-//            if (error) {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//            else {
-//                [match removeWithCompletionHandler:^(NSError *error) {
-//                    if (error) {
-//                        NSLog(@"%@", error.localizedDescription);
-//                    }
-//                    
-//                    _matchToDelete = nil;
-//                    
-//                    [self reloadTableView:nil];
-//                }];
-//            }
-//        }];
         
         [PIGGCHelper sharedInstance].delegate = self;
         [[PIGGCHelper sharedInstance] playerQuitOutOfTurnForMatch:match];
@@ -355,98 +261,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-//    return 4;
     return 1;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return @"Local Game";
-//    }
-//    else if (section == 1) {
-//        return @"Your Turn";
-//    }
-//    else if (section == 2) {
-//        return @"Their Turn";
-//    } else {
-//        return @"Completed Games";
-//    }
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (section == 0) {
-//        // Local Game
-//        return 1;
-//    }
-//    else if (section == 1) {
-//        // Your Turn Multiplayer Games
-//        if ([[_existingMatches objectAtIndex:(section - 1)] count] == 0) {
-//            // For the New Game row
-//            return 1;
-//        }
-//        else {
-//            return [[_existingMatches objectAtIndex:(section - 1)] count] + 1;
-//        }
-//    }
-//    else {
-//        // Multiplayer Games
-//        return [[_existingMatches objectAtIndex:(section - 1)] count];
-//    }
     return [_existingMatches count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSString *CellIdentifier;
-//    
-//    if (indexPath.section == 0 && indexPath.row == 0) {
-//        // New Local Two Player Game
-//        CellIdentifier = @"LocalGameCell";
-//    }
-//    else if (indexPath.section == 1 && indexPath.row == [[_existingMatches objectAtIndex:0] count]) {
-//        // New Multiplayer Player Game
-//        CellIdentifier = @"NewMultiplayerGameCell";
-//    }
-//    else {
-//        // Existing Game
-//        CellIdentifier = @"MultiplayerGameCell";
-//    }
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    if ([CellIdentifier isEqualToString:@"MultiplayerGameCell"]) {
-//        GKTurnBasedMatch *match = [[_existingMatches objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
-//        
-//        if ([match.matchData length] > 0) {
-//            NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
-//            
-//            NSString *opponentName = [matchDataDict objectForKey:@"player1ID"];
-//            NSString *scoreString = [NSString stringWithFormat:@"%d vs %d", [[matchDataDict objectForKey:@"score1"] intValue], [[matchDataDict objectForKey:@"score2"] intValue]];
-//            
-//            cell.textLabel.text = opponentName;
-//            cell.detailTextLabel.text = scoreString;
-//        }
-//    }
-//    
-//    return cell;
-    
-//    static NSString *CellIdentifier = @"MultiplayerGameCell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    GKTurnBasedMatch *match = [_existingMatches objectAtIndex:indexPath.row];
-//    
-//    if ([match.matchData length] > 0) {
-//        NSDictionary *matchDataDict = [NSPropertyListSerialization propertyListFromData:match.matchData mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
-//        
-//        NSString *opponentName = [matchDataDict objectForKey:@"player1ID"];
-//        NSString *scoreString = [NSString stringWithFormat:@"%d vs %d", [[matchDataDict objectForKey:@"score1"] intValue], [[matchDataDict objectForKey:@"score2"] intValue]];
-//        
-//        cell.textLabel.text = opponentName;
-//        cell.detailTextLabel.text = scoreString;
-//    }
-
     static NSString *CellIdentifier = @"MultiplayerGameCellv2";
     
     PIGMultiplayerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -534,44 +358,6 @@
     
     [PIGGCHelper sharedInstance].delegate = self;
     [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
-    
-//	if (indexPath.section == 0 && indexPath.row == 0) {
-//        // Local Two Player Game selected
-//        PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
-//        gameplayViewController.delegate = self;
-//        gameplayViewController.gameType = kTWOPLAYERGAMELOCAL;
-//        
-//        [self presentViewController:gameplayViewController animated:YES completion:nil];
-//    }
-//    else if (indexPath.section == 1 && indexPath.row == [[_existingMatches objectAtIndex:0] count]) {
-//        [[PIGGCHelper sharedInstance] findMatchWithMinPlayers:kTurnBasedGameMinPlayers maxPlayers:kTurnBasedGameMaxPlayers viewController:self showExistingMatches:NO];
-//        [PIGGCHelper sharedInstance].delegate = self;
-////
-////        [self.gamePlayViewController dismissViewControllerAnimated:YES completion:nil];
-////        [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
-//        
-////        GKMatchRequest *request = [[GKMatchRequest alloc] init];
-////        
-////        request.maxPlayers = 2;
-////        request.minPlayers = 2;
-////        
-////        [GKTurnBasedMatch findMatchForRequest:request withCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
-////            if (error) {
-////                NSLog(@"%@", error.localizedDescription );
-////            } else {
-////                NSLog(@"match found!");
-//////                [self dismissViewControllerAnimated:YES completion:nil];
-////                
-////                PIGViewController *gameplayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GamePlayIdentifier"];
-////                gameplayViewController.delegate = self;
-////                gameplayViewController.gameType = kTWOPLAYERGAMEGAMECENTER;
-////                [PIGGCHelper sharedInstance].delegate = gameplayViewController;
-////                [self.navigationController pushViewController:gameplayViewController animated:YES];
-////                
-////                [[PIGGCHelper sharedInstance] turnBasedMatchmakerViewController:nil didFindMatch:match];
-////            }
-////        }];
-//    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -599,34 +385,6 @@
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"Remove";
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 #pragma mark - GCHelperDelegate Multiplayer Methods
 -(void)enterNewGame:(GKTurnBasedMatch *)match {

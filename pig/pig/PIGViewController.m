@@ -1772,7 +1772,8 @@
         
         [self.delegate pigViewControllerDidClose];
     }
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:Nil];
 }
 
 - (IBAction)onPassButtonPressed:(id)sender {

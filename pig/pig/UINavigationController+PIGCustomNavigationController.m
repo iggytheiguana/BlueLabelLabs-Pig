@@ -11,6 +11,10 @@
 @implementation UINavigationController (PIGCustomNavigationController)
 
 - (void)applyCustomStyle {
+    if (@available(iOS 13.0, *)) {
+        [self setModalPresentationStyle: UIModalPresentationFullScreen];
+    }
+    
     [self.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     // Hide the Navigation bar line

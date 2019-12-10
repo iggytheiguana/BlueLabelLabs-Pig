@@ -13,6 +13,7 @@
 
 #define IS_IPHONE6 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 #define IS_IPHONE_X_MAX (([[UIScreen mainScreen] bounds].size.height-812)?NO:YES)
+
 @interface PIGMoreTableViewController () {
     NSArray *_products;
     UIActivityIndicatorView *m_ai_RestorePurchases;
