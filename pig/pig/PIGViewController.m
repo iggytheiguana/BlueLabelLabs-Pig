@@ -131,6 +131,7 @@
     
     // Add Snap Behaviors to the labels
     
+    /*
     if (IS_IPHONE6) {
         UISnapBehavior *player1Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer1 snapToPoint:CGPointMake(self.v_containerPlayer1.center.x-140, self.v_containerPlayer1.center.y-100)];
         self.player1SnapBehavior = player1Snap;
@@ -142,11 +143,13 @@
         UISnapBehavior *player2Snap = [[UISnapBehavior alloc] initWithItem:self.v_containerPlayer2 snapToPoint:CGPointMake(self.v_containerPlayer2.center.x-50, self.v_containerPlayer2.center.y+110)];
         self.player2SnapBehavior = player2Snap;
     }
+    */
     
     [animator addBehavior:self.player1SnapBehavior];
     [animator addBehavior:self.player2SnapBehavior];
     
     // Add Snap Behaviors to the dice
+    /*
     if (IS_IPHONE6) {
         UISnapBehavior *dice1Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice1 snapToPoint:CGPointMake(self.btn_dice1.center.x-27, self.btn_dice1.center.y-90)];
         UISnapBehavior *dice2Snap = [[UISnapBehavior alloc] initWithItem:self.btn_dice2 snapToPoint:CGPointMake(self.btn_dice2.center.x-27, self.btn_dice2.center.y-90)];
@@ -160,6 +163,7 @@
         [animator addBehavior:dice1Snap];
         [animator addBehavior:dice2Snap];
     }
+    */
     
 //    // Add Collision Behavior to the dice
 //    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems:[NSArray arrayWithObjects:self.btn_dice1, self.btn_dice2, nil]];
