@@ -37,7 +37,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="255" height="97"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" backgroundImage="player-bg-pink.png">
+                                                <state key="normal" backgroundImage="player-bg-pink">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -45,7 +45,7 @@
                                                     <segue destination="pQZ-Pj-DUo" kind="modal" identifier="Home_to_OnePlayerGame" modalPresentationStyle="fullScreen" id="BRv-7b-DId"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="U1L-PB-E6R">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white" translatesAutoresizingMaskIntoConstraints="NO" id="U1L-PB-E6R">
                                                 <rect key="frame" x="9" y="9" width="79" height="79"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -81,7 +81,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <inset key="titleEdgeInsets" minX="60" minY="42" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Player Game" image="buyTwoPlayer.png">
+                                        <state key="normal" title="Player Game" image="buyTwoPlayer">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -99,7 +99,7 @@
                                             <segue destination="096-jC-RMw" kind="push" identifier="Home_to_More" id="TyN-Ef-h42"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PIG-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="52O-qH-7zb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PIG-logo" translatesAutoresizingMaskIntoConstraints="NO" id="52O-qH-7zb">
                                         <rect key="frame" x="82" y="0.0" width="211" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="l6f-z2-HQ6"/>
@@ -180,7 +180,7 @@
                                                 <rect key="frame" x="0.0" y="-2" width="255" height="97"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" backgroundImage="player-bg-blue-reverse.png">
+                                                <state key="normal" backgroundImage="player-bg-blue-reverse">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -188,7 +188,7 @@
                                                     <segue destination="L0X-xr-kQ1" kind="push" identifier="Home_to_TwoPlayerGame" id="9nH-jf-3dK"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-Tj-zq5">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-Tj-zq5">
                                                 <rect key="frame" x="9" y="9" width="79" height="79"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -277,7 +277,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYI-VH-lCa">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
-                                <state key="normal" image="rollTutorial.png">
+                                <state key="normal" image="rollTutorial">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -295,7 +295,7 @@
                                     <constraint firstAttribute="height" constant="28" id="Qvn-Ez-byX"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="" image="turtle.png"/>
+                                    <segment title="" image="turtle"/>
                                     <segment title="" image="rabbit.png"/>
                                 </segments>
                                 <connections>
@@ -345,10 +345,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4z-iF-i0j">
                                 <rect key="frame" x="176" y="269" width="255" height="97"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-bg-pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="wes-D0-qFJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-bg-pink" translatesAutoresizingMaskIntoConstraints="NO" id="wes-D0-qFJ">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="97"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-1X-ifq">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-1X-ifq">
                                         <rect key="frame" x="9" y="9" width="79" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -411,7 +411,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <inset key="contentEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
-                                <state key="normal" title="Player 1 Ready" backgroundImage="button-bg-large-pink.png">
+                                <state key="normal" title="Player 1 Ready" backgroundImage="button-bg-large-pink">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -428,10 +428,10 @@
                                         <color key="textColor" red="0.15469714999198914" green="0.48263257741928101" blue="0.90078854560852051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snake.png" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-ri-975">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snake" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-ri-975">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig-smiling.png" translatesAutoresizingMaskIntoConstraints="NO" id="YUE-NX-ZbV">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig-smiling" translatesAutoresizingMaskIntoConstraints="NO" id="YUE-NX-ZbV">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                     </imageView>
                                 </subviews>
@@ -457,7 +457,7 @@
                                     <constraint firstAttribute="width" constant="100" id="OMx-T8-dZu"/>
                                     <constraint firstAttribute="height" constant="100" id="hS8-9U-Sat"/>
                                 </constraints>
-                                <state key="normal" image="dice-white-1.png">
+                                <state key="normal" image="dice-white-1">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -470,7 +470,7 @@
                                     <constraint firstAttribute="height" constant="100" id="EQY-7F-Xqi"/>
                                     <constraint firstAttribute="width" constant="100" id="y35-KM-5wm"/>
                                 </constraints>
-                                <state key="normal" image="dice-white-1.png">
+                                <state key="normal" image="dice-white-1">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -480,10 +480,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDG-Il-nnX">
                                 <rect key="frame" x="-50" y="536" width="255" height="97"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-bg-blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="RQ7-uX-l2e">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-bg-blue" translatesAutoresizingMaskIntoConstraints="NO" id="RQ7-uX-l2e">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="97"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="JRz-fU-icg">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white" translatesAutoresizingMaskIntoConstraints="NO" id="JRz-fU-icg">
                                         <rect key="frame" x="167" y="9" width="79" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -702,11 +702,11 @@
                                             <rect key="frame" x="95" y="11" width="225" height="97"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player-bg-pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pkj-YR-Osg">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player-bg-pink" translatesAutoresizingMaskIntoConstraints="NO" id="Pkj-YR-Osg">
                                                     <rect key="frame" x="0.0" y="0.0" width="225" height="97"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="dXM-eE-e5M">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="points-bg-white" translatesAutoresizingMaskIntoConstraints="NO" id="dXM-eE-e5M">
                                                     <rect key="frame" x="9" y="9" width="79" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -789,7 +789,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig-large-transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="fgH-DY-Qy9">
+                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig-large-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="fgH-DY-Qy9">
                                 <rect key="frame" x="27.666666666666657" y="246" width="320" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="goj-at-mMo"/>
@@ -835,7 +835,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <inset key="titleEdgeInsets" minX="168" minY="42" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
-                                <state key="normal" title="Upgrade" backgroundImage="button-buyTwoPlayer-1.png">
+                                <state key="normal" title="Upgrade" backgroundImage="button-buyTwoPlayer-1">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -1115,7 +1115,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig-large-transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jR-2F-0zz">
+                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig-large-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="3jR-2F-0zz">
                                 <rect key="frame" x="0.0" y="105" width="375" height="550"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="100" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="4g2-kf-ct5">
@@ -1406,21 +1406,21 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PIG-logo.png" width="188" height="62"/>
-        <image name="button-bg-large-pink.png" width="253" height="106"/>
-        <image name="button-buyTwoPlayer-1.png" width="16" height="16"/>
-        <image name="buyTwoPlayer.png" width="111" height="105"/>
-        <image name="dice-white-1.png" width="109" height="109"/>
-        <image name="pig-large-transparent.png" width="290" height="266"/>
-        <image name="pig-smiling.png" width="164" height="150"/>
-        <image name="player-bg-blue-reverse.png" width="255" height="97"/>
-        <image name="player-bg-blue.png" width="255" height="97"/>
-        <image name="player-bg-pink.png" width="255" height="97"/>
-        <image name="points-bg-white.png" width="79" height="79"/>
+        <image name="PIG-logo" width="188" height="62"/>
+        <image name="button-bg-large-pink" width="253" height="106"/>
+        <image name="button-buyTwoPlayer-1" width="284" height="126"/>
+        <image name="buyTwoPlayer" width="111" height="105"/>
+        <image name="dice-white-1" width="109" height="109"/>
+        <image name="pig-large-transparent" width="290" height="266"/>
+        <image name="pig-smiling" width="164" height="150"/>
+        <image name="player-bg-blue" width="255" height="97"/>
+        <image name="player-bg-blue-reverse" width="255" height="97"/>
+        <image name="player-bg-pink" width="255" height="97"/>
+        <image name="points-bg-white" width="79" height="79"/>
         <image name="rabbit.png" width="35" height="25"/>
-        <image name="rollTutorial.png" width="320" height="568"/>
-        <image name="snake.png" width="147" height="150"/>
-        <image name="turtle.png" width="47" height="25"/>
+        <image name="rollTutorial" width="320" height="568"/>
+        <image name="snake" width="147" height="150"/>
+        <image name="turtle" width="47" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jA2-CX-F2u"/>
